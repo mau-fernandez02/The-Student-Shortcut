@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+---
+
+<Layout title="The Student Shortcut - Intercambios Estudiantiles">
+	<Header />
+
+	<main>
+		<!-- Placeholder section just to test scroll effect of navbar -->
+		<section class="hero-section">
+			<div class="container hero-grid">
+				<!-- Columna Izquierda: Video 1:1 -->
+				<div class="video-column">
+					<!-- Atributos importantes: autoplay, loop y muted son obligatorios para que el video inicie solo sin requerir que el usuario haga clic -->
+					<video autoplay loop muted playsinline class="hero-video">
+						<source src="/media/video.mp4" type="video/mp4" />
+						Tu navegador no soporta la reproducción de video.
+					</video>
+				</div>
+
+				<!-- Columna Derecha: Textos y Botones -->
+				<div class="text-column">
+					<h1>
+						Estudiar en el Extranjero...<br /> Nunca estuvo tan a tu alcance
+					</h1>
+					<p>
+						Conquista tus habilidades en un nuevo país, nueva
+						cultura, nuevo idioma.
+					</p>
+					<div class="cta-group">
+						<a href="#programas" class="btn btn-primary"
+							>Ver programas</a
+						>
+						<a href="#nosotros" class="btn btn-secondary"
+							>Conocer más</a
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
+		padding-top: 80px; /* Offset for fixed header */
+	}
+
+	.hero-placeholder {
+		min-height: calc(100vh - 80px);
+		display: flex;
+		align-items: center;
+		background: radial-gradient(
+			circle at 10% 20%,
+			rgba(188, 223, 248, 0.4) 0%,
+			rgba(248, 250, 252, 1) 90%
+		);
+		padding: 4rem 0;
+	}
+
+	.hero-content {
+		max-width: 800px;
+		text-align: center;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.hero-content h1 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		color: var(--color-brand-dark);
+		line-height: 1.15;
+	}
+
+	.hero-content p {
+		font-size: clamp(1.1rem, 2vw, 1.25rem);
+		color: var(--text-muted);
+		max-width: 600px;
+	}
+
+	.cta-group {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	/* Sistema de cuadrícula para las dos columnas */
+	.hero-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr; /* Crea dos columnas del mismo tamaño */
+		gap: 127px; /* Espacio entre el video y el texto */
+		align-items: center; /* Centra el contenido verticalmente */
+		padding: 60px 0;
+	}
+
+	/* --- Columna Izquierda (Video) --- */
+	.video-column {
+		width: 100%;
+		aspect-ratio: 1 / 1; /* Esto fuerza la relación de aspecto cuadrada */
+		border-radius: 16px; /* Opcional: bordes redondeados */
+		overflow: hidden; /* Evita que el video se salga de los bordes redondeados */
+	}
+
+	.hero-video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover; /* Asegura que el video llene el cuadro 1:1 sin deformarse */
+	}
+
+	/* --- Columna Derecha (Texto y botones) --- */
+	.text-column h1 {
+		font-size: 55px;
+		margin-bottom: 20px;
+	}
+
+	.text-column p {
+		font-size: 1.2rem;
+		margin-bottom: 30px;
+		color: #555; /* Un gris oscuro para el texto, ajústalo a tu paleta */
+	}
+
+	/* Contenedor de los botones */
+	.cta-group {
+		display: flex;
+		gap: 15px; /* Espacio entre los dos botones */
+		flex-wrap: wrap; /* Si la pantalla es pequeña, el segundo botón pasa abajo automáticamente */
+	}
+
+	/* --- Diseño Responsivo para Celulares --- */
+	@media (max-width: 768px) {
+		.hero-grid {
+			grid-template-columns: 1fr; /* Cambia a una sola columna */
+			text-align: center; /* Centra el texto en móviles (opcional) */
+		}
+
+		.cta-group {
+			justify-content: center; /* Centra los botones en móviles */
+		}
+
+		.text-column h1 {
+			font-size: 2.2rem;
+		}
+	}
+</style>
