@@ -15,10 +15,7 @@ export const prerender = false;
 				<div class="video-column">
 					<!-- Atributos importantes: autoplay, loop y muted son obligatorios para que el video inicie solo sin requerir que el usuario haga clic -->
 					<video autoplay loop muted playsinline class="hero-video">
-						<source
-							src="/media/video_WyDqYs8k.mp4"
-							type="video/mp4"
-						/>
+						<source src="/media/Vid-00001.webm" type="video/mp4" />
 						Tu navegador no soporta la reproducción de video.
 					</video>
 				</div>
@@ -43,12 +40,72 @@ export const prerender = false;
 				</div>
 			</div>
 		</section>
+
+		<section class="sec2">
+			<div class="container sec2-grid">
+				<div class="text-content-sec2">
+					<h1>Descubre tu Potencial, <br />¡Explora el Mundo!</h1>
+					<h2>
+						Desafía tus Límites, Insertate en una cultura diferente
+						y aprende
+					</h2>
+					<p>
+						En Student Shortcut, no solo planeamos viajes, creamos
+						historias únicas que cambian vidas. Somos un equipo de
+						apasionados por los viajes, la educación y el
+						crecimiento personal, dedicados a hacer tus sueños
+						realidad.
+					</p>
+				</div>
+				<div class="image-sec2">
+					<img
+						src="https://www.gstatic.com/webp/gallery/1.jpg"
+						alt="Imagen de prueba"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="sec2">
+			<div class="container sec2-grid">
+				<div class="text-content-sec2">
+					<h1>Descubre tu Potencial, <br />¡Explora el Mundo!</h1>
+					<h2>
+						Desafía tus Límites, Insertate en una cultura diferente
+						y aprende
+					</h2>
+					<p>
+						En Student Shortcut, no solo planeamos viajes, creamos
+						historias únicas que cambian vidas. Somos un equipo de
+						apasionados por los viajes, la educación y el
+						crecimiento personal, dedicados a hacer tus sueños
+						realidad.
+					</p>
+				</div>
+				<div class="image-sec2">
+					<img
+						src="https://www.gstatic.com/webp/gallery/1.jpg"
+						alt="Imagen de prueba"
+					/>
+				</div>
+			</div>
+		</section>
 	</main>
 </Layout>
 
 <style>
 	main {
-		padding-top: 80px; /* Offset for fixed header */
+		padding-top: 85px; /* Offset for fixed header */
+		/* background: #ffffff; */
+		background-image:
+			url("/img/noise2.png"),
+			linear-gradient(
+				180deg,
+				rgba(255, 255, 255, 1) 14%,
+				rgba(31, 156, 201, 1) 65%,
+				rgba(0, 91, 151, 1) 100%
+			);
+		background-repeat: repeat;
 	}
 
 	.hero-placeholder {
@@ -95,7 +152,7 @@ export const prerender = false;
 	.hero-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr; /* Crea dos columnas del mismo tamaño */
-		gap: 127px; /* Espacio entre el video y el texto */
+		gap: 32px; /* Espacio entre el video y el texto */
 		align-items: center; /* Centra el contenido verticalmente */
 		padding: 60px 0;
 	}
@@ -104,7 +161,7 @@ export const prerender = false;
 	.video-column {
 		width: 100%;
 		aspect-ratio: 1 / 1; /* Esto fuerza la relación de aspecto cuadrada */
-		border-radius: 16px; /* Opcional: bordes redondeados */
+		border-radius: 10px; /* Opcional: bordes redondeados */
 		overflow: hidden; /* Evita que el video se salga de los bordes redondeados */
 	}
 
@@ -133,11 +190,41 @@ export const prerender = false;
 		flex-wrap: wrap; /* Si la pantalla es pequeña, el segundo botón pasa abajo automáticamente */
 	}
 
+	/* Segunda Seccion */
+	.sec2-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr; /* Crea dos columnas del mismo tamaño */
+		gap: 32px; /* Espacio entre el video y el texto */
+		align-items: center; /* Centra el contenido verticalmente */
+		padding: 60px 0;
+	}
+	.image-sec2 {
+		width: 100%;
+		aspect-ratio: 1 / 1; /* Esto fuerza la relación de aspecto cuadrada */
+		border-radius: 10px; /* Opcional: bordes redondeados */
+		overflow: hidden;
+	}
+	.image-sec2 img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover; /* Asegura que el video llene el cuadro 1:1 sin deformarse */
+	}
+
+	.text-content-sec2 {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+		text-align: center;
+	}
+
 	/* --- Diseño Responsivo para Celulares --- */
 	@media (max-width: 768px) {
 		.hero-grid {
 			grid-template-columns: 1fr; /* Cambia a una sola columna */
 			text-align: center; /* Centra el texto en móviles (opcional) */
+			padding: 40px 40px;
+			grid-row-end: -1;
 		}
 
 		.cta-group {
