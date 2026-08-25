@@ -1,21 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 import Hero from "../components/LandingPage/Hero.astro";
 import Discover from "../components/LandingPage/Discover.astro";
 import VideoGrid from "../components/LandingPage/VideoGrid.astro";
-import Footer from "../components/Footer.astro";
+
 export const prerender = false;
+const { tittle } = Astro.props;
 ---
 
-<Layout title="The Student Shortcut - Intercambios Estudiantiles">
-	<Header />
-
+<Layout title={tittle}>
 	<main>
 		<Hero />
 		<Discover />
 		<VideoGrid />
-		<Footer />
 	</main>
 </Layout>
 

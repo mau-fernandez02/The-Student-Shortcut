@@ -1,41 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
 <!-- Pagina: Conctactanos -->
-<div>
+<Layout>
     <div>
-        <h1>Contactanos</h1>
-        <p>Numero telefonico: (+591 62553158)</p>
-        <p>Correo electronico: [EMAIL_ADDRESS]</p>
-        <p>Dirección: Los Pinos, Calle 4, N</p>
-        <ul>
-            <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
-            <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
-            <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
-            <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
-        </ul>
-    </div>
-    <div>
-        <div class="place-holder maps">
-            <!-- Aquí va el widget de Google Maps -->
+        <div>
+            <h1>Contactanos</h1>
+            <p>Numero telefonico: (+591 62553158)</p>
+            <p>Correo electronico: [EMAIL_ADDRESS]</p>
+            <p>Dirección: Los Pinos, Calle 4, N</p>
+            <ul>
+                <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
+                <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
+                <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
+                <li><img src="#svg" alt="" /> Estudent Shortcut.Bo</li>
+            </ul>
         </div>
         <div>
-            <form action="">
-                <div class="input-group">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" placeholder="Nombre" />
-                </div>
-                <div class="input-group">
-                    <label for="email">Correo electronico:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Correo electronico"
-                    />
-                </div>
-                <div class="input-group">
-                    <label for="message">Mensaje:</label>
-                    <textarea id="message" placeholder="Mensaje"></textarea>
-                </div>
-                <button type="submit">Enviar</button>
-            </form>
+            <div class="place-holder maps">
+                <!-- Aquí va el widget de Google Maps -->
+            </div>
+            <div>
+                <form action="">
+                    <div class="input-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" placeholder="Nombre" />
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Correo electronico:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Correo electronico"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" placeholder="Mensaje"></textarea>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</Layout>
