@@ -1,0 +1,106 @@
+---
+// src/components/Discover.astro
+---
+
+<section class="sec2">
+    <div class="container sec2-grid">
+        <div class="text-sec2">
+            <h1>
+                Descubre tu Potencial, <br />
+                <span class="text-style-2">¡Explora el Mundo!</span>
+            </h1>
+            <h2>
+                Desafía tus Límites, Insertate en una cultura diferente y
+                aprende
+            </h2>
+            <p>
+                Si estás leyendo esto, es porque sueñas alto. Lo único que te
+                falta, es despegar. <br />¿Qué pasaría si te digo que estamos
+                aquí para ayudarte a hacerlo? <br />The Student Shortcut te
+                ofrece una ayuda completa para realizar tu intercambio en el
+                extranjero.
+            </p>
+        </div>
+        <div class="image-sec2">
+            <img
+                src="https://www.gstatic.com/webp/gallery/1.jpg"
+                alt="Imagen de prueba"
+            />
+        </div>
+    </div>
+    <img src="/img/SVG/Nube_9.svg" alt="" class="nube-c" />
+    <img src="/img/SVG/Nube_1.svg" alt="" class="nube-d" />
+</section>
+
+<style>
+    .sec2 {
+        position: relative;
+    }
+    .nube-c {
+        position: absolute;
+        z-index: 1;
+        top: 920;
+        left: -300;
+        width: 860px;
+        rotate: -185deg;
+        transform: rotateX(-180deg);
+    }
+    .nube-d {
+        position: absolute;
+        z-index: 1;
+        top: 920;
+        right: -50;
+        width: 400px;
+        rotate: 0deg;
+        transform: rotateX(0deg);
+    }
+
+    .sec2-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 32px;
+        align-items: center;
+        padding-top: 300px;
+        padding-bottom: 300px;
+        padding-left: auto;
+        padding-right: auto;
+    }
+    .image-sec2 {
+        aspect-ratio: 0.8/ 1;
+        border-radius: 10px;
+        max-height: 565px;
+        overflow: hidden;
+    }
+    .image-sec2 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .text-sec2 {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        text-align: center;
+        line-height: 1.6;
+        color: white;
+        text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
+    }
+    .text-sec2 h1 {
+        font-size: 40px;
+        color: white;
+    }
+    .text-style-2 {
+        font-size: 55px;
+        color: white;
+    }
+    .text-sec2 h2 {
+        font-size: 30px;
+        font-weight: 400;
+        color: white;
+    }
+    .text-sec2 p {
+        font-size: 1.2rem;
+        color: white;
+    }
+</style>

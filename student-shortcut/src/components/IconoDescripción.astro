@@ -1,0 +1,34 @@
+---
+const { srcIcon, descriptionText, altIcon } = Astro.props;
+---
+
+<!-- Icono y Descripción --><!-- se muestra un tipo Card arriba el icono png o svg y abajo una descripción -->
+<section>
+    <div class="little-container">
+        <div class="img">
+            <img src={srcIcon} alt={altIcon} />
+        </div>
+        <div class="description">
+            <p>{descriptionText}</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .little-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .description {
+        width: 100%;
+        height: 100%;
+    }
+</style>

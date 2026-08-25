@@ -1,0 +1,151 @@
+<!-- Nuestros Programas -->
+<section class="programas container">
+    <h1>Nuestros programas</h1>
+    <div class="carrusel-programas">
+        <div class="pg-1">
+            <div class="ly-pg-1">
+                <div class="video-box box-1">
+                    <video autoplay loop muted playsinline class="pg-video">
+                        <source src="/media/#" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="video-box box-2">
+                    <video autoplay loop muted playsinline class="pg-video">
+                        <source src="/media/#" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="video-box box-3">
+                    <video autoplay loop muted playsinline class="pg-video">
+                        <source src="/media/#" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="video-box box-4">
+                    <video autoplay loop muted playsinline class="pg-video">
+                        <source src="/media/#" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+
+            <div>
+                <h2>Full Year Program</h2>
+
+                <p>
+                    Diseñado para quienes quieren vivir la experiencia escolar
+                    al 100%
+                </p>
+
+                <p>
+                    Durante 8 meses, de agosto a febrero, este programa te
+                    sumerge de lleno en el corazón de una cultura extranjera
+                    dándote el tiempo necesario, permitiéndote no solo vivir
+                    como un local, sino consolidar un rendimiento académico de
+                    nivel internacional que impulsará tu futuro.
+                </p>
+
+                <button>Conocer los requisitos</button>
+            </div>
+        </div>
+
+        <div class="programa-2">
+            <div class="layout-videos-2">
+                <!-- Layout videos -->
+                <div class="box1">
+                    <video autoplay loop muted playsinline class="hero-video">
+                        <source src="/media/#" type="video/mp4" />
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                <div class="box2">
+                    <video autoplay loop muted playsinline class="hero-video">
+                        <source src="/media/#" type="video/mp4" />
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                <div class="box3">
+                    <video autoplay loop muted playsinline class="hero-video">
+                        <source src="/media/#" type="video/mp4" />
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+            </div>
+
+            <div>
+                <h2>Programa Semestral</h2>
+
+                <p>
+                    Con una duración de 5 meses, desde enero hasta mayo, este
+                    programa se convierte en la opción ideal para estructurar un
+                    año academico perfecto.
+                </p>
+
+                <p>
+                    Es la solución perfecta para mantener un equilibrio
+                    impecable entre tu trayectoria academica en Bolivia y tu
+                    experiencia de inmersion en el extranjero.
+                </p>
+
+                <button>Conocer los requisitos</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .carrusel-programas {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+    .ly-pg-1 {
+        display: grid;
+        /* Definimos las 2 columnas y 3 filas necesarias */
+        grid-template-columns: 261px 160px;
+        grid-template-rows: 160px 88px 88px;
+
+        /* gap: [filas] [columnas] */
+        gap: 13px 27px;
+
+        width: fit-content;
+    }
+
+    .video-box {
+        border-radius: 16px; /* Bordes redondeados como en tu diseño */
+        overflow: hidden;
+        background-color: #000;
+    }
+
+    .pg-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* --- Posicionamiento Grid --- */
+
+    /* Cuadrado grande superior izquierdo (261x261) */
+    .box-1 {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+    }
+
+    /* Cuadrado superior derecho (160x160) */
+    .box-2 {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* Rectángulo medio derecho (160x88) */
+    .box-3 {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    /* Rectángulo inferior completo (448x88) */
+    .box-4 {
+        grid-column: 1 / span 2;
+        grid-row: 3;
+    }
+</style>

@@ -4,7 +4,7 @@
   /* Brand Colors */
   --color-brand-light: #BCDFF8;
   --color-brand-dark: #0A2540;
-  --color-primary: #1E40AF;
+  --color-primary: #1E9CD7;
   --color-primary-light: #3B82F6;
   --color-accent: #6366F1;
 
@@ -12,6 +12,7 @@
   --bg-primary: #F8FAFC;
   --bg-secondary: #FFFFFF;
   --text-primary: #0F172A;
+  --text-secondary: #FFFFFF;
   --text-muted: #475569;
   --border-color: #E2E8F0;
   --navbar-bg: var(--color-brand-light);
@@ -117,11 +118,11 @@ button {
 .container {
   width: 100%;
   min-height: 690px;
-  max-width: 1200px;
+  max-width: 1230px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
 }
 
 /* Buttons Utilities */
@@ -132,7 +133,7 @@ button {
   padding: 0.75rem 1.5rem;
   font-family: var(--font-display);
   font-weight: 600;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-lg);
   transition: var(--transition-normal);
   font-size: 0.95rem;
 }
@@ -150,11 +151,13 @@ button {
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
+  color: var(--color-brand-dark);
   transform: translateY(-2px);
+
 }

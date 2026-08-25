@@ -1,0 +1,200 @@
+---
+// src/components/VideoGrid.astro
+---
+
+<section class="sec3">
+    <div class="container tier-3-container">
+        <div class="tier-3-subgrid">
+            <div class="grid-item box-1">
+                <video autoplay loop muted playsinline class="hero-video"
+                    ><source
+                        src="/media/Vid-00001.webm"
+                        type="video/mp4"
+                    /></video
+                >
+            </div>
+            <div class="grid-item box-2">
+                <video autoplay loop muted playsinline class="hero-video"
+                    ><source
+                        src="/media/Vid-00001.webm"
+                        type="video/mp4"
+                    /></video
+                >
+            </div>
+            <div class="grid-item box-3">
+                <video autoplay loop muted playsinline class="hero-video"
+                    ><source
+                        src="/media/Vid-00001.webm"
+                        type="video/mp4"
+                    /></video
+                >
+            </div>
+            <div class="grid-item box-4">
+                <video autoplay loop muted playsinline class="hero-video"
+                    ><source
+                        src="/media/Vid-00001.webm"
+                        type="video/mp4"
+                    /></video
+                >
+            </div>
+            <div class="grid-item box-5">
+                <video autoplay loop muted playsinline class="hero-video"
+                    ><source
+                        src="/media/Vid-00001.webm"
+                        type="video/mp4"
+                    /></video
+                >
+            </div>
+        </div>
+        <div class="text-tier-3">
+            <h1>¡Cualquier sueño es posible <br />si lo hacemos Juntos!</h1>
+            <h2>Tu apuntas, ¡Y nosotros nos encargamos!</h2>
+            <p>
+                El equipo de The Student Shortcut te acompaña en todo el proceso
+                para que puedas disfrutar de tu Expereincia de Intercambio
+                <br />
+                <br /> Te asesoramos a lo largo de tu postulación para asegurar la
+                mejor compatibilidad entre tú y tu destino.
+                <br />
+                <br />Nosotros nos encargamos de encontrar la mejor familia la
+                mejor familia anfigriona para ti. Te ayudamos con el idioma para
+                que la transición se más sencilla.
+                <br />
+                <br /> Simplificamos la relación entre colegios locales y extranjeros
+                para la validación de materias y notas.
+            </p>
+            <div class="cta-group">
+                <a href="#nosotros" class="btn btn-secondary"
+                    >Inicia tu intercambio</a
+                >
+            </div>
+        </div>
+    </div>
+    <img src="/img/SVG/Montaña_5.svg" alt="" class="montana-a" />
+    <img src="/img/SVG/Montaña_2.svg" alt="" class="montana-b" />
+</section>
+
+<style>
+    .sec3 {
+        position: relative;
+    }
+
+    .tier-3-container {
+        display: grid;
+        grid-template-columns: 440px 640px;
+        gap: 45px;
+        align-items: center;
+        padding-top: 220px;
+        padding-left: auto;
+        padding-right: auto;
+        padding-bottom: 300px;
+    }
+
+    .tier-3-subgrid {
+        display: grid;
+        /*
+       Magia matemática:
+       Columna 1 (165px) + Gap (22px) + Columna 2 (74px) + Gap (22px) + Columna 3 (165px) = 448px
+       Esto permite que los cruces (spans) midan exactamente 261px o 165px.
+    */
+        grid-template-columns: 165px 74px 165px;
+
+        /* Forzamos la altura exacta de cada fila */
+        grid-template-rows: 261px 261px 116px;
+
+        gap: 20px;
+        max-width: 448px;
+    }
+
+    .grid-item {
+        position: relative;
+        background-color: #121212;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    .grid-item video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* FILA 1 */
+    .box-1 {
+        /* Toma la columna 1 y 2 (165px + 22px gap + 74px = 261px de ancho) */
+        grid-column: 1 / span 2;
+    }
+    .box-2 {
+        /* Toma solo la columna 3 (165px de ancho) */
+        grid-column: 3;
+    }
+
+    /* FILA 2 */
+    .box-3 {
+        /* Toma solo la columna 1 (165px de ancho) */
+        grid-column: 1;
+    }
+    .box-4 {
+        /* Toma la columna 2 y 3 (74px + 22px gap + 165px = 261px de ancho) */
+        grid-column: 2 / span 2;
+    }
+
+    /* FILA 3 */
+    .box-5 {
+        /* Toma las 3 columnas, logrando el ancho total de 448px */
+        grid-column: 1 / span 3;
+    }
+
+    .text-tier-3 {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: left;
+        text-align: left;
+        line-height: 1.6;
+        color: white;
+        text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
+    }
+    .text-tier-3 h1 {
+        font-size: 40px;
+        color: white;
+        text-align: left;
+    }
+    .text-style-2 {
+        font-size: 55px;
+        color: white;
+    }
+    .text-tier-3 h2 {
+        font-size: 25px;
+        font-weight: 400;
+        color: white;
+    }
+    .text-tier-3 p {
+        font-size: 1.2rem;
+        color: white;
+    }
+    .montana-a {
+        position: absolute;
+        z-index: 1;
+        bottom: 120;
+        left: 0;
+        height: 790;
+        rotate: 0deg;
+        transform: rotateX(0deg);
+    }
+    .montana-b {
+        position: absolute;
+        z-index: 1;
+        bottom: 120;
+        right: 0;
+        height: 790;
+        rotate: 0deg;
+
+        transform: rotateY(-180deg);
+    }
+</style>
