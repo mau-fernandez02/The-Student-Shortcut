@@ -6,44 +6,29 @@
     <div class="container tier-3-container">
         <div class="tier-3-subgrid">
             <div class="grid-item box-1">
-                <video autoplay loop muted playsinline class="hero-video"
-                    ><source
-                        src="/media/Vid-00001.webm"
-                        type="video/mp4"
-                    /></video
-                >
+                <video autoplay loop muted playsinline class="hero-video">
+                    <source src="/media/Vid-00001.webm" type="video/mp4" />
+                </video>
             </div>
             <div class="grid-item box-2">
-                <video autoplay loop muted playsinline class="hero-video"
-                    ><source
-                        src="/media/Vid-00001.webm"
-                        type="video/mp4"
-                    /></video
-                >
+                <video autoplay loop muted playsinline class="hero-video">
+                    <source src="/media/Vid-00001.webm" type="video/mp4" />
+                </video>
             </div>
             <div class="grid-item box-3">
-                <video autoplay loop muted playsinline class="hero-video"
-                    ><source
-                        src="/media/Vid-00001.webm"
-                        type="video/mp4"
-                    /></video
-                >
+                <video autoplay loop muted playsinline class="hero-video">
+                    <source src="/media/Vid-00001.webm" type="video/mp4" />
+                </video>
             </div>
             <div class="grid-item box-4">
-                <video autoplay loop muted playsinline class="hero-video"
-                    ><source
-                        src="/media/Vid-00001.webm"
-                        type="video/mp4"
-                    /></video
-                >
+                <video autoplay loop muted playsinline class="hero-video">
+                    <source src="/media/Vid-00001.webm" type="video/mp4" />
+                </video>
             </div>
             <div class="grid-item box-5">
-                <video autoplay loop muted playsinline class="hero-video"
-                    ><source
-                        src="/media/Vid-00001.webm"
-                        type="video/mp4"
-                    /></video
-                >
+                <video autoplay loop muted playsinline class="hero-video">
+                    <source src="/media/Vid-00001.webm" type="video/mp4" />
+                </video>
             </div>
         </div>
         <div class="text-tier-3">
@@ -70,38 +55,69 @@
             </div>
         </div>
     </div>
-    <img src="/img/SVG/Montaña_5.svg" alt="" class="montana-a" />
-    <img src="/img/SVG/Montaña_2.svg" alt="" class="montana-b" />
+
+    <div class="montana-a">
+        <img src="/img/SVG/Montaña_5.svg" alt="" />
+    </div>
+    <div class="montana-b">
+        <img src="/img/SVG/Montaña_2.svg" alt="" />
+    </div>
 </section>
 
 <style>
     .sec3 {
         position: relative;
+        overflow: hidden; /* Forma simplificada */
+        width: 100%;
+    }
+
+    .montana-a {
+        position: absolute;
+        z-index: 1;
+        bottom: 50px;
+        left: 0px;
+        height: 680px;
+        pointer-events: none; /* Permite hacer clic a través de la imagen */
+        transform: rotateX(0deg); /* Unificado */
+    }
+    .montana-a img {
+        height: 100%;
+        display: block;
+    }
+
+    .montana-b {
+        position: absolute;
+        z-index: 1;
+        bottom: 120px;
+        right: -20px;
+        height: 600px;
+        pointer-events: none; /* Permite hacer clic a través de la imagen */
+        transform: rotateY(-180deg) scaleY(-1); /* Unificado */
+    }
+    .montana-b img {
+        height: 100%;
+        display: block;
     }
 
     .tier-3-container {
+        position: relative;
+        z-index: 2; /* Mantiene tu cuadrícula sobre las montañas */
         display: grid;
         grid-template-columns: 440px 640px;
+        justify-content: center; /* Asegura que el grid completo se centre en la pantalla */
         gap: 45px;
         align-items: center;
-        padding-top: 220px;
-        padding-left: auto;
-        padding-right: auto;
-        padding-bottom: 300px;
+        padding-top: 20px;
+        padding-bottom: 320px;
+        margin-left: auto; /* ¡CORREGIDO! margin en lugar de padding */
+        margin-right: auto;
+        max-width: 1200px;
     }
 
     .tier-3-subgrid {
         display: grid;
-        /*
-       Magia matemática:
-       Columna 1 (165px) + Gap (22px) + Columna 2 (74px) + Gap (22px) + Columna 3 (165px) = 448px
-       Esto permite que los cruces (spans) midan exactamente 261px o 165px.
-    */
         grid-template-columns: 165px 74px 165px;
-
-        /* Forzamos la altura exacta de cada fila */
         grid-template-rows: 261px 261px 116px;
-
         gap: 20px;
         max-width: 448px;
     }
@@ -126,27 +142,22 @@
 
     /* FILA 1 */
     .box-1 {
-        /* Toma la columna 1 y 2 (165px + 22px gap + 74px = 261px de ancho) */
         grid-column: 1 / span 2;
     }
     .box-2 {
-        /* Toma solo la columna 3 (165px de ancho) */
         grid-column: 3;
     }
 
     /* FILA 2 */
     .box-3 {
-        /* Toma solo la columna 1 (165px de ancho) */
         grid-column: 1;
     }
     .box-4 {
-        /* Toma la columna 2 y 3 (74px + 22px gap + 165px = 261px de ancho) */
         grid-column: 2 / span 2;
     }
 
     /* FILA 3 */
     .box-5 {
-        /* Toma las 3 columnas, logrando el ancho total de 448px */
         grid-column: 1 / span 3;
     }
 
@@ -154,7 +165,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        align-items: left;
+        align-items: flex-start; /* 'left' no es válido en flexbox, usamos flex-start */
         text-align: left;
         line-height: 1.6;
         color: white;
@@ -177,24 +188,5 @@
     .text-tier-3 p {
         font-size: 1.2rem;
         color: white;
-    }
-    .montana-a {
-        position: absolute;
-        z-index: 1;
-        bottom: 120;
-        left: 0;
-        height: 790;
-        rotate: 0deg;
-        transform: rotateX(0deg);
-    }
-    .montana-b {
-        position: absolute;
-        z-index: 1;
-        bottom: 120;
-        right: 0;
-        height: 790;
-        rotate: 0deg;
-
-        transform: rotateY(-180deg);
     }
 </style>

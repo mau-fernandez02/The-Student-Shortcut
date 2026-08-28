@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+student-shortcut/.wrangler/
+
+.wrangler/
+
+student-shortcut/.wrangler/*
+
+.wrangler/*

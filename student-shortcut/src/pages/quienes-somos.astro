@@ -1,114 +1,35 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import QuienesSomos from "../components/QuienesSomos/QuienesSomos.astro";
+import NuestroEquipo from "../components/QuienesSomos/NuestroEquipo.astro";
 ---
 
 <!-- Quienes Somos About Us -->
 <Layout>
     <main>
-        <section>
-            <h1>¿Quienes Somos?</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam,
-                dolores facere iure obcaecati officia facilis cumque, itaque
-                temporibus culpa vitae numquam iste ipsum aliquid doloribus vero
-                odio. Vitae, repudiandae vero?
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                sunt rerum doloribus ex tempore at aperiam ipsum dolores
-                dolorum. Delectus et modi facilis rem sed totam sapiente placeat
-                corporis dolor?
-            </p>
-            <div>
-                <div>
-                    <h3>Nuestra Misión</h3>
-                    <div>
-                        <img src="#" alt="" />
-                    </div>
-                </div>
-                <div>
-                    <h3>Nuestra Visión</h3>
-                    <div>
-                        <img src="#" alt="" />
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="nuestro-equipo">
-            <!-- perfil 1 -->
-            <div class="profile-1">
-                <div class="profile-text">
-                    <h2>ESTEBAN DAZA</h2>
-                    <span>Co-Founder & CPO</span>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Obcaecati sequi ut voluptate exercitationem autem?
-                        Amet recusandae odit repellendus tenetur cumque? Optio
-                        suscipit sint ad vero distinctio libero tempora sed
-                        alias.
-                    </p>
-                </div>
-                <div>
-                    <!-- video A -->
-                    <video
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        class="profile-video"
-                        src="#"
-                    >
-                        <source src="/media/Vid-00001.webm" type="video/mp4" />
-                    </video>
-                </div>
-            </div>
-
-            <!-- Perfil 2 -->
-            <div class="profile-2">
-                <div>
-                    <!-- video A -->
-                    <video
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        class="profile-video"
-                        src="#"
-                    >
-                        <source src="/media/Vid-00001.webm" type="video/mp4" />
-                    </video>
-                </div>
-                <div class="profile-text">
-                    <h2>FABRIZIO ARAMAYO</h2>
-                    <span>Co-Founder & CMO</span>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Obcaecati sequi ut voluptate exercitationem autem?
-                        Amet recusandae odit repellendus tenetur cumque? Optio
-                        suscipit sint ad vero distinctio libero tempora sed
-                        alias.
-                    </p>
-                </div>
-            </div>
-        </section>
-
+        <QuienesSomos />
+        <NuestroEquipo />
         <!-- equipo restante / team -->
+
         <section>
             <div class="perfil-team">
-                <div><img src="#" alt="" /></div>
+                <div class="img-box"><img src="#" alt="" /></div>
                 <h3>CRISTINA MATAMOROS</h3>
                 <!-- hide bio hasta que termine -->
                 <p>bio</p>
             </div>
             <div class="perfil-team">
-                <div><img src="#" alt="" /></div>
+                <div class="img-box">
+                    <img src="#" alt="" />
+                </div>
                 <h3>KARINA REYES</h3>
                 <!-- hide bio hasta que termine -->
                 <p>bio</p>
             </div>
             <div class="perfil-team">
-                <div><img src="#" alt="" /></div>
+                <div class="img-box">
+                    <img src="#" alt="" />
+                </div>
                 <h3>NICOLÁS ANGULO</h3>
                 <!-- hide bio hasta que termine -->
                 <p>bio</p>
@@ -124,12 +45,7 @@ import Layout from "../layouts/Layout.astro";
         margin-bottom: 0;
         background-image:
             url("/img/noise.png"),
-            linear-gradient(
-                180deg,
-                rgba(255, 255, 255, 1) 14%,
-                rgba(31, 156, 201, 1) 55%,
-                rgba(0, 91, 151, 1) 100%
-            );
+            linear-gradient(180deg, #85d7f5 0%, #1f9cc9 55%, #005b97 100%);
         background-repeat: repeat;
     }
     div {

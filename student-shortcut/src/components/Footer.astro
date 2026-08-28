@@ -17,22 +17,48 @@
             <h4>Navegación</h4>
             <nav>
                 <ul class="links-list">
-                    <li class="link-item"><a href="#">Programas</a></li>
-                    <li class="link-item"><a href="#">Contacto</a></li>
-                    <li class="link-item"><a href="#">Ubicación</a></li>
-                    <li class="link-item"><a href="#">Nosotros</a></li>
+                    <li class="link-item">
+                        <a href="/programas">Programas</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="/contactanos">Contacto</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="/irse-intercambio">Ubicación</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="/quienes-somos">Nosotros</a>
+                    </li>
                 </ul>
             </nav>
         </div>
 
         <!-- Derecha: Redes -->
+        <!-- Derecha: Redes -->
         <div class="footer-right">
             <h4>Redes</h4>
             <div class="social-icons">
-                <!-- Por ahora usamos texto, luego puedes cambiarlo por SVGs o etiquetas <img> -->
-                <a href="#facebook" class="social-btn">Fb</a>
-                <a href="#instagram" class="social-btn">IG</a>
-                <a href="#tiktok" class="social-btn">TK</a>
+                <a href="#facebook" class="social-btn" aria-label="Facebook">
+                    <img
+                        src="/img/SVG/facebook-svgrepo-com.svg"
+                        alt="página de facebook"
+                        class="icon-img"
+                    />
+                </a>
+                <a href="#instagram" class="social-btn" aria-label="Instagram">
+                    <img
+                        src="/img/SVG/instagram-svgrepo-com.svg"
+                        alt=""
+                        class="icon-img"
+                    />
+                </a>
+                <a href="#tiktok" class="social-btn" aria-label="TikTok">
+                    <img
+                        src="/img/SVG/tiktok-svgrepo-com.svg"
+                        alt=""
+                        class="icon-img"
+                    />
+                </a>
             </div>
         </div>
     </div>
@@ -128,9 +154,10 @@
         justify-content: center;
         width: 40px;
         height: 40px;
-        background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
-        color: #ffffff;
-        border-radius: 50%; /* Hace que sean círculos perfectos */
+        background-color: rgba(255, 255, 255, 0.795);
+
+        border-radius: 50%;
+
         text-decoration: none;
         transition:
             background-color 0.3s ease,
@@ -139,9 +166,15 @@
 
     .social-btn:hover {
         background-color: rgba(255, 255, 255, 0.2);
-        transform: translateY(
-            -3px
-        ); /* Pequeño salto hacia arriba al hacer hover */
+        transform: translateY(-3px);
+    }
+
+    /* NUEVO: Controlamos el tamaño del icono */
+    .icon-img {
+        width: 80%; /* Ajusta este valor si los quieres más grandes o pequeños */
+        height: 80%;
+        object-fit: contain; /* Evita que la imagen se deforme */
+        fill: #ffffff;
     }
 
     /* Barra inferior de Copyright */

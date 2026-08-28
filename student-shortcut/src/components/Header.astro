@@ -3,27 +3,17 @@
 ---
 
 <header class="main-header" id="mainHeader">
-  <div class="container header-container">
+  <div class="header-container">
     <!-- LOGO -->
     <a href="/" class="logo" id="headerLogo">
-      <div class="logo-icon-wrapper">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="logo-icon"
-        >
-          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-          <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
-        </svg>
-      </div>
-      <span class="logo-text"
-        >Student<span class="logo-highlight">Shortcut</span></span
-      >
+      <img
+        width="160"
+        height="42"
+        src="/img/SVG/StudentShortcut-LogoBlack_V2.svg"
+        alt="Student Shortcut"
+        fetchpriority="high"
+        decoding="sync"
+      />
     </a>
 
     <!-- NAVIGATION MENU -->
@@ -115,7 +105,7 @@
 
 <style>
   .main-header {
-    --header-height: 55px;
+    --header-height: 75px;
     background-color: var(--navbar-bg);
     color: var(--navbar-text);
     position: fixed;
@@ -133,7 +123,7 @@
 
   /* Scrolled style for shrink effect */
   .main-header.scrolled {
-    --header-height: 55px;
+    --header-height: 60px;
     background-color: rgba(188, 223, 248, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(10, 37, 64, 0.08);
@@ -142,8 +132,11 @@
   .header-container {
     display: flex;
     justify-content: space-between;
+    max-width: 1280px;
     align-items: center;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Logo */
@@ -155,34 +148,8 @@
     z-index: 1010;
   }
 
-  .logo-icon-wrapper {
-    background-color: var(--color-brand-dark);
-    color: var(--color-brand-light);
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--transition-normal);
-  }
-
   .logo:hover .logo-icon-wrapper {
     transform: rotate(-8deg) scale(1.05);
-  }
-
-  .logo-icon {
-    width: 22px;
-    height: 22px;
-  }
-
-  .logo-text {
-    font-family: var(--font-display);
-    font-weight: 750;
-    font-size: 1.35rem;
-    color: var(--color-brand-dark);
-    letter-spacing: -0.025em;
   }
 
   .logo-highlight {

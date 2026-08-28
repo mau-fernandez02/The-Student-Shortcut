@@ -2,21 +2,54 @@
 import Layout from "../layouts/Layout.astro";
 import Programa1 from "../components/Programas/Programa1.astro";
 import Programa2 from "../components/Programas/Programa2.astro";
+
+import Carrusel from "../components/Carrusel.astro";
 ---
 
 <!-- Nuestros Programas -->
 <Layout title="Nuestros Programas">
-    <section class="programas container">
-        <h1>Nuestros programas</h1>
-        <div class="carrusel-programas">
-            <Programa1 />
-
-            <Programa2 />
-        </div>
-    </section>
+    <main>
+        <section class="programas container">
+            <h1>Nuestros programas</h1>
+            <!-- Usamos el carrusel y le pasamos los programas como hijos -->
+            <Carrusel>
+                <Programa1 />
+                <Programa2 />
+                <!-- En el futuro solo tienes que agregar <Programa3 /> aquí y funcionará automáticamente -->
+            </Carrusel>
+        </section>
+    </main>
 </Layout>
 
 <style>
+    main {
+        /* Offset for fixed header */
+        /* background: #ffffff; */
+        padding-bottom: 0;
+        margin-bottom: 0;
+        background-image:
+            url("/img/noise.png"),
+            linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, #1e9cd7 60%);
+        background-repeat: repeat;
+    }
+    .programas {
+        padding-top: 260px;
+        padding-bottom: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: start;
+        align-items: start;
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 100%;
+    }
+    .programas h1 {
+        color: #ffffff;
+        font-size: 40px;
+        font-weight: 700;
+        text-align: center;
+    }
     .carrusel-programas {
         display: flex;
         flex-direction: row;

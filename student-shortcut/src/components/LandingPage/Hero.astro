@@ -25,31 +25,44 @@
             </div>
         </div>
     </div>
-    <img src="/img/SVG/Nube_8.svg" alt="" class="nube-a" />
-    <img src="/img/SVG/Nube_10.svg" alt="" class="nube-b" />
+    <div class="nube-a">
+        <img src="/img/SVG/Nube_8.svg" alt="" />
+    </div>
+    <div class="nube-b">
+        <img src="/img/SVG/Nube_10.svg" alt="" />
+    </div>
 </section>
 
 <style>
     .hero-section {
         position: relative;
+        overflow: hidden; /* Forma simplificada y estándar */
+        width: 100%; /* Asegura que no desborde el body */
     }
     .nube-a {
         position: absolute;
-        z-index: 1;
-        top: 820;
-        left: -254;
-        width: 820px;
-        rotate: -185deg;
-        transform: rotateX(-180deg);
+        z-index: 2;
+        bottom: 80px;
+        left: -190px;
+        width: 800px;
+        rotate: 0deg;
+        transform: scaleX(-1);
+    }
+    .nube-a img {
+        width: 100%;
     }
     .nube-b {
         position: absolute;
-        z-index: 1;
-        top: 820;
-        right: -488;
-        width: 1020px;
-        rotate: 7.6deg;
-        transform: rotateX(0deg);
+        z-index: 2;
+        bottom: 70px;
+        right: -380px;
+        width: 890px;
+        rotate: 0deg;
+        transform: rotate(5deg);
+        /* overflow: hidden; */
+    }
+    .nube-b img {
+        width: 100%;
     }
 
     .hero-grid {
@@ -57,7 +70,9 @@
         grid-template-columns: 1.2fr 1fr;
         gap: 32px;
         align-items: center;
-        padding: 75px 0;
+        padding-top: 75px;
+        padding-bottom: 325px;
+        margin: 0 auto;
     }
     .video-column {
         width: 100%;
