@@ -20,8 +20,8 @@
                 idioma.
             </p>
             <div class="cta-group">
-                <a href="#programas" class="btn btn-primary">Ver programas</a>
-                <a href="#nosotros" class="btn btn-secondary">Conocer más</a>
+                <a href="/programas" class="btn btn-primary">Ver Intercambios</a>
+                <a href="/contactanos" class="btn boton-secundario">Contactanos...</a>
             </div>
         </div>
     </div>
@@ -34,6 +34,18 @@
 </section>
 
 <style>
+    .boton-secundario {
+        background-color: transparent;
+        color: var(--color-primary, #1e9cd7);
+        border: 1px solid var(--color-primary, #1e9cd7);
+        transition: all 0.3s ease;
+    }
+    .boton-secundario:hover {
+        background-color: var(--color-primary, #1e9cd7);
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
     .hero-section {
         position: relative;
         overflow: hidden; /* Forma simplificada y estándar */

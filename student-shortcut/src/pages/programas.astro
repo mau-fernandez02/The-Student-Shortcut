@@ -8,53 +8,96 @@ import Carrusel from "../components/Carrusel.astro";
 
 <!-- Nuestros Programas -->
 <Layout title="Nuestros Programas">
-    <main>
-        <section class="programas container">
-            <h1>Nuestros programas</h1>
-            <!-- Usamos el carrusel y le pasamos los programas como hijos -->
-            <Carrusel>
-                <Programa1 />
-                <Programa2 />
-                <!-- En el futuro solo tienes que agregar <Programa3 /> aquí y funcionará automáticamente -->
-            </Carrusel>
-        </section>
-    </main>
+  <main>
+    <section class="programas container">
+      <h1>Nuestros programas</h1>
+      <!-- Usamos el carrusel y le pasamos los programas como hijos -->
+
+      <Carrusel>
+        <Programa1 />
+        <Programa2 />
+        <!-- En el futuro solo tienes que agregar <Programa3 /> aquí y funcionará automáticamente -->
+      </Carrusel>
+      <div class="montana-a">
+        <img src="/img/SVG/Montaña_12.svg" alt="" />
+      </div>
+      <div class="montana-b">
+        <img src="/img/SVG/Montaña_7.svg" alt="" />
+      </div>
+      <div class="montana-c">
+        <img src="/img/SVG/Montaña_9.svg" alt="" />
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-    main {
-        /* Offset for fixed header */
-        /* background: #ffffff; */
-        padding-bottom: 0;
-        margin-bottom: 0;
-        background-image:
-            url("/img/noise.png"),
-            linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, #1e9cd7 60%);
-        background-repeat: repeat;
-    }
-    .programas {
-        padding-top: 260px;
-        padding-bottom: 200px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        justify-content: start;
-        align-items: start;
-        margin: 0 auto;
-        max-width: 1280px;
-        width: 100%;
-    }
-    .programas h1 {
-        color: #ffffff;
-        font-size: 40px;
-        font-weight: 700;
-        text-align: center;
-    }
-    .carrusel-programas {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-        align-items: center;
-        justify-content: center;
-    }
+  main {
+    position: relative;
+    /* Offset for fixed header */
+    /* background: #ffffff; */
+    padding-bottom: 0;
+    margin-bottom: 0;
+    background-image:
+      url("/img/noise.png"),
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, #1e9cd7 60%);
+    background-repeat: repeat;
+  }
+  .programas-container {
+    position: relative;
+  }
+  .montana-a {
+    position: absolute;
+    z-index: 1;
+    top: -0px;
+    left: -0px;
+    width: 500px;
+    rotate: 0deg;
+    transform: scaleX(-1) rotate(-90deg);
+  }
+  .montana-b {
+    position: absolute;
+    z-index: 1;
+    top: -0px;
+    right: -0px;
+    width: 500px;
+    rotate: 0deg;
+    transform: scaleX(1) rotate(-90deg);
+  }
+  .montana-c {
+    position: absolute;
+    z-index: 1;
+    bottom: -58px;
+    right: 0px;
+    width: 480px;
+    rotate: 0deg;
+    transform: scaleX(1) rotate(-90deg);
+  }
+
+  .programas {
+    padding-top: 260px;
+    padding-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    align-items: start;
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
+  }
+
+  .programas h1 {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .carrusel-programas {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
 </style>

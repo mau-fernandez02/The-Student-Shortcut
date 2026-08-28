@@ -49,10 +49,17 @@
             </p>
         </div>
     </div>
+    <div class="montana-a">
+        <img src="/img/SVG/Montaña_5.svg" alt="" />
+    </div>
 </section>
 
 <style>
     .qs-section {
+        position: relative;
+        padding-top: 180px;
+        padding-bottom: 100px;
+        /* Offset for fixed header */
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -60,9 +67,20 @@
         align-items: center;
         margin: 0px auto;
         width: 100%;
-        min-height: 850px;
 
         max-width: 1280px;
+    }
+    .montana-a {
+        position: absolute;
+        z-index: 2;
+        top: -190px;
+        left: -250px;
+        width: 900px;
+        rotate: 0deg;
+        transform: rotate(90deg);
+    }
+    .montana-a img {
+        width: 100%;
     }
     .mision-vision {
         display: flex;
@@ -73,6 +91,7 @@
         margin: 50px auto;
     }
     .text-qs {
+        z-index: 4;
         display: flex;
         flex-direction: column;
         gap: 25px;

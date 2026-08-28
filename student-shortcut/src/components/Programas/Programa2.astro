@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="text-pg-2">
+    <div class="text-pg">
         <h2>Programa Semestral</h2>
 
         <p>
@@ -46,6 +46,7 @@
 
 <style>
     .pg-2 {
+        z-index: 2;
         display: grid;
         /* auto para el mosaico de videos, 1fr para el texto */
         grid-template-columns: auto 1fr;
@@ -83,8 +84,26 @@
         grid-row: 2;
     }
 
-    .text-pg-2 {
-        /* Aquí puedes poner los estilos de tu texto si los necesitas */
+    .text-pg{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+    .text-pg h2{
+        color: #fff;
+        font-size: 40px;
+
+    }
+    .text-pg p{
+        color: #fff;
+        font-size: 20px;
+    }
+    .text-pg button{
+        color: white;
+        border: white 1px solid;
+        padding: 11px;
+        max-width: 300px;
+        border-radius: 15px;
     }
 
     /* --- RESPONSIVE DESIGN --- */
