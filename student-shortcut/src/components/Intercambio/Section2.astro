@@ -1,0 +1,58 @@
+---
+
+---
+
+<section class="sec-2">
+  <!-- Video B 448x448 1/1-->
+  <div class="video-box">
+    <video autoplay loop muted playsinline class="video-holder">
+      <source src="/media/#" type="video/mp4" />
+    </video>
+  </div>
+
+  <div class="sec-2-text">
+    <h1>¿Quiénes pueden postular a los programas?</h1>
+    <p>
+      Nuestro programa está abierto a jóvenes de secundaria entre 14 y 18 años
+      que dominen los bases del idioma correspondiente.
+    </p>
+    <p>
+      Más allá de cumplir con el perfil académico y lingüístico, buscamos a
+      estudiantes apasionados por el mundo de todos lados con una gran voluntad
+      de compartir sus propias culturas y descubrir otra.
+    </p>
+    <button> Conoce los programas </button>
+  </div>
+</section>
+
+<style>
+  .sec-2 {
+    max-width: min(85%, 1100px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-height: min(90vh, 600px);
+    padding: 60px 0px;
+  }
+
+  .video-box {
+    flex: 1;
+    position: relative;
+    max-width: clamp(300px,50vh , 448px);
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: black;
+  }
+  .sec-2-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+  }
+</style>
