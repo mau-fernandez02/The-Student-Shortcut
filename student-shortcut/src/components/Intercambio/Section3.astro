@@ -14,7 +14,7 @@
     <!-- Chico Estudio Imagen -->
     <div class="card-step">
       <div class="img-box">
-        <img src="" alt="" />
+        <img src="img/SVG/study-2-svgrepo-com.svg" alt="" />
       </div>
       <p>
         Organización de documentación académica para garantizar una transición
@@ -24,14 +24,14 @@
     <!-- Mundo -->
     <div class="card-step">
       <div class="img-box">
-        <img src="" alt="" />
+        <img src="img/SVG/world-1-svgrepo-com.svg" alt="" />
       </div>
       <p>En el extranjero de la mano de nuestros Partners certificados</p>
     </div>
     <!-- Pasaporte -->
     <div class="card-step">
       <div class="img-box">
-        <img src="" alt="" />
+        <img src="img/SVG/passport-1-svgrepo-com.svg" alt="" />
       </div>
       <p>Preparación y obtención del pasaporte y visado necesarios</p>
     </div>
@@ -40,13 +40,13 @@
 
 <style>
   .sec-3 {
-    max-width: min(85%, 1100px);
+    max-width: min(85%, 990px);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 4em;
     padding: 60px 0px;
   }
 
@@ -55,7 +55,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: clamp(30px, 5vw, 60px);
+    gap: 20px;
     flex-wrap: wrap;
     width: 100%;
   }
@@ -65,7 +65,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 1em;
+    text-align: center;
+  }
+
+  .sec-3-head h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 700;
+  }
+  .sec-3-head p {
+    color: #ffffff;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     text-align: center;
   }
 
@@ -81,23 +92,27 @@
 
   .card-step p {
     text-align: center;
-    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-size: clamp(1.1rem, 2vw, 1.2rem);
+    color: #ffffff;
+    max-width: 260px;
   }
 
   .img-box {
-    width: clamp(150px, 25vw, 230px);
+    width: clamp(150px, 25vw, 190px);
+    height: clamp(150px, 25vw, 190px);
     aspect-ratio: 1/1;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0.425);
     border-radius: 50%;
-    background-color: black;
-    flex-shrink: 0;
-  
   }
 
   .img-box img {
-    width: 100%;
-    
-    object-fit: contain;
+    width: 60%;
+    height: 60%;
+    object-fit: contain; /* Cambié de "cover" a "contain" para SVG */
   }
 
   /* Media queries opcionales para más control */

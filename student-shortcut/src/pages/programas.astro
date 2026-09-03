@@ -42,7 +42,7 @@ import Carrusel from "../components/Carrusel.astro";
     width: 100%;
     position: relative;
     overflow: hidden; /* Forma simplificada y estándar */
-    width: 100%; /* Permite el desplazamiento vertical si es necesario */
+    
   }
 
   .montana-a {
@@ -72,6 +72,13 @@ import Carrusel from "../components/Carrusel.astro";
     rotate: 0deg;
     transform: scaleX(1) rotate(-90deg);
   }
+  .montana-a,
+  .montana-b,
+  .montana-c img {
+    
+    user-select: none; /* Previene la selección */
+    pointer-events: none;
+  }
 
   .programas {
     z-index: 2;
@@ -83,14 +90,14 @@ import Carrusel from "../components/Carrusel.astro";
     justify-content: start;
     align-items: start;
     margin: 0 auto;
-    max-width: 1280px;
-    width: 100%;
+    width: min(80%, 1200px);
+    min-height: calc(100vh - 75px); /* Ajusta según la altura de tu header */
   }
 
   .programas h1 {
     z-index: 2;
     color: #ffffff;
-    font-size: 40px;
+    font-size: clamp(2.5rem, 4vw, 3.2rem);
     font-weight: 700;
     text-align: center;
   }

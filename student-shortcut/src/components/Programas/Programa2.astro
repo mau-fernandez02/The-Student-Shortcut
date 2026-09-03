@@ -3,143 +3,141 @@
 ---
 
 <section class="pg-2">
-    <div class="ly-pg-2">
-        <!-- Layout videos -->
-        <div class="video-box box1">
-            <video autoplay loop muted playsinline class="hero-video">
-                <source src="/media/#" type="video/mp4" />
-                Tu navegador no soporta la reproducción de video.
-            </video>
-        </div>
-        <div class="video-box box2">
-            <video autoplay loop muted playsinline class="hero-video">
-                <source src="/media/#" type="video/mp4" />
-                Tu navegador no soporta la reproducción de video.
-            </video>
-        </div>
-        <div class="video-box box3">
-            <video autoplay loop muted playsinline class="hero-video">
-                <source src="/media/#" type="video/mp4" />
-                Tu navegador no soporta la reproducción de video.
-            </video>
-        </div>
+  <div class="ly-pg-2">
+    <!-- Layout videos -->
+    <div class="video-box box1">
+      <video autoplay loop muted playsinline class="hero-video">
+        <source src="/media/#" type="video/mp4" />
+        Tu navegador no soporta la reproducción de video.
+      </video>
     </div>
-
-    <div class="text-pg">
-        <h2>Programa Semestral</h2>
-
-        <p>
-            Con una duración de 5 meses, desde enero hasta mayo, este programa
-            se convierte en la opción ideal para estructurar un año academico
-            perfecto.
-        </p>
-
-        <p>
-            Es la solución perfecta para mantener un equilibrio impecable entre
-            tu trayectoria academica en Bolivia y tu experiencia de inmersion en
-            el extranjero.
-        </p>
-
-        <button>Conocer los requisitos</button>
+    <div class="video-box box2">
+      <video autoplay loop muted playsinline class="hero-video">
+        <source src="/media/#" type="video/mp4" />
+        Tu navegador no soporta la reproducción de video.
+      </video>
     </div>
+    <div class="video-box box3">
+      <video autoplay loop muted playsinline class="hero-video">
+        <source src="/media/#" type="video/mp4" />
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
+  </div>
+
+  <div class="text-pg">
+    <h2>Programa Semestral</h2>
+
+    <p>
+      Con una duración de 5 meses, desde enero hasta mayo, este programa se
+      convierte en la opción ideal para estructurar un año academico perfecto.
+    </p>
+
+    <p>
+      Es la solución perfecta para mantener un equilibrio impecable entre tu
+      trayectoria academica en Bolivia y tu experiencia de inmersion en el
+      extranjero.
+    </p>
+
+    <button>Conocer los requisitos</button>
+  </div>
 </section>
 
 <style>
+  .pg-2 {
+    z-index: 2;
+    display: grid;
+    /* auto para el mosaico de videos, 1fr para el texto */
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    width: 100%; /* Permite que respete el contenedor del carrusel */
+
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .ly-pg-2 {
+    display: grid;
+    grid-template-columns: clamp(200px, 35vw, 261px) clamp(120px, 22vw, 160px);
+    grid-template-rows: clamp(120px, 20vw, 160px) clamp(60px, 10vw, 88px);
+    gap: clamp(8px, 1.5vw, 14px) clamp(15px, 3vw, 27px);
+    width: 100%;
+    max-width: fit-content;
+    padding: clamp(10px, 2vw, 20px);
+  }
+
+  .video-box {
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: black;
+  }
+
+  .box1 {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  .box2 {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .box3 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .text-pg {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .text-pg h2 {
+    color: #fff;
+    font-size: 40px;
+  }
+  .text-pg p {
+    color: #fff;
+    font-size: 20px;
+  }
+  .text-pg button {
+    color: white;
+    border: white 1px solid;
+    padding: 11px;
+    max-width: 300px;
+    border-radius: 15px;
+  }
+
+  /* --- RESPONSIVE DESIGN --- */
+
+  /* Pantallas medianas (Tablets) */
+  @media (max-width: 1180px) {
     .pg-2 {
-        z-index: 2;
-        display: grid;
-        /* auto para el mosaico de videos, 1fr para el texto */
-        grid-template-columns: auto 1fr;
-        gap: 32px;
-        width: 100%; /* Permite que respete el contenedor del carrusel */
-        max-width: 1200px;
-        margin: 0 auto;
-        align-items: center;
+      grid-template-columns: 1fr;
+      justify-items: center;
     }
-
     .ly-pg-2 {
-        display: grid;
-        grid-template-rows: 160px 88px;
-        grid-template-columns: 261px 160px;
-        gap: 14px 27px;
-        width: fit-content;
+      
     }
+  }
 
-    .video-box {
-        border-radius: 16px;
-        overflow: hidden;
-        background-color: black;
+  /* Pantallas pequeñas (Móviles) */
+  @media (max-width: 850px) {
+    .pg-2 {
+      /* Apilamos todo verticalmente */
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+      gap: 24px;
+      padding: 0 15px;
     }
+  }
 
-    .box1 {
-        grid-column: 1;
-        grid-row: 1 / span 2;
+  /* Pantallas MUY pequeñas (Móviles pequeños) */
+  @media (max-width: 400px) {
+    .ly-pg-2 {
+      /* Reducimos el mosaico un poco más */
+      grid-template-columns: 160px 90px;
+      grid-template-rows: 90px 50px;
+      gap: 8px 15px;
     }
-    .box2 {
-        grid-column: 2;
-        grid-row: 1;
-    }
-    .box3 {
-        grid-column: 2;
-        grid-row: 2;
-    }
-
-    .text-pg{
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-    }
-    .text-pg h2{
-        color: #fff;
-        font-size: 40px;
-
-    }
-    .text-pg p{
-        color: #fff;
-        font-size: 20px;
-    }
-    .text-pg button{
-        color: white;
-        border: white 1px solid;
-        padding: 11px;
-        max-width: 300px;
-        border-radius: 15px;
-    }
-
-    /* --- RESPONSIVE DESIGN --- */
-
-    /* Pantallas medianas (Tablets) */
-    @media (max-width: 1300px) {
-        .pg-2 {
-            gap: 20px;
-        }
-        .ly-pg-2 {
-            /* Corregido a 2 filas para que coincida con tus 3 cajas */
-            grid-template-columns: 200px 113px;
-            grid-template-rows: 113px 64px;
-            gap: 10px 20px;
-        }
-    }
-
-    /* Pantallas pequeñas (Móviles) */
-    @media (max-width: 850px) {
-        .pg-2 {
-            /* Apilamos todo verticalmente */
-            grid-template-columns: 1fr;
-            justify-items: center;
-            text-align: center;
-            gap: 24px;
-            padding: 0 15px;
-        }
-    }
-
-    /* Pantallas MUY pequeñas (Móviles pequeños) */
-    @media (max-width: 400px) {
-        .ly-pg-2 {
-            /* Reducimos el mosaico un poco más */
-            grid-template-columns: 160px 90px;
-            grid-template-rows: 90px 50px;
-            gap: 8px 15px;
-        }
-    }
+  }
 </style>

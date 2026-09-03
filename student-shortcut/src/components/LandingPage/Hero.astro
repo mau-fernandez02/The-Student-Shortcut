@@ -1,130 +1,207 @@
 ---
 // src/components/Hero.astro
+
+/* Propiedades del componente Hero */
+interface Props {
+  title?: string;
+  subtitle?: string;
+  videoSrc?: string;
+  primaryCtaText?: string;
+  primaryCtaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+}
+
+const {
+  title = "Estudiar en el Extranjero...<br /> Nunca estuvo tan a tu alcance",
+  subtitle = "Conquista tus habilidades en un nuevo país, nueva cultura, nuevo idioma.",
+  videoSrc = "/media/Vid-00001.webm",
+  primaryCtaText = "Ver Intercambios",
+  primaryCtaLink = "/programas",
+  secondaryCtaText = "Contáctanos",
+  secondaryCtaLink = "/contactanos",
+} = Astro.props;
 ---
 
-<section class="hero-section">
-    <div class="hero-grid">
-        <div class="video-column">
-            <video autoplay loop muted playsinline class="hero-video">
-                <source src="/media/Vid-00001.webm" type="video/mp4" />
-                Tu navegador no soporta la reproducción de video.
-            </video>
-        </div>
+<section class="hero">
+  <div class="hero__container">
+    <!-- Multimedia -->
+    <div class="hero__video-wrapper">
+      <video autoplay loop muted playsinline class="hero__video">
+        <source src={videoSrc} type="video/webm" />
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
 
-        <div class="text-column">
-            <h1>
-                Estudiar en el Extranjero...<br /> Nunca estuvo tan a tu alcance
-            </h1>
-            <p>
-                Conquista tus habilidades en un nuevo país, nueva cultura, nuevo
-                idioma.
-            </p>
-            <div class="cta-group">
-                <a href="/programas" class="btn btn-primary">Ver Intercambios</a>
-                <a href="/contactanos" class="btn boton-secundario">Contactanos...</a>
-            </div>
-        </div>
+    <!-- Contenido -->
+    <div class="hero__content">
+      <h1 class="hero__title" set:html={title} />
+      <p class="hero__description">{subtitle}</p>
+      
+      <div class="hero__actions">
+        <a href={primaryCtaLink} class="btn btn--primary">{primaryCtaText}</a>
+        <a href={secondaryCtaLink} class="btn btn--secondary">{secondaryCtaText}</a>
+      </div>
     </div>
-    <div class="nube-a">
-        <img src="/img/SVG/Nube_8.svg" alt="" />
-    </div>
-    <div class="nube-b">
-        <img src="/img/SVG/Nube_10.svg" alt="" />
-    </div>
+  </div>
+
+  <!-- Capas decorativas -->
+  <div class="hero__cloud hero__cloud--left" aria-hidden="true">
+    <img src="/img/SVG/Nube_8.svg" alt="" width="800" height="400" loading="eager" />
+  </div>
+  <div class="hero__cloud hero__cloud--right" aria-hidden="true">
+    <img src="/img/SVG/Nube_10.svg" alt="" width="890" height="450" loading="eager" />
+  </div>
 </section>
 
 <style>
-    .boton-secundario {
-        background-color: transparent;
-        color: var(--color-primary, #1e9cd7);
-        border: 1px solid var(--color-primary, #1e9cd7);
-        transition: all 0.3s ease;
-    }
-    .boton-secundario:hover {
-        background-color: var(--color-primary, #1e9cd7);
-        color: #ffffff;
-        transform: translateY(-2px);
+  /* Variables Locales del Componente */
+  .hero {
+    --hero-primary-color: var(--color-primary, #1e9cd7);
+    --hero-gap: 2rem;
+    
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* Estructura Principal */
+  .hero__container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--hero-gap);
+    align-items: center;
+    width: min(85%, 1200px);
+    margin: 0 auto;
+    padding-top: 4.6875rem;
+    padding-bottom: 20.3125rem;
+  }
+
+  /* Bloque de Video */
+  .hero__video-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 0.625rem;
+    overflow: hidden;
+    background-color: #000000;
+  }
+
+  .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Contenido Textual y Acciones */
+  .hero__title {
+    font-size: clamp(2.8rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__description {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: #555555;
+    margin-bottom: 1.875rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 0.9375rem;
+    flex-wrap: wrap;
+  }
+
+  /* Botón Principal */
+  .btn--primary {
+    background-color: var(--hero-primary-color);
+    color: #ffffff;
+    border: 1px solid var(--hero-primary-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn--primary:hover {
+    background-color: #1780b1; /* Tono ligeramente más oscuro para el hover */
+    border-color: #1780b1;
+    transform: translateY(-2px);
+  }
+
+  /* Botón Secundario */
+  .btn--secondary {
+    background-color: transparent;
+    color: var(--hero-primary-color);
+    border: 1px solid var(--hero-primary-color);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn--secondary:hover {
+    background-color: var(--hero-primary-color);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* Elementos Decorativos (Nubes) */
+  .hero__cloud {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero__cloud img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero__cloud--left {
+    bottom: 80px;
+    left: -190px;
+    width: min(800px, 60vw);
+    transform: scaleX(-1);
+  }
+
+  .hero__cloud--right {
+    bottom: 70px;
+    right: -380px;
+    width: min(890px, 60vw);
+    transform: rotate(5deg);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hero__container {
+      padding-bottom: 12rem;
     }
 
-    .hero-section {
-        position: relative;
-        overflow: hidden; /* Forma simplificada y estándar */
-        width: 100%; /* Permite el desplazamiento vertical si es necesario */
-    }
-    .nube-a {
-        position: absolute;
-        z-index: 2;
-        bottom: 80px;
-        left: -190px;
-        width: min(800px, 60vw);
-        rotate: 0deg;
-        transform: scaleX(-1);
-    }
-    .nube-a img {
-        width: 100%;
-    }
-    .nube-b {
-        position: absolute;
-        z-index: 2;
-        bottom: 70px;
-        right: -380px;
-        width: min(890px, 60vw);
-        rotate: 0deg;
-        transform: rotate(5deg);
-        /* overflow: hidden; */
-    }
-    .nube-b img {
-        width: 100%;
+    .hero__cloud--left {
+      left: -120px;
+      width: 50vw;
     }
 
-    .hero-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 32px;
-        align-items: center;
-        padding-top: 75px;
-        padding-bottom: 325px;
-        margin: 0 auto;
-        width: min(85%, 1200px); /* Asegura que no desborde el body */
-       
+    .hero__cloud--right {
+      right: -200px;
+      width: 50vw;
     }
-    .video-column {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    .hero-video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .text-column h1 {
-        font-size: clamp(2.8rem, 4vw, 3.5rem);
-        margin-bottom: 20px;
-    }
-    .text-column p {
-        font-size: clamp(0.9rem, 2vw, 1.2rem);
-        margin-bottom: 30px;
-        color: #555;
-    }
-    .cta-group {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .hero__container {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding-top: 2.5rem;
+      padding-bottom: 3.75rem;
     }
 
-    @media (max-width: 768px) {
-        .hero-grid {
-            grid-template-columns: 1fr;
-            text-align: center;
-            padding: 40px;
-        }
-        .cta-group {
-            justify-content: center;
-        }
-        .text-column h1 {
-            font-size: 2.2rem;
-        }
+    .hero__actions {
+      justify-content: center;
     }
+
+    .hero__title {
+      font-size: 2.2rem;
+    }
+
+    .hero__cloud {
+      display: none;
+    }
+  }
 </style>

@@ -1,136 +1,201 @@
 ---
 // src/components/Discover.astro
+
+/* Propiedades del componente Discover */
+interface Props {
+  titlePrimary?: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  descriptionParagraph1?: string;
+  descriptionParagraph2?: string;
+  descriptionParagraph3?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const {
+  titlePrimary = "Descubre tu Potencial,",
+  titleHighlight = "¡Explora el Mundo!",
+  subtitle = "Desafía tus Límites, Insértate en una cultura diferente y aprende",
+  descriptionParagraph1 = "Si estás leyendo esto, es porque sueñas alto. Lo único que te falta, es despegar.",
+  descriptionParagraph2 = "¿Qué pasaría si te digo que estamos aquí para ayudarte a hacerlo?",
+  descriptionParagraph3 = "The Student Shortcut te ofrece una ayuda completa para realizar tu intercambio en el extranjero.",
+  imageSrc = "https://www.gstatic.com/webp/gallery/1.jpg",
+  imageAlt = "Estudiante explorando el mundo en un intercambio",
+} = Astro.props;
 ---
 
-<section class="sec2">
-    <div class="container sec2-grid">
-        <div class="text-sec2">
-            <h1>
-                Descubre tu Potencial, <br />
-                <span class="text-style-2">¡Explora el Mundo!</span>
-            </h1>
-            <h2>
-                Desafía tus Límites, Insertate en una cultura diferente y
-                aprende
-            </h2>
-            <p>
-                Si estás leyendo esto, es porque sueñas alto. Lo único que te
-                falta, es despegar. <br />¿Qué pasaría si te digo que estamos
-                aquí para ayudarte a hacerlo? <br />The Student Shortcut te
-                ofrece una ayuda completa para realizar tu intercambio en el
-                extranjero.
-            </p>
-        </div>
-        <div class="image-sec2">
-            <img
-                src="https://www.gstatic.com/webp/gallery/1.jpg"
-                alt="Imagen de prueba"
-            />
-        </div>
+<section class="discover">
+  <div class="discover__container">
+    <!-- Contenido Textual -->
+    <div class="discover__content">
+      <h1 class="discover__title">
+        {titlePrimary} <br />
+        <span class="discover__title-highlight">{titleHighlight}</span>
+      </h1>
+      <h2 class="discover__subtitle">{subtitle}</h2>
+      <p class="discover__description">
+        {descriptionParagraph1} <br />
+        {descriptionParagraph2} <br />
+        {descriptionParagraph3}
+      </p>
     </div>
 
-    <div class="nube-c">
-        <img src="/img/SVG/Nube_9.svg" alt="" />
+    <!-- Imagen Principal -->
+    <div class="discover__image-wrapper">
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        class="discover__image"
+        loading="lazy"
+      />
     </div>
-    <div class="nube-d">
-        <img src="/img/SVG/Nube_1.svg" alt="" />
-    </div>
+  </div>
+
+  <!-- Capas Decorativas (Nubes) -->
+  <div class="discover__cloud discover__cloud--left" aria-hidden="true">
+    <img src="/img/SVG/Nube_9.svg" alt="" />
+  </div>
+  <div class="discover__cloud discover__cloud--right" aria-hidden="true">
+    <img src="/img/SVG/Nube_1.svg" alt="" />
+  </div>
 </section>
 
 <style>
-    .sec2 {
-        position: relative;
-        overflow: hidden; /* Forma simplificada y estándar */
-        width: 100%; /* Asegura que no desborde el body */
+  /* Variables Locales del Componente */
+  .discover {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* Estructura Principal Grid */
+  .discover__container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 32px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 60px;
+    padding-bottom: clamp(200px, 30vw, 400px);
+    padding-left: clamp(15px, 5vw, 40px);
+    padding-right: clamp(15px, 5vw, 40px);
+  }
+
+  /* Bloque de Texto */
+  .discover__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+    line-height: 1.6;
+    color: #ffffff;
+    text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .discover__title {
+    width: 100%;
+    font-size: clamp(1.9rem, 4vw, 2.3rem);
+    color: #ffffff;
+  }
+
+  .discover__title-highlight {
+    display: inline-block;
+    width: 100%;
+    font-size: clamp(2.5rem, 4vw, 2.9rem);
+    color: #ffffff;
+  }
+
+  .discover__subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .discover__description {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #ffffff;
+  }
+
+  /* Bloque de Imagen */
+  .discover__image-wrapper {
+    width: 100%;
+    aspect-ratio: 0.8 / 1;
+    border-radius: 10px;
+    max-height: clamp(350px, 60vh, 565px);
+    overflow: hidden;
+    background-color: #000000;
+  }
+
+  .discover__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Elementos Decorativos (Nubes) */
+  .discover__cloud {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .discover__cloud img {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .discover__cloud--left {
+    bottom: clamp(40px, 10vw, 80px);
+    left: clamp(-350px, -30vw, -300px);
+    width: clamp(700px, 100vw, 880px);
+    transform: rotate(-185deg) rotateX(-180deg);
+  }
+
+  .discover__cloud--right {
+    bottom: clamp(40px, 10vw, 80px);
+    right: clamp(-100px, -10vw, -50px);
+    width: clamp(350px, 80vw, 500px);
+    transform: rotate(0deg) rotateX(0deg);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .discover__container {
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 5vw, 32px);
+      padding-top: clamp(40px, 8vw, 60px);
+      padding-bottom: 60px;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Aseguramos que el SVG llene su div padre */
-    .nube-c img,
-    .nube-d img {
-        width: 100%;
-        height: auto;
-        display: block;
+    .discover__image-wrapper {
+      order: -1;
+      margin: 0 auto;
     }
 
-    .nube-c {
-        position: absolute;
-        z-index: 1;
-        bottom: 80px; /* Ten cuidado: Si la sección mide menos de 920px, no se verá */
-        left: -300px;
-        width: 880px;
-        pointer-events: none;
-        /* Transformación unificada: */
-        transform: rotate(-185deg) rotateX(-180deg);
+    .discover__content {
+      align-items: center;
+      text-align: center;
     }
 
-    .nube-d {
-        position: absolute;
-        z-index: 1;
-        bottom: 80px; /* Ten cuidado: Si la sección mide menos de 920px, no se verá */
-        right: -50px;
-        width: 500px;
-        pointer-events: none;
-        /* Transformación unificada: */
-        transform: rotate(0deg) rotateX(0deg);
+    .discover__title,
+    .discover__title-highlight {
+      width: 100%;
     }
 
-    .sec2-grid {
-        position: relative;
-        z-index: 2; /* Mantiene el contenido por encima de las nubes */
-        display: grid;
-        grid-template-columns: 1.4fr 1fr;
-        gap: 32px;
-        align-items: center;
-        padding-top: 60px;
-        padding-bottom: 400px;
-        /* CORRECCIÓN: auto va en margins, no en padding */
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 1200px; /* Añade un ancho máximo para que el margen auto funcione */
+    .discover__cloud {
+      display: none;
     }
-
-    .image-sec2 {
-        aspect-ratio: 0.8 / 1;
-        border-radius: 10px;
-        max-height: 565px;
-        overflow: hidden;
-    }
-
-    .image-sec2 img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .text-sec2 {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-        text-align: center;
-        line-height: 1.6;
-        color: white;
-        text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
-    }
-
-    .text-sec2 h1 {
-        font-size: 40px;
-        color: white;
-    }
-
-    .text-style-2 {
-        font-size: 55px;
-        color: white;
-    }
-
-    .text-sec2 h2 {
-        font-size: 30px;
-        font-weight: 400;
-        color: white;
-    }
-
-    .text-sec2 p {
-        font-size: 1.2rem;
-        color: white;
-    }
+  }
 </style>

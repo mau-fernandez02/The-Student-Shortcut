@@ -2,128 +2,133 @@
 
 ---
 
-<section class="sec-equipo container">
-    <!-- perfil 1 -->
-    <div class="profile">
-        <div class="profile-text">
-            <h2>ESTEBAN DAZA</h2>
-            <span>Co-Founder & CPO</span>
-            <p>
-                Esteban siempre ha entendido el mundo como un lugar para
-                aprender. Como ex estudiante de Intercambio en Estados Unidos,
-                con formación en Italia y expereincia en diferentes culturas
-                descubrió que salir de casa también transforma quién eres.
-            </p>
-            <p>
-                Como Ingeniero Industrial y cofundador de TheStudent Shortcut,
-                combina su experiencia internacional con una visión estratégica
-                y humana para acompañar a estudiantes en experiencias que
-                impulsen su crecimiento, independencia y descubrimiento.
-            </p>
-            <p>
-                Para Esteban, viajar no es solo conocer el mundo, sino descubrir
-                una versión más grande de ti mismo.
-            </p>
-        </div>
-        <div class="video-box">
-            <!-- video A -->
-            <video
-                autoplay
-                loop
-                muted
-                playsinline
-                class="profile-video"
-                src="#"
-            >
-                <source src="/media/Vid-00001.webm" type="video/mp4" />
-            </video>
-        </div>
+<section class="sec-equipo">
+    <h1>Nuestro Equipo</h1>
+  <!-- perfil 1 -->
+  <div class="profile">
+    <div class="profile-text">
+      <h2>ESTEBAN DAZA</h2>
+      <span>Co-Founder & CPO</span>
+      <p>
+        Esteban siempre ha entendido el mundo como un lugar para aprender. Como
+        ex estudiante de Intercambio en Estados Unidos, con formación en Italia
+        y expereincia en diferentes culturas descubrió que salir de casa también
+        transforma quién eres.
+      </p>
+      <p>
+        Como Ingeniero Industrial y cofundador de TheStudent Shortcut, combina
+        su experiencia internacional con una visión estratégica y humana para
+        acompañar a estudiantes en experiencias que impulsen su crecimiento,
+        independencia y descubrimiento.
+      </p>
+      <p>
+        Para Esteban, viajar no es solo conocer el mundo, sino descubrir una
+        versión más grande de ti mismo.
+      </p>
+    </div>
+    <div class="video-box">
+      <!-- video A -->
+      <video autoplay loop muted playsinline class="profile-video" src="#">
+        <source src="/media/Vid-00001.webm" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <!-- Perfil 2 -->
+  <div class="profile reverse">
+    <div class="profile-text">
+      <h2>FABRIZIO ARAMAYO</h2>
+      <span>Co-Founder & CMO</span>
+      <p>
+        Habiendo realizado sus estudios superiores en Francia, comprendió algo
+        que hoy es el motor de The Student Shortcut: salir al mundo no es solo
+        un viaje, es la herramienta de transformación personal y profesional más
+        potente que existe.
+      </p>
+      <p>
+        Paralelamente, su sólida trayectoria en el terreno audiovisual es su
+        mayor ventaja como CMO. No se trata solo de ahcer videos bonitos, sino
+        de poseeer la sensibilidad y la visión exacta para descifrar la esencia
+        de cada estudiante convertirla en una historia memorable y plasmarla en
+        imágenes que conectan de verdad.
+      </p>
     </div>
 
-    <!-- Perfil 2 -->
-    <div class="profile reverse">
-        <div class="profile-text">
-            <h2>FABRIZIO ARAMAYO</h2>
-            <span>Co-Founder & CMO</span>
-            <p>
-                Habiendo realizado sus estudios superiores en Francia,
-                comprendió algo que hoy es el motor de The Student Shortcut:
-                salir al mundo no es solo un viaje, es la herramienta de
-                transformación personal y profesional más potente que existe.
-            </p>
-            <p>
-                Paralelamente, su sólida trayectoria en el terreno audiovisual
-                es su mayor ventaja como CMO. No se trata solo de ahcer videos
-                bonitos, sino de poseeer la sensibilidad y la visión exacta para
-                descifrar la esencia de cada estudiante convertirla en una
-                historia memorable y plasmarla en imágenes que conectan de
-                verdad.
-            </p>
-        </div>
-
-        <div class="video-box">
-            <!-- video A -->
-            <video
-                autoplay
-                loop
-                muted
-                playsinline
-                class="profile-video"
-                src="#"
-            >
-                <source src="/media/Vid-00001.webm" type="video/mp4" />
-            </video>
-        </div>
+    <div class="video-box">
+      <!-- video A -->
+      <video autoplay loop muted playsinline class="profile-video" src="#">
+        <source src="/media/Vid-00001.webm" type="video/mp4" />
+      </video>
     </div>
+  </div>
 </section>
 
 <style>
-    .sec-equipo {
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-        margin: 0 auto;
-        padding: 50px 80px;
-        max-width: 1300px;
-        width: 100%;
-    }
-    .profile {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 35px;
-    }
-    .reverse {
-        flex-direction: row-reverse;
-    }
+  .sec-equipo {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: min(8%, 50px);
+  }
+  .sec-equipo h1 {
+    color: white;
+    font-size: 3.7rem ;
+    font-weight: 700;
+    text-align: left;
+  }
+  .profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+  }
+  .reverse {
+    flex-direction: row-reverse;
+  }
 
+  .video-box {
+    min-height: 448px;
+    min-width: 448px;
+    background-color: black;
+    border-radius: 25px;
+  }
+  /* Estilo Textos */
+  .profile-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .profile-text h2 {
+    color: #ffffff;
+    font-size: 50px;
+    font-weight: 600;
+  }
+  .profile-text span {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .profile-text p {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+    text-align: justify;
+  }
+  @media (max-width: 1100px) {
+    .profile {
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+
+      gap: 20px;
+    }
     .video-box {
-        min-height: 448px;
-        min-width: 448px;
-        background-color: black;
-        border-radius: 25px;
+      min-height: 360px;
+      min-width: 360px;
     }
-    /* Estilo Textos */
-    .profile-text {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    .profile-text h2 {
-        color: #ffffff;
-        font-size: 50px;
-        font-weight: 600;
-    }
-    .profile-text span {
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: 600;
-    }
-    .profile-text p {
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 30px;
-    }
+  }
 </style>

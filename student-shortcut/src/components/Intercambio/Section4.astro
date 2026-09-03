@@ -40,7 +40,7 @@
 
 <style>
   .sec-4 {
-    max-width: min(85%, 1100px);
+    max-width: min(85%, 990px);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -53,10 +53,10 @@
   .layout-videos-D-C-E {
     display: grid;
     /* Proporción correcta: 115px : 450px : 115px = 1fr : 3.913fr : 1fr */
-    grid-template-columns: 1fr 3.913fr 1fr;
-    gap: clamp(16px, 3vw, 28px);
-    width: 100%;
-    max-width: clamp(280px, 90vw, 1200px);
+    grid-template-columns: 115px 448px 115px;
+    grid-template-rows: 448px;
+    gap: 20px;
+    
   }
 
   /* Videos laterales: 115px x 450px = aspect-ratio 115/450 */
@@ -65,7 +65,7 @@
     aspect-ratio: 115 / 450;
     background-color: black;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 20px;
   }
 
   /* Video central: 450px x 450px = aspect-ratio 1/1 */
@@ -74,7 +74,7 @@
     aspect-ratio: 1 / 1;
     background-color: black;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 20px;
   }
 
   .video-holder {
@@ -94,25 +94,34 @@
     width: 100%;
   }
 
+  .sec-4-text button {
+    color: white;
+  }
   .sec-4-text h1 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: white;
   }
 
   .sec-4-text p {
     font-size: clamp(0.95rem, 2vw, 1.1rem);
     line-height: 1.6;
+    color: white;
   }
 
   /* Responsivo para pantallas medianas */
-  @media (max-width: 768px) {
+  @media (max-width: 990px) {
     .layout-videos-D-C-E {
-      grid-template-columns: 0.5fr 2fr 0.5fr;
-      gap: clamp(12px, 2vw, 20px);
+      grid-template-columns: 1fr;
+      overflow: hidden;
+      gap: 20px;
       max-width: 100%;
     }
+    
 
     .box-video-1 {
-      aspect-ratio: 115 / 450;
+      width: 0%;
+      height: 0%;
+      
     }
 
     .box-video-2 {

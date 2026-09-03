@@ -1,192 +1,244 @@
 ---
 // src/components/VideoGrid.astro
+
+/* Interfaz para definir el contenido del componente */
+interface VideoItem {
+  id: string;
+  src: string;
+  type?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  paragraphs?: string[];
+  ctaText?: string;
+  ctaLink?: string;
+  videos?: VideoItem[];
+}
+
+const {
+  title = "¡Cualquier sueño es posible si lo hacemos Juntos!",
+  subtitle = "Tu apuntas, ¡Y nosotros nos encargamos!",
+  paragraphs = [
+    "El equipo de The Student Shortcut te acompaña en todo el proceso para que puedas disfrutar de tu Experiencia de Intercambio.",
+    "Te asesoramos a lo largo de tu postulación para asegurar la mejor compatibilidad entre tú y tu destino.",
+    "Nosotros nos encargamos de encontrar la mejor familia anfitriona para ti. Te ayudamos con el idioma para que la transición sea más sencilla.",
+    "Simplificamos la relación entre colegios locales y extranjeros para la validación de materias y notas."
+  ],
+  ctaText = "Inicia tu intercambio",
+  ctaLink = "#nosotros",
+  videos = [
+    { id: "box-1", src: "/media/Vid-00001.webm", type: "video/webm" },
+    { id: "box-2", src: "/media/Vid-00001.webm", type: "video/webm" },
+    { id: "box-3", src: "/media/Vid-00001.webm", type: "video/webm" },
+    { id: "box-4", src: "/media/Vid-00001.webm", type: "video/webm" },
+    { id: "box-5", src: "/media/Vid-00001.webm", type: "video/webm" },
+  ]
+} = Astro.props;
 ---
 
-<section class="sec3">
-    <div class="container tier-3-container">
-        <div class="tier-3-subgrid">
-            <div class="grid-item box-1">
-                <video autoplay loop muted playsinline class="hero-video">
-                    <source src="/media/Vid-00001.webm" type="video/mp4" />
-                </video>
-            </div>
-            <div class="grid-item box-2">
-                <video autoplay loop muted playsinline class="hero-video">
-                    <source src="/media/Vid-00001.webm" type="video/mp4" />
-                </video>
-            </div>
-            <div class="grid-item box-3">
-                <video autoplay loop muted playsinline class="hero-video">
-                    <source src="/media/Vid-00001.webm" type="video/mp4" />
-                </video>
-            </div>
-            <div class="grid-item box-4">
-                <video autoplay loop muted playsinline class="hero-video">
-                    <source src="/media/Vid-00001.webm" type="video/mp4" />
-                </video>
-            </div>
-            <div class="grid-item box-5">
-                <video autoplay loop muted playsinline class="hero-video">
-                    <source src="/media/Vid-00001.webm" type="video/mp4" />
-                </video>
-            </div>
+<section class="video-grid">
+  <div class="video-grid__container">
+    
+    <!-- Mosaico / Grid de Vídeos -->
+    <div class="video-grid__subgrid">
+      {videos.map((video) => (
+        <div class={`video-grid__item video-grid__item--${video.id}`}>
+          <video autoplay loop muted playsinline class="video-grid__video">
+            <source src={video.src} type={video.type || "video/mp4"} />
+          </video>
         </div>
-        <div class="text-tier-3">
-            <h1>¡Cualquier sueño es posible <br />si lo hacemos Juntos!</h1>
-            <h2>Tu apuntas, ¡Y nosotros nos encargamos!</h2>
-            <p>
-                El equipo de The Student Shortcut te acompaña en todo el proceso
-                para que puedas disfrutar de tu Expereincia de Intercambio
-                <br />
-                <br /> Te asesoramos a lo largo de tu postulación para asegurar la
-                mejor compatibilidad entre tú y tu destino.
-                <br />
-                <br />Nosotros nos encargamos de encontrar la mejor familia la
-                mejor familia anfigriona para ti. Te ayudamos con el idioma para
-                que la transición se más sencilla.
-                <br />
-                <br /> Simplificamos la relación entre colegios locales y extranjeros
-                para la validación de materias y notas.
-            </p>
-            <div class="cta-group">
-                <a href="#nosotros" class="btn btn-secondary"
-                    >Inicia tu intercambio</a
-                >
-            </div>
-        </div>
+      ))}
     </div>
 
-    <div class="montana-a">
-        <img src="/img/SVG/Montaña_5.svg" alt="" />
+    <!-- Bloque Informativo del Video Grid -->
+    <div class="video-grid__content">
+      <h1 class="video-grid__title">{title}</h1>
+      <h2 class="video-grid__subtitle">{subtitle}</h2>
+      
+      <div class="video-grid__description">
+        {paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+
+      <div class="video-grid__cta-group">
+        <a href={ctaLink} class="btn btn-secondary">
+          {ctaText}
+        </a>
+      </div>
     </div>
-    <div class="montana-b">
-        <img src="/img/SVG/Montaña_2.svg" alt="" />
-    </div>
+
+  </div>
+
+  <!-- Capas Decorativas (Montañas) -->
+  <div class="video-grid__mountain video-grid__mountain--left" aria-hidden="true">
+    <img src="/img/SVG/Montaña_5.svg" alt="" />
+  </div>
+  <div class="video-grid__mountain video-grid__mountain--right" aria-hidden="true">
+    <img src="/img/SVG/Montaña_2.svg" alt="" />
+  </div>
 </section>
 
 <style>
-    .sec3 {
-        position: relative;
-        overflow: hidden; /* Forma simplificada */
-        width: 100%;
+  /* Contenedor Principal */
+  .video-grid {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* Grid General: Vídeos a la izquierda, Texto a la derecha */
+  .video-grid__container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(300px, 440px) 1fr;
+    justify-content: center;
+    gap: 45px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: clamp(120px, 20vw, 320px);
+    padding-left: clamp(15px, 5vw, 40px);
+    padding-right: clamp(15px, 5vw, 40px);
+  }
+
+  /* Disposición Asimétrica del Grid de Vídeos */
+  .video-grid__subgrid {
+    display: grid;
+    grid-template-columns: 165px 74px 165px;
+    grid-template-rows: 261px 261px 116px;
+    gap: 20px;
+    width: 100%;
+    max-width: 448px;
+  }
+
+  .video-grid__item {
+    position: relative;
+    background-color: #121212;
+    border-radius: 16px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-grid__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Posicionamiento por Filas */
+  .video-grid__item--box-1 {
+    grid-column: 1 / span 2;
+  }
+
+  .video-grid__item--box-2 {
+    grid-column: 3;
+  }
+
+  .video-grid__item--box-3 {
+    grid-column: 1;
+  }
+
+  .video-grid__item--box-4 {
+    grid-column: 2 / span 2;
+  }
+
+  .video-grid__item--box-5 {
+    grid-column: 1 / span 3;
+  }
+
+  /* Bloque Informativo */
+  .video-grid__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    text-align: left;
+    line-height: 1.6;
+    color: #ffffff;
+    text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .video-grid__title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .video-grid__subtitle {
+    font-size: clamp(1.2rem, 2.5vw, 1.56rem);
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .video-grid__description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .video-grid__description p {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: #ffffff;
+  }
+
+  .video-grid__cta-group {
+    margin-top: 10px;
+  }
+
+  /* Elementos Decorativos (Montañas) */
+  .video-grid__mountain {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .video-grid__mountain img {
+    height: 100%;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .video-grid__mountain--left {
+    bottom: 50px;
+    left: 0;
+    height: 680px;
+  }
+
+  .video-grid__mountain--right {
+    bottom: 120px;
+    right: -20px;
+    height: 600px;
+    transform: rotateY(-180deg) scaleY(-1);
+  }
+
+  /* Adaptación Móvil */
+  @media (max-width: 900px) {
+    .video-grid__container {
+      grid-template-columns: 1fr;
+      justify-items: center;
     }
 
-    .montana-a {
-        position: absolute;
-        z-index: 1;
-        bottom: 50px;
-        left: 0px;
-        height: 680px;
-        pointer-events: none; /* Permite hacer clic a través de la imagen */
-        transform: rotateX(0deg); /* Unificado */
-    }
-    .montana-a img {
-        height: 100%;
-        display: block;
+    .video-grid__subgrid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      max-width: 100%;
+      height: auto;
     }
 
-    .montana-b {
-        position: absolute;
-        z-index: 1;
-        bottom: 120px;
-        right: -20px;
-        height: 600px;
-        pointer-events: none; /* Permite hacer clic a través de la imagen */
-        transform: rotateY(-180deg) scaleY(-1); /* Unificado */
+    .video-grid__mountain {
+      display: none;
     }
-    .montana-b img {
-        height: 100%;
-        display: block;
-    }
-
-    .tier-3-container {
-        position: relative;
-        z-index: 2; /* Mantiene tu cuadrícula sobre las montañas */
-        display: grid;
-        grid-template-columns: 440px 640px;
-        justify-content: center; /* Asegura que el grid completo se centre en la pantalla */
-        gap: 45px;
-        align-items: center;
-        padding-top: 20px;
-        padding-bottom: 320px;
-        margin-left: auto; /* ¡CORREGIDO! margin en lugar de padding */
-        margin-right: auto;
-        max-width: 1200px;
-    }
-
-    .tier-3-subgrid {
-        display: grid;
-        grid-template-columns: 165px 74px 165px;
-        grid-template-rows: 261px 261px 116px;
-        gap: 20px;
-        max-width: 448px;
-    }
-
-    .grid-item {
-        position: relative;
-        background-color: #121212;
-        border-radius: 16px;
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-    }
-
-    .grid-item video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* FILA 1 */
-    .box-1 {
-        grid-column: 1 / span 2;
-    }
-    .box-2 {
-        grid-column: 3;
-    }
-
-    /* FILA 2 */
-    .box-3 {
-        grid-column: 1;
-    }
-    .box-4 {
-        grid-column: 2 / span 2;
-    }
-
-    /* FILA 3 */
-    .box-5 {
-        grid-column: 1 / span 3;
-    }
-
-    .text-tier-3 {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        align-items: flex-start; /* 'left' no es válido en flexbox, usamos flex-start */
-        text-align: left;
-        line-height: 1.6;
-        color: white;
-        text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
-    }
-    .text-tier-3 h1 {
-        font-size: 40px;
-        color: white;
-        text-align: left;
-    }
-    .text-style-2 {
-        font-size: 55px;
-        color: white;
-    }
-    .text-tier-3 h2 {
-        font-size: 25px;
-        font-weight: 400;
-        color: white;
-    }
-    .text-tier-3 p {
-        font-size: 1.2rem;
-        color: white;
-    }
+  }
 </style>
