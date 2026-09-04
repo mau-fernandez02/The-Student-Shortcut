@@ -1,150 +1,222 @@
 ---
+// src/components/IrseIntercambio/RazonesIntercambio.astro
 
+interface Props {
+  videoLeftSrc?: string;
+  videoCenterSrc?: string;
+  videoRightSrc?: string;
+}
+
+const {
+  videoLeftSrc = "/media/#",
+  videoCenterSrc = "/media/#",
+  videoRightSrc = "/media/#"
+} = Astro.props;
 ---
 
-<section class="sec-4">
-  <div class="layout-videos-D-C-E">
-    <div class="box-video-1">
-      <video autoplay loop muted playsinline class="video-holder">
-        <source src="/media/#" type="video/mp4" />
-        Tu navegador no soporta la reproducción de video.
-      </video>
+<section class="reasons">
+  <div class="reasons__container">
+    
+    <!-- Gallery Layout Video: [Estrecho] [Cuadrado 1:1] [Estrecho] -->
+    <div class="reasons__video-grid">
+      <!-- Video Izquierdo (Vertical Estrecho) -->
+      <div class="reasons__video-wrapper reasons__video-side">
+        <video autoplay loop muted playsinline class="reasons__video">
+          <source src={videoLeftSrc} type="video/mp4" />
+          Tu navegador no soporta la reproducción de video.
+        </video>
+      </div>
+
+      <!-- Video Central (Cuadrado 1:1 - Siempre Visible) -->
+      <div class="reasons__video-wrapper reasons__video-center">
+        <video autoplay loop muted playsinline class="reasons__video">
+          <source src={videoCenterSrc} type="video/mp4" />
+          Tu navegador no soporta la reproducción de video.
+        </video>
+      </div>
+
+      <!-- Video Derecho (Vertical Estrecho) -->
+      <div class="reasons__video-wrapper reasons__video-side">
+        <video autoplay loop muted playsinline class="reasons__video">
+          <source src={videoRightSrc} type="video/mp4" />
+          Tu navegador no soporta la reproducción de video.
+        </video>
+      </div>
     </div>
-    <div class="box-video-2">
-      <video autoplay loop muted playsinline class="video-holder">
-        <source src="/media/#" type="video/mp4" />
-        Tu navegador no soporta la reproducción de video.
-      </video>
+
+    <!-- Contenido Textual -->
+    <div class="reasons__content">
+      <header class="reasons__header">
+        <h2 class="reasons__title">¿POR QUÉ IRME DE INTERCAMBIO?</h2>
+      </header>
+
+      <div class="reasons__body">
+        <p>
+          Intentar empaparse de los beneficios de un intercambio se queda corto
+          frente a lo que realmente se experimenta.
+        </p>
+        <p>
+          Durante tu estadía, expandirás tus horizontes mentales y forjarás una
+          versión mucho más madura y segura de ti mismo. Académicamente, te
+          sumergirás en nuevas metodologías de estudio mientras te conviertes en
+          hablante fluido de un nuevo idioma.
+        </p>
+        <p>
+          Pero el verdadero cambio sucede en otro nivel: la mayoría de los
+          estudiantes descubre su auténtica vocación, empoderándose al regresar a su
+          país para construir su futuro.
+        </p>
+      </div>
+
+      <div class="reasons__actions">
+        <a href="/contacto" class="reasons__btn">
+          Quiero comenzar mi intercambio
+        </a>
+      </div>
     </div>
-    <div class="box-video-1">
-      <video autoplay loop muted playsinline class="video-holder">
-        <source src="/media/#" type="video/mp4" />
-        Tu navegador no soporta la reproducción de video.
-      </video>
-    </div>
-  </div>
-  <div class="sec-4-text">
-    <h1>¿POR QUÉ IRME DE INTERCAMBIO?</h1>
-    <p>
-      Intentar empaparse los beneficios de un intercambio se queda corto frente a lo que realmente se experimenta.
-    </p>
-    <p>
-      Durante tu estadía, expandirás tus horizontes mentales y forjarás una versión mucho más madura y segura de ti mismo. Académicamente, te sumergirás en nuevas metodologías de estudio mientras te conviertes en hablante fluido de un nuevo idioma.
-    </p>
-    <p>
-      Pero el verdadero cambio sucede en otro nivel: la mayoría de los estudiantes descubre su auténtica vocación, empoderando al regresar a país a construir su futuro.
-    </p>
-    <button>Quiero comenzar mi intercambio</button>
+
   </div>
 </section>
 
 <style>
-  .sec-4 {
-    max-width: min(85%, 990px);
+  .reasons {
+    width: 100%;
+    padding: 60px 0;
+    color: #ffffff;
+  }
+
+  .reasons__container {
+    width: min(100%, 990px);
     margin: 0 auto;
+    padding: 0 24px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  /* Grid de Videos en Desktop */
+  .reasons__video-grid {
+    display: grid;
+    grid-template-columns: 115px minmax(auto, 450px) 115px;
+    gap: 20px;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    padding: 60px 0px;
+    width: 100%;
   }
 
-  .layout-videos-D-C-E {
-    display: grid;
-    /* Proporción correcta: 115px : 450px : 115px = 1fr : 3.913fr : 1fr */
-    grid-template-columns: 115px 448px 115px;
-    grid-template-rows: 448px;
-    gap: 20px;
-    
+  .reasons__video-wrapper {
+    background-color: #000000;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   }
 
-  /* Videos laterales: 115px x 450px = aspect-ratio 115/450 */
-  .box-video-1 {
+  /* Video Lateral (Aspect ratio 115:450 = 23:90) */
+  .reasons__video-side {
     width: 100%;
     aspect-ratio: 115 / 450;
-    background-color: black;
-    overflow: hidden;
-    border-radius: 20px;
   }
 
-  /* Video central: 450px x 450px = aspect-ratio 1/1 */
-  .box-video-2 {
+  /* Video Central (1:1 Estricto) */
+  .reasons__video-center {
     width: 100%;
     aspect-ratio: 1 / 1;
-    background-color: black;
-    overflow: hidden;
-    border-radius: 20px;
   }
 
-  .video-holder {
+  .reasons__video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .sec-4-text {
+  /* Contenido del Texto */
+  .reasons__content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
-    gap: 20px;
-    max-width: 1200px;
+    gap: 1.25rem;
     width: 100%;
   }
 
-  .sec-4-text button {
-    color: white;
-  }
-  .sec-4-text h1 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    color: white;
-  }
-
-  .sec-4-text p {
-    font-size: clamp(0.95rem, 2vw, 1.1rem);
-    line-height: 1.6;
-    color: white;
+  .reasons__title {
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
   }
 
-  /* Responsivo para pantallas medianas */
-  @media (max-width: 990px) {
-    .layout-videos-D-C-E {
+  .reasons__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .reasons__body p {
+    font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+  }
+
+  /* Botón de Acción */
+  .reasons__actions {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  .reasons__btn {
+    display: inline-block;
+    padding: 14px 32px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .reasons__btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  }
+
+  /* --- ADAPTABILIDAD MÓVIL Y TABLET --- */
+  @media (max-width: 768px) {
+    .reasons {
+      padding: 40px 0;
+    }
+
+    /* Ocultamos completamente los dos videos laterales */
+    .reasons__video-side {
+      display: none !important;
+    }
+
+    /* El grid pasa a ser de una sola columna centrada */
+    .reasons__video-grid {
       grid-template-columns: 1fr;
-      overflow: hidden;
-      gap: 20px;
-      max-width: 100%;
-    }
-    
-
-    .box-video-1 {
-      width: 0%;
-      height: 0%;
-      
+      max-width: 380px; /* Tamaño máximo cómodo para el video central en móvil */
+      margin: 0 auto;
     }
 
-    .box-video-2 {
-      aspect-ratio: 1 / 1;
-    }
-  }
-
-  /* Responsivo para pantallas pequeñas */
-  @media (max-width: 480px) {
-    .layout-videos-D-C-E {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      max-width: 100%;
+    .reasons__content {
+      align-items: center;
+      text-align: center;
     }
 
-    .box-video-1:nth-child(1),
-    .box-video-1:nth-child(3) {
-      display: none;
-    }
-
-    .box-video-2 {
-      aspect-ratio: 1 / 1;
-      max-width: 280px;
+    .reasons__btn {
+      width: 100%;
+      max-width: 320px;
     }
   }
 </style>

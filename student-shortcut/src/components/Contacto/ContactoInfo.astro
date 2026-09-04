@@ -1,0 +1,166 @@
+---
+// src/components/Contacto/ContactoInfo.astro
+
+interface SocialItem {
+  platform: string;
+  url: string;
+  iconSrc: string;
+}
+
+interface Props {
+  email?: string;
+  phone?: string;
+  location?: string;
+  socials?: SocialItem[];
+}
+
+const {
+  email = "info@shorcut-student.com",
+  phone = "+(591) 76543210",
+  location = "La Paz, Bolivia",
+  socials = [
+    { platform: "Instagram", url: "https://instagram.com", iconSrc: "/img/SVG/instagram.svg" },
+    { platform: "Facebook", url: "https://facebook.com", iconSrc: "/img/SVG/facebook.svg" },
+    { platform: "WhatsApp", url: "https://whatsapp.com", iconSrc: "/img/SVG/whatsapp.svg" }
+  ]
+} = Astro.props;
+---
+
+<div class="contact-info">
+  <div class="contact-info__card">
+    <h3 class="contact-info__title">Información Directa</h3>
+    
+    <ul class="contact-info__list">
+      <li class="contact-info__item">
+        <span class="contact-info__label">Correo Electrónico:</span>
+        <a href={`mailto:${email}`} class="contact-info__link">{email}</a>
+      </li>
+      <li class="contact-info__item">
+        <span class="contact-info__label">Teléfono / WhatsApp:</span>
+        <a href={`tel:${phone.replace(/\s+/g, '')}`} class="contact-info__link">{phone}</a>
+      </li>
+      <li class="contact-info__item">
+        <span class="contact-info__label">Ubicación:</span>
+        <span class="contact-info__text">{location}</span>
+      </li>
+    </ul>
+
+    <div class="contact-info__socials">
+      <h4 class="contact-info__socials-title">Síguenos en redes</h4>
+      <div class="contact-info__socials-grid">
+        {socials.map((social) => (
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-info__social-btn"
+            aria-label={`Visitar nuestro ${social.platform}`}
+          >
+            <span>{social.platform}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-info {
+    width: 100%;
+    height: 100%;
+  }
+
+  .contact-info__card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .contact-info__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .contact-info__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-info__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .contact-info__label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .contact-info__link,
+  .contact-info__text {
+    font-size: 1.05rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s ease;
+  }
+
+  .contact-info__link:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: underline;
+  }
+
+  .contact-info__socials {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-info__socials-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .contact-info__socials-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .contact-info__social-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .contact-info__social-btn:hover {
+    background: #ffffff;
+    color: #000000;
+  }
+</style>

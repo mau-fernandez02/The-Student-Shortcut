@@ -1,54 +1,142 @@
 ---
+// src/components/IrseIntercambio/IntercambioHero.astro
 
+interface Props {
+  videoSrc?: string;
+  videoType?: string;
+}
+
+const {
+  videoSrc = "/media/#",
+  videoType = "video/mp4"
+} = Astro.props;
 ---
 
-<section class="sec-1">
-    <div class="video-box">
-            <video autoplay loop muted playsinline class="pg-video">
-                <source src="/media/#" type="video/mp4" />
-            </video>
-        </div>
-    <h1>
-      Imaginate estudiar en un colegio extranjero, mientras absorbes un nuevo idioma y te sumerges en una nueva cultura.
-    </h1>
-    <p>
-      Un intercambio es una inmersión total en un nuevo sistema educativo extranjero, conocido para descubrir la propuesta lingüística y conectar profundamente con una cultura diferente. Con opciones flexibles de 5 a 8 meses, el programa combina la excelencia académica con una experiencia humana irrepetible. Durante tu estancia tienes la oportunidad de crecer diariamente con una familia anfitriona que te acoge como miembro de la misma.
-    </p>
-    <p>Esto es más que un viaje... Es una experiencia que te permitirá desafiar tus propios límites y construir una versión renovada de ti mismo que perdurará para siempre.</p>
+<section class="exchange-hero">
+  <div class="exchange-hero__container">
+    <!-- Banner de Video -->
+    <div class="exchange-hero__media">
+      <div class="exchange-hero__video-wrapper">
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          class="exchange-hero__video"
+        >
+          <source src={videoSrc} type={videoType} />
+          Tu navegador no soporta la reproducción de video.
+        </video>
+      </div>
+    </div>
+
+    <!-- Contenido Textual -->
+    <header class="exchange-hero__header">
+      <h2 class="exchange-hero__title">
+        Imagínate estudiar en un colegio extranjero, mientras absorbes un nuevo
+        idioma y te sumerges en una nueva cultura.
+      </h2>
+    </header>
+
+    <div class="exchange-hero__description">
+      <p>
+        Un intercambio es una inmersión total en un sistema educativo extranjero,
+        diseñado para descubrir nuevas competencias lingüísticas y conectar
+        profundamente con una cultura diferente. Con opciones flexibles de 5 a
+        8 meses, el programa combina la excelencia académica con una experiencia
+        humana irrepetible. Durante tu estancia tienes la oportunidad de crecer
+        diariamente con una familia anfitriona que te acoge como un miembro más.
+      </p>
+      <p>
+        Esto es más que un viaje... Es una experiencia que te permitirá
+        desafiar tus propios límites y construir una versión renovada de ti
+        mismo que perdurará para siempre.
+      </p>
+    </div>
+  </div>
 </section>
- 
+
 <style>
-  
-  .sec-1{
-    max-width: min(85%, 890px);
+  .exchange-hero {
+    width: 100%;
+    padding: 40px 0 60px 0;
+    color: #ffffff;
+  }
+
+  .exchange-hero__container {
+    width: min(100%, 920px);
     margin: 0 auto;
-    min-height: 850px;
+    padding: 0 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 20px;
-    
-  }
-  .video-box {
-      position: relative;
-      min-width: clamp(300px,100% , 1200px);
-      aspect-ratio: 8/3;
-      overflow: hidden;
-      border-radius: 10px;
-      background-color: black;
+    gap: 2rem;
   }
 
-  /* Configuración del Texto */
-  .sec-1 h1 {
-    font-size: clamp(1.4rem, 4vw, 2.3rem);
-    color: white;
-    text-align: justify;
+  /* Banner de Video con Aspect Ratio */
+  .exchange-hero__media {
+    width: 100%;
   }
 
-  .sec-1 p {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: white;
-    text-align: justify;
+  .exchange-hero__video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 8 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #000000;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .exchange-hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Titular */
+  .exchange-hero__header {
+    width: 100%;
+  }
+
+  .exchange-hero__title {
+    font-size: clamp(1.4rem, 3.5vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.35;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  /* Parrafos explicativos */
+  .exchange-hero__description {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .exchange-hero__description p {
+    font-size: clamp(1rem, 2vw, 1.175rem);
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+  }
+
+  /* Adaptabilidad Móvil */
+  @media (max-width: 768px) {
+    .exchange-hero {
+      padding: 20px 0 40px 0;
+    }
+
+    .exchange-hero__container {
+      gap: 1.5rem;
+    }
+
+    /* En móviles, la proporción 16:9 aprovecha mejor la altura del video */
+    .exchange-hero__video-wrapper {
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+    }
   }
 </style>

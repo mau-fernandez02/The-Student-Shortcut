@@ -1,134 +1,234 @@
 ---
+// src/components/QuienesSomos/NuestroEquipo.astro
 
+interface TeamMember {
+  name: string;
+  role: string;
+  bio: string[];
+  videoSrc: string;
+  videoType?: string;
+}
+
+const teamMembers: TeamMember[] = [
+  {
+    name: "Esteban Daza",
+    role: "Co-Founder & CPO",
+    bio: [
+      "Esteban siempre ha entendido el mundo como un lugar para aprender. Como ex estudiante de intercambio en Estados Unidos, con formación en Italia y experiencia en diferentes culturas, descubrió que salir de casa también transforma quién eres.",
+      "Como Ingeniero Industrial y cofundador de Student Shortcut, combina su experiencia internacional con una visión estratégica y humana para acompañar a estudiantes en experiencias que impulsen su crecimiento, independencia y descubrimiento.",
+      "Para Esteban, viajar no es solo conocer el mundo, sino descubrir una versión más grande de ti mismo."
+    ],
+    videoSrc: "#",
+    videoType: "video/webm"
+  },
+  {
+    name: "Fabrizio Aramayo",
+    role: "Co-Founder & CMO",
+    bio: [
+      "Habiendo realizado sus estudios superiores en Francia, comprendió algo que hoy es el motor de Student Shortcut: salir al mundo no es solo un viaje, es la herramienta de transformación personal y profesional más potente que existe.",
+      "Paralelamente, su sólida trayectoria en el terreno audiovisual es su mayor ventaja como CMO. No se trata solo de hacer videos bonitos, sino de poseer la sensibilidad y la visión exacta para descifrar la esencia de cada estudiante, convertirla en una historia memorable y plasmarla en imágenes que conectan de verdad."
+    ],
+    videoSrc: "#",
+    videoType: "video/webm"
+  }
+];
 ---
 
-<section class="sec-equipo">
-    <h1>Nuestro Equipo</h1>
-  <!-- perfil 1 -->
-  <div class="profile">
-    <div class="profile-text">
-      <h2>ESTEBAN DAZA</h2>
-      <span>Co-Founder & CPO</span>
-      <p>
-        Esteban siempre ha entendido el mundo como un lugar para aprender. Como
-        ex estudiante de Intercambio en Estados Unidos, con formación en Italia
-        y expereincia en diferentes culturas descubrió que salir de casa también
-        transforma quién eres.
-      </p>
-      <p>
-        Como Ingeniero Industrial y cofundador de TheStudent Shortcut, combina
-        su experiencia internacional con una visión estratégica y humana para
-        acompañar a estudiantes en experiencias que impulsen su crecimiento,
-        independencia y descubrimiento.
-      </p>
-      <p>
-        Para Esteban, viajar no es solo conocer el mundo, sino descubrir una
-        versión más grande de ti mismo.
-      </p>
-    </div>
-    <div class="video-box">
-      <!-- video A -->
-      <video autoplay loop muted playsinline class="profile-video" src="#">
-        <source src="/media/Vid-00001.webm" type="video/mp4" />
-      </video>
-    </div>
-  </div>
+<section class="team-section">
+  <div class="team-section__container">
+    <h2 class="team-section__title">Nuestro Equipo</h2>
 
-  <!-- Perfil 2 -->
-  <div class="profile reverse">
-    <div class="profile-text">
-      <h2>FABRIZIO ARAMAYO</h2>
-      <span>Co-Founder & CMO</span>
-      <p>
-        Habiendo realizado sus estudios superiores en Francia, comprendió algo
-        que hoy es el motor de The Student Shortcut: salir al mundo no es solo
-        un viaje, es la herramienta de transformación personal y profesional más
-        potente que existe.
-      </p>
-      <p>
-        Paralelamente, su sólida trayectoria en el terreno audiovisual es su
-        mayor ventaja como CMO. No se trata solo de ahcer videos bonitos, sino
-        de poseeer la sensibilidad y la visión exacta para descifrar la esencia
-        de cada estudiante convertirla en una historia memorable y plasmarla en
-        imágenes que conectan de verdad.
-      </p>
-    </div>
+    <div class="team-section__list">
+      {
+        teamMembers.map((member, index) => {
+          const isEven = index % 2 === 1;
+          return (
+            <article class={`team-card ${isEven ? "team-card--reverse" : ""}`}>
+              <!-- Información y Bio -->
+              <div class="team-card__content">
+                <header class="team-card__header">
+                  <h3 class="team-card__name">{member.name}</h3>
+                  <span class="team-card__role">{member.role}</span>
+                </header>
 
-    <div class="video-box">
-      <!-- video A -->
-      <video autoplay loop muted playsinline class="profile-video" src="#">
-        <source src="/media/Vid-00001.webm" type="video/mp4" />
-      </video>
+                <div class="team-card__bio">
+                  {member.bio.map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Media / Video -->
+              <div class="team-card__media">
+                <div class="team-card__video-wrapper">
+                  <video
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    class="team-card__video"
+                  >
+                    <source src={member.videoSrc} type={member.videoType || "video/webm"} />
+                    Tu navegador no soporta la reproducción de video.
+                  </video>
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
     </div>
   </div>
 </section>
 
 <style>
-  .sec-equipo {
+  .team-section {
+    width: 100%;
+    padding: 60px 0;
+    color: #ffffff;
+  }
+
+  .team-section__container {
+    width: min(100%, 1200px);
+    margin: 0 auto;
+    padding: 0 24px;
     display: flex;
     flex-direction: column;
-    gap: 60px;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: min(8%, 50px);
+    gap: 3.5rem;
   }
-  .sec-equipo h1 {
-    color: white;
-    font-size: 3.7rem ;
-    font-weight: 700;
-    text-align: left;
+
+  .team-section__title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   }
-  .profile {
+
+  .team-section__list {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  /* Tarjeta de integrante */
+  .team-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .team-card--reverse {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .team-card--reverse .team-card__content {
+    order: 2;
+  }
+
+  .team-card--reverse .team-card__media {
+    order: 1;
+  }
+
+  /* Textos */
+  .team-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .team-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .team-card__name {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .team-card__role {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .team-card__bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .team-card__bio p {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+  }
+
+  /* Video / Media Container */
+  .team-card__media {
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
-  }
-  .reverse {
-    flex-direction: row-reverse;
+    width: 100%;
   }
 
-  .video-box {
-    min-height: 448px;
-    min-width: 448px;
-    background-color: black;
-    border-radius: 25px;
+  .team-card__video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1 / 1;
+    background-color: #000000;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
-  /* Estilo Textos */
-  .profile-text {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .profile-text h2 {
-    color: #ffffff;
-    font-size: 50px;
-    font-weight: 600;
-  }
-  .profile-text span {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 600;
-  }
-  .profile-text p {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 30px;
-    text-align: justify;
-  }
-  @media (max-width: 1100px) {
-    .profile {
-      flex-direction: column-reverse;
-      justify-content: center;
-      align-items: center;
 
-      gap: 20px;
+  .team-card__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Adaptabilidad Móvil y Tablets */
+  @media (max-width: 991px) {
+    .team-card,
+    .team-card--reverse {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
-    .video-box {
-      min-height: 360px;
-      min-width: 360px;
+
+    .team-card--reverse .team-card__content {
+      order: 2;
+    }
+
+    .team-card--reverse .team-card__media {
+      order: 1;
+    }
+
+    .team-card__media {
+      order: 1;
+    }
+
+    .team-card__content {
+      order: 2;
+    }
+
+    .team-card__video-wrapper {
+      max-width: 100%;
+      /* Mantiene la relación cuadrada 1:1 en móviles y tablets */
+      aspect-ratio: 1 / 1;
     }
   }
 </style>

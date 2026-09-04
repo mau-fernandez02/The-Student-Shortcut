@@ -1,111 +1,139 @@
 ---
+// src/pages/programas.astro
 import Layout from "../layouts/Layout.astro";
 import Programa1 from "../components/Programas/Programa1.astro";
 import Programa2 from "../components/Programas/Programa2.astro";
-
 import Carrusel from "../components/Carrusel.astro";
+
+/* Propiedades opcionales para la vista de la página */
+interface Props {
+  pageTitle?: string;
+  sectionTitle?: string;
+}
+
+const {
+  pageTitle = "Nuestros Programas",
+  sectionTitle = "Nuestros programas",
+} = Astro.props;
 ---
 
-<!-- Nuestros Programas -->
-<Layout title="Nuestros Programas">
-  <main>
-    <section class="programas">
-      <h1>Nuestros programas</h1>
-      <!-- Usamos el carrusel y le pasamos los programas como hijos -->
+<Layout title={pageTitle}>
+  <main class="programs-page">
+    
+    <!-- Sección Principal de Programas -->
+    <section class="programs-page__section">
+      <h1 class="programs-page__title">{sectionTitle}</h1>
 
+      <!-- Carrusel Interactivo de Programas -->
       <Carrusel>
         <Programa1 />
         <Programa2 />
-        <!-- En el futuro solo tienes que agregar <Programa3 /> aquí y funcionará automáticamente -->
+        <!-- Para añadir más programas en el futuro, solo inserta <Programa3 /> aquí -->
       </Carrusel>
     </section>
-    <div class="montana-a">
+
+    <!-- Capas Decorativas (Montañas) -->
+    <div class="programs-page__mountain programs-page__mountain--top-left" aria-hidden="true">
       <img src="/img/SVG/Montaña_12.svg" alt="" />
     </div>
-    <div class="montana-b">
+
+    <div class="programs-page__mountain programs-page__mountain--top-right" aria-hidden="true">
       <img src="/img/SVG/Montaña_7.svg" alt="" />
     </div>
-    <div class="montana-c">
+
+    <div class="programs-page__mountain programs-page__mountain--bottom-right" aria-hidden="true">
       <img src="/img/SVG/Montaña_9.svg" alt="" />
     </div>
+
   </main>
 </Layout>
 
 <style>
-  main {
-    /* Offset for fixed header */
-    /* background: #ffffff; */
+  /* Contenedor Principal de la Página */
+  .programs-page {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
     background-image:
       url("/img/noise.png"),
       linear-gradient(180deg, rgba(255, 255, 255, 1) -30%, #1e9cd7 50%);
     background-repeat: repeat;
-    width: 100%;
+  }
+
+  /* Layout de la Sección */
+  .programs-page__section {
     position: relative;
-    overflow: hidden; /* Forma simplificada y estándar */
-    
-  }
-
-  .montana-a {
-    position: absolute;
-    z-index: 1;
-    top: -90px;
-    left: -30px;
-    width: 500px;
-    rotate: 0deg;
-    transform: scaleX(-1) rotate(-90deg);
-  }
-  .montana-b {
-    position: absolute;
-    z-index: 1;
-    top: -90px;
-    right: -30px;
-    width: 500px;
-    rotate: 0deg;
-    transform: scaleX(1) rotate(-90deg);
-  }
-  .montana-c {
-    position: absolute;
-    z-index: 1;
-    bottom: -100px;
-    right: 0px;
-    width: 480px;
-    rotate: 0deg;
-    transform: scaleX(1) rotate(-90deg);
-  }
-  .montana-a,
-  .montana-b,
-  .montana-c img {
-    
-    user-select: none; /* Previene la selección */
-    pointer-events: none;
-  }
-
-  .programas {
     z-index: 2;
-    padding-top: 140px;
-    padding-bottom: 140px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    justify-content: start;
-    align-items: start;
-    margin: 0 auto;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: min(80%, 1200px);
-    min-height: calc(100vh - 75px); /* Ajusta según la altura de tu header */
+    min-height: calc(100vh - 75px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 140px;
+    padding-bottom: 140px;
   }
 
-  .programas h1 {
+  /* Encabezado */
+  .programs-page__title {
+    position: relative;
     z-index: 2;
     color: #ffffff;
     font-size: clamp(2.5rem, 4vw, 3.2rem);
     font-weight: 700;
     text-align: center;
   }
-  .carrusel-programas {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
+
+  /* Estilos para las capas decorativas */
+  .programs-page__mountain {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .programs-page__mountain img {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .programs-page__mountain--top-left {
+    top: -90px;
+    left: -30px;
+    width: 500px;
+    transform: scaleX(-1) rotate(-90deg);
+  }
+
+  .programs-page__mountain--top-right {
+    top: -90px;
+    right: -30px;
+    width: 500px;
+    transform: scaleX(1) rotate(-90deg);
+  }
+
+  .programs-page__mountain--bottom-right {
+    bottom: -100px;
+    right: 0px;
+    width: 480px;
+    transform: scaleX(1) rotate(-90deg);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .programs-page__section {
+      width: 90%;
+      padding-top: 100px;
+      padding-bottom: 80px;
+      align-items: center;
+    }
+
+    .programs-page__mountain {
+      display: none;
+    }
   }
 </style>

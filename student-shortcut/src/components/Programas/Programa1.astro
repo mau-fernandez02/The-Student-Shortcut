@@ -1,82 +1,132 @@
 ---
-// Programa 1 Layout
+// src/components/Programas/Programa1.astro
+
+interface VideoItem {
+  id: string;
+  src: string;
+  type?: string;
+}
+
+interface Props {
+  title?: string;
+  tagline?: string;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  videos?: VideoItem[];
+}
+
+const {
+  title = "Full Year Program",
+  tagline = "Diseñado para quienes quieren vivir la experiencia escolar al 100%",
+  description = "Durante 8 meses, de agosto a febrero, este programa te sumerge de lleno en el corazón de una cultura extranjera dándote el tiempo necesario, permitiéndote no solo vivir como un local, sino consolidar un rendimiento académico de nivel internacional que impulsará tu futuro.",
+  buttonText = "Conocer los requisitos",
+  buttonLink = "#requisitos",
+  videos = [
+    { id: "box-1", src: "/media/program1-vid1.mp4", type: "video/mp4" },
+    { id: "box-2", src: "/media/program1-vid2.mp4", type: "video/mp4" },
+    { id: "box-3", src: "/media/program1-vid3.mp4", type: "video/mp4" },
+    { id: "box-4", src: "/media/program1-vid4.mp4", type: "video/mp4" },
+  ],
+} = Astro.props;
 ---
 
-<section class="pg-1">
-  <div class="ly-pg-1">
-    <div class="video-box box-1">
-      <video autoplay loop muted playsinline class="pg-video">
-        <source src="/media/#" type="video/mp4" />
-      </video>
-    </div>
-    <div class="video-box box-2">
-      <video autoplay loop muted playsinline class="pg-video">
-        <source src="/media/#" type="video/mp4" />
-      </video>
-    </div>
-    <div class="video-box box-3">
-      <video autoplay loop muted playsinline class="pg-video">
-        <source src="/media/#" type="video/mp4" />
-      </video>
-    </div>
-    <div class="video-box box-4">
-      <video autoplay loop muted playsinline class="pg-video">
-        <source src="/media/#" type="video/mp4" />
-      </video>
-    </div>
+<section class="program-card">
+  <!-- Mosaico de Vídeos -->
+  <div class="program-card__mosaic">
+    {
+      videos.map((video) => (
+        <div class={`program-card__box program-card__box--${video.id}`}>
+          <video autoplay loop muted playsinline class="program-card__video">
+            <source src={video.src} type={video.type || "video/mp4"} />
+          </video>
+        </div>
+      ))
+    }
   </div>
 
-  <div class="text-pg">
-    <h2>Full Year Program</h2>
+  <!-- Contenido Informativo -->
+  <div class="program-card__content">
+    <h2 class="program-card__title">{title}</h2>
+    <p class="program-card__tagline">{tagline}</p>
+    <p class="program-card__description">{description}</p>
 
-    <p>Diseñado para quienes quieren vivir la experiencia escolar al 100%</p>
-
-    <p>
-      Durante 8 meses, de agosto a febrero, este programa te sumerge de lleno en
-      el corazón de una cultura extranjera dándote el tiempo necesario,
-      permitiéndote no solo vivir como un local, sino consolidar un rendimiento
-      académico de nivel internacional que impulsará tu futuro.
-    </p>
-
-    <button>Conocer los requisitos</button>
+    <!-- Botón Interactivo con Efecto Hover -->
+    <a href={buttonLink} class="program-card__btn">
+      {buttonText}
+    </a>
   </div>
 </section>
 
 <style>
-  .pg-1 {
+  /* Contenedor Principal */
+  .program-card {
+    position: relative;
     z-index: 2;
     display: grid;
-    /* auto para el mosaico de videos, 1fr para que el texto ocupe el resto */
     grid-template-columns: auto 1fr;
     gap: 32px;
-    width: 100%; /* Cambiado a 100% para que respete al carrusel */
-    
+    width: 100%;
     margin: 0 auto;
-    align-items: center; /* Centra verticalmente videos y texto */
+    align-items: center;
   }
-  .text-pg {
+
+  /* Bloque de Texto */
+  .program-card__content {
     display: flex;
     flex-direction: column;
     gap: 25px;
   }
-  .text-pg h2 {
-    color: #fff;
+
+  .program-card__title {
+    color: #ffffff;
     font-size: clamp(2.5rem, 4vw, 3rem);
-  }
-  .text-pg p {
-    color: #fff;
-    font-size: clamp(1.1rem, 4vw, 1.3rem);
-  }
-  .text-pg button {
-    color: white;
-    border: white 1px solid;
-    padding: 11px;
-    max-width: 300px;
-    border-radius: 15px;
+    font-weight: 700;
   }
 
-  /* ly-pg-1 significa layout de programa 1 / es el template para los videos  */
-  .ly-pg-1 {
+  .program-card__tagline {
+    color: #ffffff;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 600;
+  }
+
+  .program-card__description {
+    color: #ffffff;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    line-height: 1.6;
+  }
+
+  /* --- BOTÓN E INTERACTIVIDAD HOVER --- */
+  .program-card__btn {
+    display: inline-block;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1.5px solid #ffffff;
+    padding: 12px 24px;
+    max-width: 300px;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .program-card__btn:hover {
+    background-color: #ffffff;
+    color: #1e9cd7;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .program-card__btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Mosaico Grid de Videos */
+  .program-card__mosaic {
     display: grid;
     grid-template-columns: clamp(200px, 35vw, 261px) clamp(120px, 22vw, 160px);
     grid-template-rows: clamp(120px, 20vw, 160px) clamp(60px, 10vw, 88px) clamp(
@@ -90,68 +140,57 @@
     padding: clamp(10px, 2vw, 20px);
   }
 
-  .video-box {
+  .program-card__box {
     border-radius: 16px;
     overflow: hidden;
-    background-color: #000;
+    background-color: #000000;
   }
 
-  .pg-video {
+  .program-card__video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  /* --- Posicionamiento Grid Mosaico --- */
-  .box-1 {
+  /* Posicionamiento en el Mosaico */
+  .program-card__box--box-1 {
     grid-column: 1;
     grid-row: 1 / span 2;
   }
-  .box-2 {
+
+  .program-card__box--box-2 {
     grid-column: 2;
     grid-row: 1;
   }
-  .box-3 {
+
+  .program-card__box--box-3 {
     grid-column: 2;
     grid-row: 2;
   }
-  .box-4 {
+
+  .program-card__box--box-4 {
     grid-column: 1 / span 2;
     grid-row: 3;
   }
 
   /* --- RESPONSIVE DESIGN --- */
-
-  /* Pantallas medianas (Tablets) */
   @media (max-width: 1180px) {
-    .pg-1 {
+    .program-card {
       grid-template-columns: 1fr;
-      justify-items: center; /* Centramos el mosaico */
-      text-align: center; /* Centramos el texto */
+      justify-items: center;
+      text-align: center;
       gap: 24px;
       padding: 0 15px;
     }
-    .ly-pg-1 {
+
+    .program-card__content {
+      align-items: center;
     }
   }
 
-  /* Pantallas pequeñas (Móviles) */
-  @media (max-width: 850px) {
-    .pg-1 {
-      /* Apilamos verticalmente: videos arriba, texto abajo */
-      grid-template-columns: 1fr;
-      justify-items: center; /* Centramos el mosaico */
-      text-align: center; /* Centramos el texto */
-      gap: 24px;
-      padding: 0 15px; /* Margen lateral de seguridad */
-    }
-  }
-
-  /* Pantallas MUY pequeñas (Móviles pequeños) */
   @media (max-width: 400px) {
-    .ly-pg-1 {
-      /* Achicamos el mosaico proporcionalmente para que no se salga de la pantalla */
+    .program-card__mosaic {
       grid-template-columns: 160px 90px;
       grid-template-rows: 90px 50px 50px;
       gap: 8px 15px;

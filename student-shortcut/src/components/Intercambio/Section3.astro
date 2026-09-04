@@ -1,143 +1,175 @@
 ---
+// src/components/IrseIntercambio/ProcesoIntercambio.astro
 
+interface StepItem {
+  iconSrc: string;
+  iconAlt: string;
+  description: string;
+}
+
+const steps: StepItem[] = [
+  {
+    iconSrc: "/img/SVG/study-2-svgrepo-com.svg",
+    iconAlt: "Icono de documentación académica",
+    description: "Organización de documentación académica para garantizar una transición óptima."
+  },
+  {
+    iconSrc: "/img/SVG/world-1-svgrepo-com.svg",
+    iconAlt: "Icono de alcance global",
+    description: "Acompañamiento en el extranjero de la mano de nuestros Partners certificados."
+  },
+  {
+    iconSrc: "/img/SVG/passport-1-svgrepo-com.svg",
+    iconAlt: "Icono de pasaporte y visado",
+    description: "Preparación y obtención del pasaporte y visado necesarios."
+  }
+];
 ---
 
-<section class="sec-3">
-  <div class="sec-3-head">
-    <h2>¿Cómo irse de intercambio?</h2>
-    <p>
-      Dar el paso hacia un intercambio puede parecer un desafío logístico, pero
-      con nosotros el proceso se convierte en un camino claro y seguro.
-    </p>
-  </div>
-  <div class="section-cards">
-    <!-- Chico Estudio Imagen -->
-    <div class="card-step">
-      <div class="img-box">
-        <img src="img/SVG/study-2-svgrepo-com.svg" alt="" />
-      </div>
-      <p>
-        Organización de documentación académica para garantizar una transición
-        óptima
+<section class="exchange-process">
+  <div class="exchange-process__container">
+    <!-- Encabezado de la Sección -->
+    <header class="exchange-process__header">
+      <h2 class="exchange-process__title">¿Cómo irse de intercambio?</h2>
+      <p class="exchange-process__subtitle">
+        Dar el paso hacia un intercambio puede parecer un desafío logístico, pero
+        con nosotros el proceso se convierte en un camino claro y seguro.
       </p>
-    </div>
-    <!-- Mundo -->
-    <div class="card-step">
-      <div class="img-box">
-        <img src="img/SVG/world-1-svgrepo-com.svg" alt="" />
-      </div>
-      <p>En el extranjero de la mano de nuestros Partners certificados</p>
-    </div>
-    <!-- Pasaporte -->
-    <div class="card-step">
-      <div class="img-box">
-        <img src="img/SVG/passport-1-svgrepo-com.svg" alt="" />
-      </div>
-      <p>Preparación y obtención del pasaporte y visado necesarios</p>
+    </header>
+
+    <!-- Lista de Pasos / Tarjetas -->
+    <div class="exchange-process__grid">
+      {
+        steps.map((step, index) => (
+          <article class="process-card">
+            <div class="process-card__icon-wrapper">
+              <img
+                src={step.iconSrc}
+                alt={step.iconAlt}
+                class="process-card__icon"
+                loading="lazy"
+              />
+            </div>
+            <p class="process-card__description">{step.description}</p>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>
 
 <style>
-  .sec-3 {
-    max-width: min(85%, 990px);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4em;
-    padding: 60px 0px;
-  }
-
-  .section-cards {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
+  .exchange-process {
     width: 100%;
+    padding: 60px 0;
+    color: #ffffff;
   }
 
-  .sec-3-head {
+  .exchange-process__container {
+    width: min(100%, 990px);
+    margin: 0 auto;
+    padding: 0 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 1em;
-    text-align: center;
+    gap: 3.5rem;
   }
 
-  .sec-3-head h2 {
-    color: #ffffff;
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  /* Header */
+  .exchange-process__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .exchange-process__title {
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
     font-weight: 700;
-  }
-  .sec-3-head p {
     color: #ffffff;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    text-align: center;
+    margin: 0;
+    line-height: 1.2;
   }
 
-  .card-step {
+  .exchange-process__subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+
+  /* Grid de Pasos */
+  .exchange-process__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem 2rem;
+    width: 100%;
+    justify-items: center;
+  }
+
+  /* Tarjeta Individual */
+  .process-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
-    flex: 1 1 clamp(250px, 90vw, 300px);
-    min-width: 250px;
-  }
-
-  .card-step p {
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 280px;
     text-align: center;
-    font-size: clamp(1.1rem, 2vw, 1.2rem);
-    color: #ffffff;
-    max-width: 260px;
   }
 
-  .img-box {
-    width: clamp(150px, 25vw, 190px);
-    height: clamp(150px, 25vw, 190px);
-    aspect-ratio: 1/1;
-    overflow: hidden;
+  /* Círculo del Icono */
+  .process-card__icon-wrapper {
+    width: clamp(140px, 20vw, 180px);
+    height: clamp(140px, 20vw, 180px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(240, 248, 255, 0.425);
-    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
 
-  .img-box img {
-    width: 60%;
-    height: 60%;
-    object-fit: contain; /* Cambié de "cover" a "contain" para SVG */
+  .process-card:hover .process-card__icon-wrapper {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.18);
   }
 
-  /* Media queries opcionales para más control */
+  .process-card__icon {
+    width: 55%;
+    height: 55%;
+    object-fit: contain;
+  }
+
+  /* Texto de la tarjeta */
+  .process-card__description {
+    font-size: clamp(1rem, 1.8vw, 1.1rem);
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+  }
+
+  /* Adaptabilidad Móvil */
   @media (max-width: 768px) {
-    .section-cards {
-      gap: clamp(20px, 4vw, 40px);
+    .exchange-process {
+      padding: 40px 0;
     }
 
-    .card-step {
-      flex: 1 1 clamp(200px, 80vw, 280px);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .section-cards {
-      gap: 15px;
+    .exchange-process__container {
+      gap: 2.5rem;
     }
 
-    .card-step {
-      flex: 1 1 100%;
-      max-width: 250px;
-    }
-
-    .img-box {
-      width: clamp(120px, 30vw, 180px);
+    .exchange-process__grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
     }
   }
 </style>

@@ -1,11 +1,21 @@
 ---
 // src/components/Carrusel.astro
+
+interface Props {
+  ariaLabel?: string;
+}
+
+const { ariaLabel = "Carrusel de contenido" } = Astro.props;
 ---
 
-<div class="carrusel-contenedor-principal">
-  <div class="carrusel-envoltorio">
-    <button class="carrusel-btn prev" aria-label="Anterior">
-      <!-- Icono de flecha izquierda -->
+<div class="carousel" aria-label={ariaLabel}>
+  <div class="carousel__wrapper">
+    <!-- Botón Navegación Anterior -->
+    <button 
+      class="carousel__btn carousel__btn--prev" 
+      aria-label="Diapositiva anterior"
+      type="button"
+    >
       <svg
         viewBox="0 0 24 24"
         width="24"
@@ -15,18 +25,23 @@
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"
+        aria-hidden="true"
       >
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
     </button>
 
-    <div class="carrusel-pista">
-      <!-- El slot permite inyectar cualquier cantidad de componentes aquí -->
+    <!-- Contenedor Pista (Slots Inyectados) -->
+    <div class="carousel__track">
       <slot />
     </div>
 
-    <button class="carrusel-btn next" aria-label="Siguiente">
-      <!-- Icono de flecha derecha -->
+    <!-- Botón Navegación Siguiente -->
+    <button 
+      class="carousel__btn carousel__btn--next" 
+      aria-label="Siguiente diapositiva"
+      type="button"
+    >
       <svg
         viewBox="0 0 24 24"
         width="24"
@@ -36,40 +51,38 @@
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"
+        aria-hidden="true"
       >
         <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </button>
   </div>
 
-  <!-- Contenedor dinámico para los puntitos -->
-  <div class="carrusel-indicadores"></div>
-
-  
+  <!-- Contenedor Dinámico para Indicadores (Puntos) -->
+  <div class="carousel__dots" role="tablist" aria-label="Indicadores de diapositivas"></div>
 </div>
 
 <style>
-  .carrusel-contenedor-principal {
+  /* Contenedor Principal */
+  .carousel {
     position: relative;
     width: 100%;
-    max-width: 1200px; /* Ajusta según tu diseño */
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espacio entre el carrusel y los puntos */
+    gap: 15px;
   }
-  
-  
-  .carrusel-envoltorio {
+
+  .carousel__wrapper {
     position: relative;
     display: flex;
     align-items: center;
-
     width: 100%;
   }
 
-  .carrusel-pista {
-    
+  /* Pista Deslizable */
+  .carousel__track {
     display: flex;
     gap: 20px;
     overflow-x: auto;
@@ -78,179 +91,162 @@
     width: 100%;
     padding: 20px 10px;
 
-    /* Ocultar la barra de scroll */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    /* Ocultar barra de desplazamiento */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  .carrusel-pista::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+  .carousel__track::-webkit-scrollbar {
+    display: none;
   }
 
-  .carrusel-pista > :global(*) {
+  /* Ajuste de elementos hijos inyectados por slot */
+  .carousel__track > :global(*) {
     flex: 0 0 100%;
-    min-width: 0; /* CRUCIAL: Evita que el contenido interno rompa el ancho */
+    min-width: 0;
     width: 100%;
     box-sizing: border-box;
     scroll-snap-align: center;
   }
 
-  /* --- ESTILO DE LAS FLECHAS CIRCULARES --- */
-  .carrusel-btn {
+  /* Botones de Navegación */
+  .carousel__btn {
     position: absolute;
     z-index: 10;
-    background-color: rgba(255, 255, 255, 0); /* Fondo blanco */
-    color: #92fbff; /* Color de la flecha */
+    background-color: rgba(255, 255, 255, 0);
+    color: #92fbff;
     border-radius: 50%;
-
+    border: none;
     width: 40px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }
 
-  .carrusel-btn:hover {
-    background-color: #f8f9fa91;
-    transform: scale(1.1); /* Efecto de crecimiento al pasar el mouse */
+  .carousel__btn:hover {
+    background-color: rgba(248, 249, 250, 0.57);
+    transform: scale(1.1);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
   }
 
-  /* Ajuste de posición de los botones */
-  .prev {
+  .carousel__btn--prev {
     left: -60px;
   }
-  .next {
+
+  .carousel__btn--next {
     right: -60px;
   }
 
-  @media (max-width: 768px) {
-    .prev {
-      left: -10px;
-    }
-    .next {
-      right: -10px;
-    }
-  }
-  @media (max-width: 1300px) {
-    .prev {
-      left: -10px;
-    }
-    .next {
-      right: -10px;
-    }
-    .carrusel-pista {
-      display: flex;
-      gap: 60px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      width: 100%;
-      padding: 10px 0;
-
-      /* Ocultar la barra de scroll */
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-    }
-  }
-
-  /* --- ESTILO DE LOS PUNTITOS --- */
-  .carrusel-indicadores {
+  /* Indicadores Dinámicos (Puntos) */
+  .carousel__dots {
     z-index: 10;
     display: flex;
     justify-content: center;
     gap: 10px;
   }
 
-  /* Usamos :global porque los puntos se crearán con JavaScript */
-  :global(.carrusel-punto) {
+  :global(.carousel__dot) {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #d1d5db; /* Gris claro */
+    background-color: #d1d5db;
     border: none;
     cursor: pointer;
-    transition:
-      background-color 0.3s ease,
-      transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
 
-  :global(.carrusel-punto.activo) {
-    background-color: #09c6ff; /* Gris oscuro para el punto activo */
-    transform: scale(1.2); /* Lo hace un poquito más grande */
+  :global(.carousel__dot--active) {
+    background-color: #09c6ff;
+    transform: scale(1.2);
+  }
+
+  /* Media Queries */
+  @media (max-width: 1300px) {
+    .carousel__btn--prev {
+      left: -10px;
+    }
+    .carousel__btn--next {
+      right: -10px;
+    }
+    .carousel__track {
+      gap: 60px;
+      padding: 10px 0;
+    }
   }
 </style>
 
 <script>
-  function inicializarCarruseles() {
-    const contenedores = document.querySelectorAll(
-      ".carrusel-contenedor-principal",
-    );
+  function initializeCarousels() {
+    const carousels = document.querySelectorAll(".carousel");
 
-    contenedores.forEach((contenedor) => {
-      const pista = contenedor.querySelector(".carrusel-pista") as HTMLElement;
-      const btnPrev = contenedor.querySelector(".prev");
-      const btnNext = contenedor.querySelector(".next");
-      const indicadores = contenedor.querySelector(".carrusel-indicadores");
+    carousels.forEach((carousel) => {
+      const track = carousel.querySelector(".carousel__track") as HTMLElement;
+      const btnPrev = carousel.querySelector(".carousel__btn--prev");
+      const btnNext = carousel.querySelector(".carousel__btn--next");
+      const dotsContainer = carousel.querySelector(".carousel__dots");
 
-      if (!pista || !btnPrev || !btnNext || !indicadores) return;
+      if (!track || !btnPrev || !btnNext || !dotsContainer) return;
 
-      // 1. Generar los puntitos dinámicamente según la cantidad de elementos
-      const cantidadElementos = pista.children.length;
-      indicadores.innerHTML = ""; // Limpiamos por si se re-ejecuta el script
+      // 1. Generar puntos dinámicamente según la cantidad de elementos
+      const totalItems = track.children.length;
+      dotsContainer.innerHTML = "";
 
-      for (let i = 0; i < cantidadElementos; i++) {
-        const punto = document.createElement("button");
-        punto.classList.add("carrusel-punto");
-        punto.setAttribute("aria-label", `Ir al elemento ${i + 1}`);
-        if (i === 0) punto.classList.add("activo");
+      for (let i = 0; i < totalItems; i++) {
+        const dot = document.createElement("button");
+        dot.classList.add("carousel__dot");
+        if (i === 0) dot.classList.add("carousel__dot--active");
+        
+        dot.setAttribute("type", "button");
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}`);
 
-        // Evento para que el puntito te lleve al elemento correspondiente
-        punto.addEventListener("click", () => {
-          const anchoElemento = pista.clientWidth;
-          pista.scrollTo({
-            left: anchoElemento * i,
+        dot.addEventListener("click", () => {
+          const itemWidth = track.clientWidth;
+          track.scrollTo({
+            left: itemWidth * i,
             behavior: "smooth",
           });
         });
 
-        indicadores.appendChild(punto);
+        dotsContainer.appendChild(dot);
       }
 
-      const puntos = indicadores.querySelectorAll(".carrusel-punto");
+      const dots = dotsContainer.querySelectorAll(".carousel__dot");
 
-      // 2. Sincronizar los puntitos al hacer scroll o tocar las flechas
-      pista.addEventListener("scroll", () => {
-        const anchoElemento = pista.clientWidth;
-        // Calculamos en qué índice estamos basándonos en el scroll
-        const indiceActual = Math.round(pista.scrollLeft / anchoElemento);
+      // 2. Sincronizar puntos con el evento de desplazamiento (scroll)
+      track.addEventListener("scroll", () => {
+        const itemWidth = track.clientWidth;
+        const activeIndex = Math.round(track.scrollLeft / itemWidth);
 
-        puntos.forEach((punto, index) => {
-          if (index === indiceActual) {
-            punto.classList.add("activo");
+        dots.forEach((dot, index) => {
+          if (index === activeIndex) {
+            dot.classList.add("carousel__dot--active");
+            dot.setAttribute("aria-selected", "true");
           } else {
-            punto.classList.remove("activo");
+            dot.classList.remove("carousel__dot--active");
+            dot.setAttribute("aria-selected", "false");
           }
         });
       });
 
-      // 3. Eventos de las flechas
+      // 3. Eventos para las flechas de navegación
       btnPrev.addEventListener("click", () => {
-        const anchoElemento = pista.clientWidth;
-        pista.scrollBy({ left: -anchoElemento, behavior: "smooth" });
+        const itemWidth = track.clientWidth;
+        track.scrollBy({ left: -itemWidth, behavior: "smooth" });
       });
 
       btnNext.addEventListener("click", () => {
-        const anchoElemento = pista.clientWidth;
-        pista.scrollBy({ left: anchoElemento, behavior: "smooth" });
+        const itemWidth = track.clientWidth;
+        track.scrollBy({ left: itemWidth, behavior: "smooth" });
       });
     });
   }
 
-  // Usamos esta estructura para que sea compatible con Astro View Transitions
-  document.addEventListener("DOMContentLoaded", inicializarCarruseles);
-  document.addEventListener("astro:page-load", inicializarCarruseles);
+  // Compatible con carga normal y Astro View Transitions
+  document.addEventListener("DOMContentLoaded", initializeCarousels);
+  document.addEventListener("astro:page-load", initializeCarousels);
 </script>

@@ -1,39 +1,42 @@
 ---
+// src/pages/quienes-somos.astro
 import Layout from "../layouts/Layout.astro";
 import QuienesSomos from "../components/QuienesSomos/QuienesSomos.astro";
 import NuestroEquipo from "../components/QuienesSomos/NuestroEquipo.astro";
 import Equipo from "../components/QuienesSomos/Equipo.astro";
 ---
 
-<!-- Quienes Somos About Us -->
-<Layout>
-  <main>
+<Layout 
+  title="Quiénes Somos | Student Shortcut" 
+  description="Conoce al equipo y la visión detrás de Student Shortcut. Te acompañamos en tu experiencia de intercambio cultural y académico."
+>
+  <main class="about-page">
+    <!-- Secciones principales -->
     <QuienesSomos />
     <NuestroEquipo />
-    <!-- equipo restante / team -->
     <Equipo />
-    
-    <!-- <div class="montana-d">
-    <img src="/img/SVG/Montaña_12.svg" alt="" />
-  </div> -->
   </main>
 </Layout>
-<style>
-  main { 
-    position: relative;
-     /* Offset for fixed header */
-    /* background: #ffffff; */
-    padding-bottom: 60px;
 
+<style>
+  .about-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /* Offset para evitar que el header fijo tape el inicio del contenido */
+    padding-top: var(--header-height, 75px);
+    padding-bottom: 60px;
+    
+    /* Fondo con gradiente y textura de ruido */
+    background-color: #1f9cc9;
     background-image:
       url("/img/noise.png"),
       linear-gradient(180deg, #0cabe6 0%, #1f9cc9 55%, #005b97 100%);
-    background-repeat: repeat;
+    background-repeat: repeat, no-repeat;
+    background-size: auto, cover;
+    
+    /* Asegura que los componentes mantengan el flujo vertical */
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
   }
-
-  
 </style>
