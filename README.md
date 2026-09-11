@@ -1,6 +1,6 @@
 Student Shortcut
 
-# 🚀 Student Shortcut
+# Student Shortcut
 
 ![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
@@ -17,9 +17,9 @@ Student Shortcut
 
 | Captura de Pantalla | Demostración en Vivo (GIF) |
 | :------------------: | :-----------------------: |
-| ![Preview](./public/screenshot.png) | ![Demo GIF](./public/demo.gif) |
+| ![Preview](./readme/screenshots/Preview.png) | ![Demo GIF](./public/demo.gif) |
 
-> 💡 *Reemplaza `./public/screenshot.png` y `./public/demo.gif` con las rutas o enlaces reales de tus imágenes.*
+
 
 ---
 
