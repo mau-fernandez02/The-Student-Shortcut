@@ -15,9 +15,12 @@ Student Shortcut
 
 ## 📸 Vista Previa / Demo
 
-| Captura de Pantalla | Demostración en Vivo (GIF) |
+| Página Principal | Descripción |
 | :------------------: | :-----------------------: |
-| ![Preview](./readme/screenshots/Preview.png) | ![Demo GIF](./public/demo.gif) |
+| ![Preview](./readme/screenshots/Preview.png) | Página principal de la Página Studendt Shortcut |
+| :------------------: | :-----------------------: |
+| Video Demo | Descripción |
+| ![Demo GIF](./readme/screenshots/demo.gif) |  |
 
 
 
