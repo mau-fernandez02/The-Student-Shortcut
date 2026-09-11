@@ -18,7 +18,6 @@ Student Shortcut
 | Página Principal | Descripción |
 | :------------------: | :-----------------------: |
 | ![Preview](./readme/screenshots/Preview.png) | Página principal de la Página Studendt Shortcut |
-| :------------------: | :-----------------------: |
 | Video Demo | Descripción |
 | ![Demo GIF](./readme/screenshots/demo.gif) |  |
 
@@ -71,6 +70,6 @@ Student Shortcut
 
 1. Clona el repositorio:
    ```bash
-   git clone [https://github.com/tu-usuario/student-shortcut.git](https://github.com/tu-usuario/student-shortcut.git)
+   git clone https://github.com/mau-fernandez02/The-Student-Shortcut.git
    cd student-shortcut
    ```
