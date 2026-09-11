@@ -6,24 +6,35 @@ interface Props {
   videoType?: string;
 }
 
-const {
-  videoSrc = "/media/#",
-  videoType = "video/mp4"
-} = Astro.props;
+const { videoSrc = "/media/#", videoType = "video/mp4" } = Astro.props;
 ---
 
 <section class="exchange-hero">
+  <!-- Decoración nubes de Fondo -->
+
+  <div class="exchange-hero__cloud cloud__left--middle" aria-hidden="true">
+    <img src="/img/SVG/Nube_14.svg" alt="" loading="eager" />
+  </div>
+  <div class="exchange-hero__cloud cloud__left--front" aria-hidden="true">
+    <img src="/img/SVG/Nube_13.svg" alt="" loading="eager" />
+  </div>
+  <!-- <div class="exchange-hero__cloud cloud__left--back" aria-hidden="true">
+    <img src="/img/SVG/Nube_11.svg" alt="" loading="eager" />
+  </div> -->
+  <div class="exchange-hero__cloud cloud__right--front" aria-hidden="true">
+    <img src="/img/SVG/Nube_10.svg" alt="" loading="eager" />
+  </div>
+  <div class="exchange-hero__cloud cloud__right--back" aria-hidden="true">
+    <img src="/img/SVG/Nube_11.svg" alt="" loading="eager" />
+  </div>
+  
+
+
   <div class="exchange-hero__container">
     <!-- Banner de Video -->
     <div class="exchange-hero__media">
       <div class="exchange-hero__video-wrapper">
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          class="exchange-hero__video"
-        >
+        <video autoplay loop muted playsinline class="exchange-hero__video">
           <source src={videoSrc} type={videoType} />
           Tu navegador no soporta la reproducción de video.
         </video>
@@ -40,17 +51,18 @@ const {
 
     <div class="exchange-hero__description">
       <p>
-        Un intercambio es una inmersión total en un sistema educativo extranjero,
-        diseñado para descubrir nuevas competencias lingüísticas y conectar
-        profundamente con una cultura diferente. Con opciones flexibles de 5 a
-        8 meses, el programa combina la excelencia académica con una experiencia
-        humana irrepetible. Durante tu estancia tienes la oportunidad de crecer
-        diariamente con una familia anfitriona que te acoge como un miembro más.
+        Un intercambio es una inmersión total en un sistema educativo
+        extranjero, diseñado para descubrir nuevas competencias lingüísticas y
+        conectar profundamente con una cultura diferente. Con opciones flexibles
+        de 5 a 8 meses, el programa combina la excelencia académica con una
+        experiencia humana irrepetible. Durante tu estancia tienes la
+        oportunidad de crecer diariamente con una familia anfitriona que te
+        acoge como un miembro más.
       </p>
       <p>
-        Esto es más que un viaje... Es una experiencia que te permitirá
-        desafiar tus propios límites y construir una versión renovada de ti
-        mismo que perdurará para siempre.
+        Esto es más que un viaje... Es una experiencia que te permitirá desafiar
+        tus propios límites y construir una versión renovada de ti mismo que
+        perdurará para siempre.
       </p>
     </div>
   </div>
@@ -58,9 +70,11 @@ const {
 
 <style>
   .exchange-hero {
-    width: 100%;
     padding: 40px 0 60px 0;
     color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
   }
 
   .exchange-hero__container {
@@ -70,11 +84,13 @@ const {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    
   }
 
   /* Banner de Video con Aspect Ratio */
   .exchange-hero__media {
     width: 100%;
+    z-index: 10;
   }
 
   .exchange-hero__video-wrapper {
@@ -123,7 +139,50 @@ const {
     margin: 0;
   }
 
-  /* Adaptabilidad Móvil */
+  /* Elementos Decorativos */
+  .exchange-hero__cloud {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .exchange-hero__cloud img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .cloud__left--front {
+    top: 190px;
+    left: -260px;
+    width: min(800px, 30vw);
+    transform: scaleX(-1);
+  }
+  .cloud__left--middle {
+    top: 190px;
+    left: -0px;
+    width: min(800px, 30vw);
+    transform: scaleX(-1);
+  }
+  .cloud__right--back{
+    top: 190px;
+    right: -140px;
+    width: min(800px, 30vw);
+    /* transform: scaleX(-1); */
+  }
+  .cloud__right--front{
+    top: 190px;
+    right: -100px;
+    width: min(800px, 30vw);
+    /* transform: scaleX(-1); */
+  }
+
+  /* Diseño Responsivo */
+
+  @media (max-width: 1200px) {
+    .exchange-hero__cloud {
+      display: none;
+    }
+  }
   @media (max-width: 768px) {
     .exchange-hero {
       padding: 20px 0 40px 0;
@@ -137,6 +196,9 @@ const {
     .exchange-hero__video-wrapper {
       aspect-ratio: 16 / 9;
       border-radius: 12px;
+    }
+    .exchange-hero__cloud {
+      display: none;
     }
   }
 </style>

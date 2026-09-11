@@ -6,11 +6,16 @@ import NuestroEquipo from "../components/QuienesSomos/NuestroEquipo.astro";
 import Equipo from "../components/QuienesSomos/Equipo.astro";
 ---
 
-<Layout 
-  title="Quiénes Somos | Student Shortcut" 
+<Layout
+  title="Quiénes Somos | Student Shortcut"
   description="Conoce al equipo y la visión detrás de Student Shortcut. Te acompañamos en tu experiencia de intercambio cultural y académico."
 >
   <main class="about-page">
+    <!-- Decoración de fondo -->
+    <div class="about-hero__bg-mountain" aria-hidden="true">
+      <img src="/img/SVG/Montaña_5.svg" alt="" loading="eager" />
+    </div>
+
     <!-- Secciones principales -->
     <QuienesSomos />
     <NuestroEquipo />
@@ -26,7 +31,7 @@ import Equipo from "../components/QuienesSomos/Equipo.astro";
     /* Offset para evitar que el header fijo tape el inicio del contenido */
     padding-top: var(--header-height, 75px);
     padding-bottom: 60px;
-    
+
     /* Fondo con gradiente y textura de ruido */
     background-color: #1f9cc9;
     background-image:
@@ -34,9 +39,27 @@ import Equipo from "../components/QuienesSomos/Equipo.astro";
       linear-gradient(180deg, #0cabe6 0%, #1f9cc9 55%, #005b97 100%);
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
-    
+
     /* Asegura que los componentes mantengan el flujo vertical */
     display: flex;
     flex-direction: column;
   }
+
+  .about-hero__bg-mountain {
+    position: absolute;
+    top: -100px;
+    left: -180px;
+    width: min(740px,60vw);
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 1;
+    transform: rotate(90deg);
+  }
+
+  .about-hero__bg-mountain img {
+    width: 100%;
+    height: auto;
+    user-select: none;
+  }
+
 </style>
