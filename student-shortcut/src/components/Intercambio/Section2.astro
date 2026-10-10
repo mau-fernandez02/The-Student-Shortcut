@@ -1,14 +1,14 @@
 ---
-// src/components/IrseIntercambio/PerfilPostulante.astro
+// src/components/Intercambio/Section2.astro
 
 interface Props {
-  videoSrc?: string;
-  videoType?: string;
+  videoSrcDesktop?: string;
+  videoSrcMobile?: string;
 }
 
 const {
-  videoSrc = "/media/#",
-  videoType = "video/mp4"
+  videoSrcDesktop = "/media/VideoB-Intercambio.mp4",
+  videoSrcMobile = "/media/Mobile/VideoB-Intercambio-Mobile.mp4",
 } = Astro.props;
 ---
 
@@ -17,14 +17,9 @@ const {
     <!-- Media / Video B (Cuadrado 1:1) -->
     <div class="applicant-profile__media">
       <div class="applicant-profile__video-wrapper">
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          class="applicant-profile__video"
-        >
-          <source src={videoSrc} type={videoType} />
+        <video autoplay loop muted playsinline class="applicant-profile__video">
+          <source src={videoSrcMobile} media="(max-width: 768px)" type="video/mp4" />
+          <source src={videoSrcDesktop} type="video/mp4" />
           Tu navegador no soporta la reproducción de video.
         </video>
       </div>
@@ -33,17 +28,17 @@ const {
     <!-- Información y Contenido -->
     <div class="applicant-profile__content">
       <header class="applicant-profile__header">
-        <h2 class="applicant-profile__title">
+        <h2 class="applicant-profile__title" data-i18n="exchange.sec2.title">
           ¿Quiénes pueden postular a los programas?
         </h2>
       </header>
 
       <div class="applicant-profile__description">
-        <p>
+        <p data-i18n="exchange.sec2.p1">
           Nuestro programa está abierto a jóvenes de secundaria entre 14 y 18 años
           que dominen las bases del idioma correspondiente.
         </p>
-        <p>
+        <p data-i18n="exchange.sec2.p2">
           Más allá de cumplir con el perfil académico y lingüístico, buscamos a
           estudiantes apasionados por el mundo con una gran voluntad de compartir
           sus propias culturas y descubrir otra.
@@ -51,7 +46,7 @@ const {
       </div>
 
       <div class="applicant-profile__actions">
-        <a href="/programas" class="applicant-profile__btn">
+        <a href="/programas" class="applicant-profile__btn" data-i18n="exchange.sec2.btn">
           Conoce los programas
         </a>
       </div>
@@ -62,21 +57,22 @@ const {
 <style>
   .applicant-profile {
     width: 100%;
-    padding: 60px 0;
+    padding: 70px 0;
     color: #ffffff;
+    position: relative;
+    z-index: 5;
   }
 
   .applicant-profile__container {
-    width: min(100%, 920px);
+    width: min(90%, 960px);
     margin: 0 auto;
     padding: 0 24px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 
-  /* Video (Proporción 1:1 estricta) */
   .applicant-profile__media {
     flex: 1;
     display: flex;
@@ -87,13 +83,13 @@ const {
   .applicant-profile__video-wrapper {
     position: relative;
     width: 100%;
-    max-width: 440px;
+    max-width: 448px;
     aspect-ratio: 1 / 1;
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
     background-color: #000000;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+    border: 2px solid rgba(255, 255, 255, 0.35);
   }
 
   .applicant-profile__video {
@@ -103,19 +99,19 @@ const {
     display: block;
   }
 
-  /* Columna de Texto */
   .applicant-profile__content {
     flex: 1.2;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .applicant-profile__title {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 700;
-    line-height: 1.3;
+    font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    line-height: 1.25;
     color: #ffffff;
     margin: 0;
   }
@@ -127,41 +123,41 @@ const {
   }
 
   .applicant-profile__description p {
-    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-    font-weight: 300;
+    font-size: clamp(1rem, 1.8vw, 1.12rem);
+    font-weight: 400;
     line-height: 1.65;
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.95);
     margin: 0;
   }
 
-  /* Botón estilizado */
   .applicant-profile__actions {
     margin-top: 0.5rem;
   }
 
   .applicant-profile__btn {
-    display: inline-block;
-    padding: 12px 28px;
-    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 32px;
+    border-radius: 50px;
     background-color: transparent;
-    border: 1px solid #ffffff;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: 500;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
     text-decoration: none;
-    text-align: center;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   }
 
   .applicant-profile__btn:hover {
     background-color: #ffffff;
-    color: #000000;
+    color: #005b97;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   }
 
-  /* Adaptabilidad Móvil */
-  @media (max-width: 768px) {
+  @media (max-width: 860px) {
     .applicant-profile {
       padding: 40px 0;
     }
@@ -169,6 +165,7 @@ const {
     .applicant-profile__container {
       flex-direction: column;
       gap: 2rem;
+      text-align: center;
     }
 
     .applicant-profile__content {
@@ -177,8 +174,7 @@ const {
     }
 
     .applicant-profile__video-wrapper {
-      max-width: 320px;
-      /* Mantiene la relación de aspecto 1:1 en pantallas pequeñas */
+      max-width: 295px;
       aspect-ratio: 1 / 1;
     }
 

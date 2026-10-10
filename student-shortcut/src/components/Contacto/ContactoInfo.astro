@@ -1,166 +1,365 @@
 ---
 // src/components/Contacto/ContactoInfo.astro
 
-interface SocialItem {
-  platform: string;
-  url: string;
-  iconSrc: string;
-}
-
 interface Props {
-  email?: string;
   phone?: string;
-  location?: string;
-  socials?: SocialItem[];
+  email?: string;
+  address?: string;
 }
 
 const {
-  email = "info@shorcut-student.com",
-  phone = "+(591) 76543210",
-  location = "La Paz, Bolivia",
-  socials = [
-    { platform: "Instagram", url: "https://instagram.com", iconSrc: "/img/SVG/instagram.svg" },
-    { platform: "Facebook", url: "https://facebook.com", iconSrc: "/img/SVG/facebook.svg" },
-    { platform: "WhatsApp", url: "https://whatsapp.com", iconSrc: "/img/SVG/whatsapp.svg" }
-  ]
+  phone = "(+591) 62553158",
+  email = "student.support@shortcut.edu.com",
+  address = "Los Pinos, Calle 4, N°1051. La Paz - Bolivia",
 } = Astro.props;
+
+const socials = [
+  {
+    name: "Instagram",
+    handle: "@STUDENT.SHORTCUT.BO",
+    url: "https://instagram.com/student.shortcut.bo",
+    iconSrc: "/img/SVG/instagram-svgrepo-com.svg",
+  },
+  {
+    name: "Facebook",
+    handle: "@STUDENT.SHORTCUT.BO",
+    url: "https://facebook.com/student.shortcut.bo",
+    iconSrc: "/img/SVG/facebook-svgrepo-com.svg",
+  },
+  {
+    name: "TikTok",
+    handle: "@STUDENT.SHORTCUT.BO",
+    url: "https://tiktok.com/@student.shortcut.bo",
+    iconSrc: "/img/SVG/tiktok-svgrepo-com.svg",
+  },
+  {
+    name: "WhatsApp",
+    handle: "@Whatsapp.link",
+    url: "https://wa.me/59162553158",
+    iconSrc: "/img/SVG/whatsapp-128-svgrepo-com.svg",
+  },
+];
 ---
 
-<div class="contact-info">
-  <div class="contact-info__card">
-    <h3 class="contact-info__title">Información Directa</h3>
-    
-    <ul class="contact-info__list">
-      <li class="contact-info__item">
-        <span class="contact-info__label">Correo Electrónico:</span>
-        <a href={`mailto:${email}`} class="contact-info__link">{email}</a>
-      </li>
-      <li class="contact-info__item">
-        <span class="contact-info__label">Teléfono / WhatsApp:</span>
-        <a href={`tel:${phone.replace(/\s+/g, '')}`} class="contact-info__link">{phone}</a>
-      </li>
-      <li class="contact-info__item">
-        <span class="contact-info__label">Ubicación:</span>
-        <span class="contact-info__text">{location}</span>
-      </li>
-    </ul>
+<div class="contact-view">
+  <div class="contact-view__container">
+    <!-- Columna Izquierda: Información de Contacto Directa y Redes -->
+    <div class="contact-view__details">
+      <h1 class="contact-view__title" data-i18n="contact.title">¡CONTÁCTANOS!</h1>
 
-    <div class="contact-info__socials">
-      <h4 class="contact-info__socials-title">Síguenos en redes</h4>
-      <div class="contact-info__socials-grid">
-        {socials.map((social) => (
-          <a
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-info__social-btn"
-            aria-label={`Visitar nuestro ${social.platform}`}
-          >
-            <span>{social.platform}</span>
-          </a>
-        ))}
+      <div class="contact-view__info-group">
+        <div class="contact-view__info-item">
+          <span class="contact-view__label" data-i18n="contact.phoneLabel">Número telefónico:</span>
+          <a href={`tel:+59162553158`} class="contact-view__value">{phone}</a>
+        </div>
+
+        <div class="contact-view__info-item">
+          <span class="contact-view__label" data-i18n="contact.emailLabel">Correo:</span>
+          <a href={`mailto:${email}`} class="contact-view__value">{email}</a>
+        </div>
+
+        <!-- Requerimiento 5: Aumentar la dirección (Los Pinos, Calle 4, N°1051) -->
+        <div class="contact-view__info-item">
+          <span class="contact-view__label" data-i18n="contact.addressLabel">Dirección:</span>
+          <span class="contact-view__value" data-i18n="contact.addressValue">{address}</span>
+        </div>
+      </div>
+
+      <!-- Requerimiento 6: Aumentar los iconos para las redes sociales en Contacto (Desktop) -->
+      <div class="contact-view__socials contact-view__socials--desktop">
+        {
+          socials.map((social) => (
+            <a
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-row"
+              aria-label={social.name}
+            >
+              <div class="social-row__icon-wrap">
+                <img src={social.iconSrc} alt={social.name} width="28" height="28" />
+              </div>
+              <span class="social-row__handle">{social.handle}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Ventana Google Maps y Botón hacia Formulario (PDF 1 pág 9) -->
+    <div class="contact-view__interactive">
+      <!-- Requerimiento 5: Ventana Google Maps -->
+      <div class="contact-view__map-card">
+        <iframe
+          class="contact-view__map"
+          title="Ubicación The Student Shortcut en Google Maps: Los Pinos, Calle 4, N°1051, La Paz - Bolivia"
+          src="https://maps.google.com/maps?q=Los%20Pinos%2C%20Calle%204%2C%201051%2C%20La%20Paz%2C%20Bolivia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <!-- Bloque de Formulario CTA -->
+      <div class="contact-view__form-cta">
+        <p class="contact-view__cta-text" data-i18n="contact.formPrompt">
+          Llena el formulario para obtener información personalizada:
+        </p>
+        <a href="/formulario" class="contact-view__cta-btn" data-i18n="contact.btnStart">
+          ¡Empieza tu viaje!
+        </a>
+      </div>
+
+      <!-- Redes en Móvil (debajo de mapa y botón, según PDF 1 pág 10) -->
+      <div class="contact-view__socials contact-view__socials--mobile">
+        {
+          socials.map((social) => (
+            <a
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-row"
+              aria-label={social.name}
+            >
+              <div class="social-row__icon-wrap">
+                <img src={social.iconSrc} alt={social.name} width="26" height="26" />
+              </div>
+              <span class="social-row__handle">{social.handle}</span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  .contact-info {
+  .contact-view {
     width: 100%;
-    height: 100%;
+    color: #ffffff;
+    padding-top: 40px;
+    padding-bottom: 80px;
   }
 
-  .contact-info__card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 32px;
-    backdrop-filter: blur(10px);
+  .contact-view__container {
+    width: min(90%, 1120px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Columna Izquierda */
+  .contact-view__details {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    height: 100%;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    gap: 2.2rem;
   }
 
-  .contact-info__title {
-    font-size: 1.5rem;
+  .contact-view__title {
+    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .contact-view__info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .contact-view__info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .contact-view__label {
+    font-size: 0.95rem;
     font-weight: 700;
     color: #ffffff;
-    margin: 0;
+    opacity: 0.85;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   }
 
-  .contact-info__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .contact-info__item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .contact-info__label {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .contact-info__link,
-  .contact-info__text {
-    font-size: 1.05rem;
+  .contact-view__value {
+    font-size: 1.25rem;
+    font-weight: 600;
     color: #ffffff;
     text-decoration: none;
-    font-weight: 400;
-    transition: color 0.2s ease;
+    transition: opacity 0.2s ease;
   }
 
-  .contact-info__link:hover {
-    color: rgba(255, 255, 255, 0.75);
+  a.contact-view__value:hover {
+    opacity: 0.8;
     text-decoration: underline;
   }
 
-  .contact-info__socials {
-    margin-top: auto;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* Redes Sociales con Iconos */
+  .contact-view__socials {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.9rem;
+    margin-top: 1rem;
   }
 
-  .contact-info__socials-title {
-    font-size: 1rem;
-    font-weight: 600;
+  .contact-view__socials--mobile {
+    display: none;
+  }
+
+  .social-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    width: fit-content;
+  }
+
+  .social-row:hover {
+    transform: translateX(4px);
+    opacity: 0.85;
+  }
+
+  .social-row__icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .social-row__icon-wrap img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .social-row__handle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Columna Derecha */
+  .contact-view__interactive {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-view__map-card {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000000;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .contact-view__map {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .contact-view__form-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 24px 20px;
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .contact-view__cta-text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
     color: #ffffff;
     margin: 0;
   }
 
-  .contact-info__socials-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .contact-info__social-btn {
-    padding: 8px 16px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-  }
-
-  .contact-info__social-btn:hover {
+  .contact-view__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 36px;
+    border-radius: 50px;
     background: #ffffff;
-    color: #000000;
+    color: #005b97;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+    width: min(100%, 300px);
+  }
+
+  .contact-view__cta-btn:hover {
+    transform: translateY(-2px);
+    background: #e0f4ff;
+    color: #004675;
+  }
+
+  /* Responsive Design Móvil (PDF 1 pág 10) */
+  @media (max-width: 860px) {
+    .contact-view {
+      padding-top: 20px;
+      padding-bottom: 60px;
+    }
+
+    .contact-view__container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .contact-view__details {
+      align-items: center;
+      gap: 1.6rem;
+    }
+
+    .contact-view__info-group {
+      gap: 1.1rem;
+    }
+
+    .contact-view__socials--desktop {
+      display: none;
+    }
+
+    .contact-view__socials--mobile {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .contact-view__map-card {
+      height: 240px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .contact-view__form-cta {
+      max-width: 380px;
+      margin: 0 auto;
+    }
   }
 </style>

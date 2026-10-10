@@ -1,149 +1,158 @@
 ---
 // src/components/Programas/Programa1.astro
 
-interface VideoItem {
-  id: string;
-  src: string;
-  type?: string;
-}
-
 interface Props {
   title?: string;
   tagline?: string;
   description?: string;
   buttonText?: string;
   buttonLink?: string;
-  videos?: VideoItem[];
 }
 
 const {
   title = "Full Year Program",
   tagline = "Diseñado para quienes quieren vivir la experiencia escolar al 100%",
   description = "Durante 8 meses, de agosto a febrero, este programa te sumerge de lleno en el corazón de una cultura extranjera dándote el tiempo necesario, permitiéndote no solo vivir como un local, sino consolidar un rendimiento académico de nivel internacional que impulsará tu futuro.",
-  buttonText = "Conocer los requisitos",
-  buttonLink = "#requisitos",
-  videos = [
-    { id: "box-1", src: "/media/program1-vid1.mp4", type: "video/mp4" },
-    { id: "box-2", src: "/media/program1-vid2.mp4", type: "video/mp4" },
-    { id: "box-3", src: "/media/program1-vid3.mp4", type: "video/mp4" },
-    { id: "box-4", src: "/media/program1-vid4.mp4", type: "video/mp4" },
-  ],
+  buttonText = "¡Aplica ya!",
+  buttonLink = "/formulario",
 } = Astro.props;
 ---
 
 <section class="program-card">
-  <!-- Mosaico de Vídeos -->
+  <!-- Mosaico de Vídeos (Desktop y Móvil) -->
   <div class="program-card__mosaic">
-    {
-      videos.map((video) => (
-        <div class={`program-card__box program-card__box--${video.id}`}>
-          <video autoplay loop muted playsinline class="program-card__video">
-            <source src={video.src} type={video.type || "video/mp4"} />
-          </video>
-        </div>
-      ))
-    }
+    <!-- Video A -->
+    <div class="program-card__box program-card__box--box-1">
+      <video autoplay loop muted playsinline class="program-card__video">
+        <source src="/media/Mobile/VideoA-Programas-Mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
+        <source src="/media/VideoA-Programas-FullYear.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Video B -->
+    <div class="program-card__box program-card__box--box-2">
+      <video autoplay loop muted playsinline class="program-card__video">
+        <source src="/media/Mobile/VideoB-Programas-Mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
+        <source src="/media/VideoB-Programas-FullYear.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Video C -->
+    <div class="program-card__box program-card__box--box-3">
+      <video autoplay loop muted playsinline class="program-card__video">
+        <source src="/media/Mobile/VideoC-Programas-Mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
+        <source src="/media/VideoC-Programas-FullYear.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Video D -->
+    <div class="program-card__box program-card__box--box-4">
+      <video autoplay loop muted playsinline class="program-card__video">
+        <source src="/media/Mobile/VideoD-Programas-Mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
+        <source src="/media/VideoD-Programas-FullYear.mp4" type="video/mp4" />
+      </video>
+    </div>
   </div>
 
   <!-- Contenido Informativo -->
   <div class="program-card__content">
-    <h2 class="program-card__title">{title}</h2>
-    <p class="program-card__tagline">{tagline}</p>
-    <p class="program-card__description">{description}</p>
+    <h2 class="program-card__title" data-i18n="programs.fullYear.title">{title}</h2>
+    <p class="program-card__tagline" data-i18n="programs.fullYear.tagline">{tagline}</p>
+    <p class="program-card__description" data-i18n="programs.fullYear.desc">{description}</p>
 
-    <!-- Botón Interactivo con Efecto Hover -->
-    <a href={buttonLink} class="program-card__btn">
+    <!-- Botón Interactivo ¡Aplica ya! (Requerimiento 8) -->
+    <a href={buttonLink} class="program-card__btn" data-i18n="programs.fullYear.btn">
       {buttonText}
     </a>
   </div>
 </section>
 
 <style>
-  /* Contenedor Principal */
   .program-card {
     position: relative;
     z-index: 2;
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 32px;
+    gap: 3.5rem;
     width: 100%;
     margin: 0 auto;
     align-items: center;
   }
 
-  /* Bloque de Texto */
   .program-card__content {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 1.5rem;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .program-card__title {
     color: #ffffff;
-    font-size: clamp(2.5rem, 4vw, 3rem);
-    font-weight: 700;
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    font-weight: 800;
+    margin: 0;
   }
 
   .program-card__tagline {
     color: #ffffff;
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
     font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
   }
 
   .program-card__description {
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.95);
     font-size: clamp(1rem, 1.8vw, 1.15rem);
-    line-height: 1.6;
+    line-height: 1.65;
+    margin: 0;
   }
 
-  /* --- BOTÓN E INTERACTIVIDAD HOVER --- */
+  /* Botón ¡Aplica ya! */
   .program-card__btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: #ffffff;
     background-color: transparent;
-    border: 1.5px solid #ffffff;
-    padding: 12px 24px;
-    max-width: 300px;
-    border-radius: 15px;
+    border: 2px solid #ffffff;
+    padding: 13px 36px;
+    max-width: 260px;
+    border-radius: 50px;
     text-align: center;
     text-decoration: none;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
   }
 
   .program-card__btn:hover {
     background-color: #ffffff;
-    color: #1e9cd7;
+    color: #005b97;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .program-card__btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 
   /* Mosaico Grid de Videos */
   .program-card__mosaic {
     display: grid;
-    grid-template-columns: clamp(200px, 35vw, 261px) clamp(120px, 22vw, 160px);
-    grid-template-rows: clamp(120px, 20vw, 160px) clamp(60px, 10vw, 88px) clamp(
-        60px,
-        10vw,
-        88px
-      );
-    gap: clamp(8px, 1.5vw, 13px) clamp(15px, 3vw, 27px);
+    grid-template-columns: 261px 160px;
+    grid-template-rows: 160px 88px 88px;
+    gap: 14px 20px;
     width: 100%;
-    max-width: fit-content;
-    padding: clamp(10px, 2vw, 20px);
+    max-width: 448px;
   }
 
   .program-card__box {
     border-radius: 16px;
     overflow: hidden;
     background-color: #000000;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
   }
 
   .program-card__video {
@@ -153,7 +162,6 @@ const {
     display: block;
   }
 
-  /* Posicionamiento en el Mosaico */
   .program-card__box--box-1 {
     grid-column: 1;
     grid-row: 1 / span 2;
@@ -174,26 +182,52 @@ const {
     grid-row: 3;
   }
 
-  /* --- RESPONSIVE DESIGN --- */
-  @media (max-width: 1180px) {
+  /* Responsive Design Móvil (PDF 1 pág 4) */
+  @media (max-width: 1024px) {
     .program-card {
       grid-template-columns: 1fr;
       justify-items: center;
       text-align: center;
-      gap: 24px;
-      padding: 0 15px;
+      gap: 2rem;
     }
 
     .program-card__content {
       align-items: center;
+      text-align: center;
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     .program-card__mosaic {
-      grid-template-columns: 160px 90px;
-      grid-template-rows: 90px 50px 50px;
-      gap: 8px 15px;
+      grid-template-columns: 216px 64px;
+      grid-template-rows: 88px 214px;
+      gap: 12px;
+      max-width: 295px;
+    }
+
+    .program-card__box--box-1 {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .program-card__box--box-2 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .program-card__box--box-3 {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .program-card__box--box-4 {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .program-card__btn {
+      width: 100%;
+      max-width: 280px;
     }
   }
 </style>

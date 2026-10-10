@@ -1,240 +1,456 @@
 ---
-// src/components/VideoGrid.astro
-
-/* Interfaz para definir el contenido del componente */
-interface VideoItem {
-  id: string;
-  src: string;
-  type?: string;
-}
+// src/components/LandingPage/VideoGrid.astro
 
 interface Props {
   title?: string;
   subtitle?: string;
-  paragraphs?: string[];
   ctaText?: string;
   ctaLink?: string;
-  videos?: VideoItem[];
 }
 
 const {
-  title = "¡Cualquier sueño es posible si lo hacemos Juntos!",
+  title = "¡Cualquier sueño es posible si lo hacemos juntos!",
   subtitle = "Tu apuntas, ¡Y nosotros nos encargamos!",
-  paragraphs = [
-    "El equipo de The Student Shortcut te acompaña en todo el proceso para que puedas disfrutar de tu Experiencia de Intercambio.",
-    "Te asesoramos a lo largo de tu postulación para asegurar la mejor compatibilidad entre tú y tu destino.",
-    "Nosotros nos encargamos de encontrar la mejor familia anfitriona para ti. Te ayudamos con el idioma para que la transición sea más sencilla.",
-    "Simplificamos la relación entre colegios locales y extranjeros para la validación de materias y notas."
-  ],
-  ctaText = "Inicia tu intercambio",
-  ctaLink = "#nosotros",
-  videos = [
-    { id: "box-1", src: "/media/Vid-00001.webm", type: "video/webm" },
-    { id: "box-2", src: "/media/Vid-00001.webm", type: "video/webm" },
-    { id: "box-3", src: "/media/Vid-00001.webm", type: "video/webm" },
-    { id: "box-4", src: "/media/Vid-00001.webm", type: "video/webm" },
-    { id: "box-5", src: "/media/Vid-00001.webm", type: "video/webm" },
-  ]
+  ctaText = "¡Inicia tu intercambio!",
+  ctaLink = "/formulario",
 } = Astro.props;
+
+const paragraphs = [
+  { key: "videogrid.p1", text: "El equipo de The Student Shortcut te acompaña en todo el proceso para que puedas disfrutar de tu Experiencia de Intercambio." },
+  { key: "videogrid.p2", text: "Te asesoramos a lo largo de tu postulación para asegurar la mejor compatibilidad entre tú y tu destino." },
+  { key: "videogrid.p3", text: "Nosotros nos encargamos de encontrar la mejor familia anfitriona para ti. Te ayudamos con el idioma para que la transición sea más sencilla." },
+  { key: "videogrid.p4", text: "Simplificamos la relación entre colegios locales y extranjeros para la validación de materias y notas." }
+];
 ---
 
 <section class="video-grid">
-  <div class="video-grid__container">
-    
-    <!-- Mosaico / Grid de Vídeos -->
-    <div class="video-grid__subgrid">
-      {videos.map((video) => (
-        <div class={`video-grid__item video-grid__item--${video.id}`}>
-          <video autoplay loop muted playsinline class="video-grid__video">
-            <source src={video.src} type={video.type || "video/mp4"} />
-          </video>
-        </div>
-      ))}
+  <!-- Layout Desktop (Rejilla de 5 videos a la izquierda, textos a la derecha) -->
+  <div class="video-grid__container video-grid__container--desktop">
+    <!-- Mosaico / Grid de 5 Vídeos (Desktop) -->
+    <div class="video-grid__mosaic">
+      <!-- Fila 1: Video C (261x261) y Video D (165x261) -->
+      <div class="video-grid__box video-grid__box--c">
+        <video autoplay loop muted playsinline class="video-grid__video">
+          <source src="/media/VideoC-LandingPage.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="video-grid__box video-grid__box--d">
+        <video autoplay loop muted playsinline class="video-grid__video">
+          <source src="/media/VideoD-LandingPage.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- Fila 2: Video E (165x261) y Video F (261x261) -->
+      <div class="video-grid__box video-grid__box--e">
+        <video autoplay loop muted playsinline class="video-grid__video">
+          <source src="/media/VideoE-LandingPage.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="video-grid__box video-grid__box--f">
+        <video autoplay loop muted playsinline class="video-grid__video">
+          <source src="/media/VideoF-LandingPage.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- Fila 3: Video G (448x116) -->
+      <div class="video-grid__box video-grid__box--g">
+        <video autoplay loop muted playsinline class="video-grid__video">
+          <source src="/media/VideoG-LandingPage.mp4" type="video/mp4" />
+        </video>
+      </div>
     </div>
 
-    <!-- Bloque Informativo del Video Grid -->
+    <!-- Bloque Informativo (Desktop) -->
     <div class="video-grid__content">
-      <h1 class="video-grid__title">{title}</h1>
-      <h2 class="video-grid__subtitle">{subtitle}</h2>
+      <h2 class="video-grid__title" data-i18n="videogrid.title">{title}</h2>
+      <h3 class="video-grid__subtitle" data-i18n="videogrid.subtitle">{subtitle}</h3>
       
       <div class="video-grid__description">
-        {paragraphs.map((paragraph) => (
-          <p>{paragraph}</p>
+        {paragraphs.map((p) => (
+          <p data-i18n={p.key}>{p.text}</p>
         ))}
       </div>
 
       <div class="video-grid__cta-group">
-        <a href={ctaLink} class="btn btn-secondary">
+        <a href={ctaLink} class="btn-cta" data-i18n="videogrid.btn">
           {ctaText}
         </a>
       </div>
     </div>
+  </div>
 
+  <!-- Layout Móvil (Requerimiento 2: Video C -> Títulos -> Video D -> Párrafo -> Botón -> Avión) -->
+  <div class="video-grid__container video-grid__container--mobile">
+    <!-- 1. Video C Móvil (291x77) -->
+    <div class="video-grid__mobile-box">
+      <video autoplay loop muted playsinline class="video-grid__video">
+        <source src="/media/Mobile/VideoC-LandingPage-Mobile.mp4" type="video/mp4" />
+        <source src="/media/VideoC-LandingPage.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- 2. Título y Subtítulo -->
+    <div class="video-grid__mobile-header">
+      <h2 class="video-grid__title" data-i18n="videogrid.title">{title}</h2>
+      <h3 class="video-grid__subtitle" data-i18n="videogrid.subtitle">{subtitle}</h3>
+    </div>
+
+    <!-- 3. Video D Móvil (291x77) -->
+    <div class="video-grid__mobile-box">
+      <video autoplay loop muted playsinline class="video-grid__video">
+        <source src="/media/Mobile/VideoD-LandingPage-Mobile.mp4" type="video/mp4" />
+        <source src="/media/VideoD-LandingPage.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- 4. Texto explicativo móvil -->
+    <div class="video-grid__mobile-desc">
+      <p data-i18n="videogrid.p1">{paragraphs[0].text}</p>
+    </div>
+
+    <!-- 5. Botón Móvil -->
+    <div class="video-grid__cta-group">
+      <a href={ctaLink} class="btn-cta" data-i18n="videogrid.btn">
+        {ctaText}
+      </a>
+    </div>
+
+    <!-- 6. Avión y Trayecto en Móvil (Requerimiento 1) -->
+    <div class="flight-track flight-track--mobile" aria-hidden="true">
+      <svg class="flight-track__svg" viewBox="0 0 320 90" fill="none">
+        <path
+          d="M 10 75 Q 140 85 240 25"
+          stroke="#ffffff"
+          stroke-width="2.5"
+          stroke-dasharray="6 8"
+          stroke-linecap="round"
+        />
+      </svg>
+      <div class="flight-track__plane flight-track__plane--mobile">
+        <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="46" height="46" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Requerimiento 1: Avión y trayecto en Landing Page (Desktop) -->
+  <div class="flight-track flight-track--desktop" aria-hidden="true">
+    <svg class="flight-track__svg" viewBox="0 0 1000 200" fill="none" preserveAspectRatio="none">
+      <path
+        d="M 380 160 C 520 185, 700 170, 920 60"
+        stroke="#ffffff"
+        stroke-width="3"
+        stroke-dasharray="8 12"
+        stroke-linecap="round"
+      />
+    </svg>
+    <div class="flight-track__plane flight-track__plane--desktop">
+      <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="62" height="62" />
+    </div>
   </div>
 
   <!-- Capas Decorativas (Montañas) -->
   <div class="video-grid__mountain video-grid__mountain--left" aria-hidden="true">
-    <img src="/img/SVG/Montaña_5.svg" alt="" />
+    <img src="/img/SVG/Montaña_5.svg" alt="" width="500" height="680" loading="lazy" />
   </div>
   <div class="video-grid__mountain video-grid__mountain--right" aria-hidden="true">
-    <img src="/img/SVG/Montaña_2.svg" alt="" />
+    <img src="/img/SVG/Montaña_2.svg" alt="" width="500" height="600" loading="lazy" />
   </div>
 </section>
 
 <style>
-  /* Contenedor Principal */
   .video-grid {
     position: relative;
     overflow: hidden;
     width: 100%;
+    padding-top: 40px;
+    padding-bottom: 240px;
   }
 
-  /* Grid General: Vídeos a la izquierda, Texto a la derecha */
-  .video-grid__container {
+  /* Contenedor Desktop */
+  .video-grid__container--desktop {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     display: grid;
-    grid-template-columns: minmax(300px, 440px) 1fr;
-    justify-content: center;
-    gap: 45px;
+    grid-template-columns: minmax(360px, 450px) 1.2fr;
+    gap: 3.5rem;
     align-items: center;
     max-width: 1200px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 20px;
-    padding-bottom: clamp(120px, 20vw, 320px);
-    padding-left: clamp(15px, 5vw, 40px);
-    padding-right: clamp(15px, 5vw, 40px);
+    width: min(88%, 1200px);
+    margin: 0 auto;
   }
 
-  /* Disposición Asimétrica del Grid de Vídeos */
-  .video-grid__subgrid {
+  .video-grid__container--mobile {
+    display: none;
+  }
+
+  /* Mosaico de 5 Videos Desktop */
+  .video-grid__mosaic {
     display: grid;
-    grid-template-columns: 165px 74px 165px;
+    grid-template-columns: 261px 165px;
     grid-template-rows: 261px 261px 116px;
-    gap: 20px;
+    gap: 18px;
     width: 100%;
     max-width: 448px;
   }
 
-  .video-grid__item {
+  .video-grid__box {
     position: relative;
-    background-color: #121212;
+    background-color: #000000;
     border-radius: 16px;
     overflow: hidden;
-    width: 100%;
-    height: 100%;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
   }
 
   .video-grid__video {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
-  /* Posicionamiento por Filas */
-  .video-grid__item--box-1 {
-    grid-column: 1 / span 2;
-  }
-
-  .video-grid__item--box-2 {
-    grid-column: 3;
-  }
-
-  .video-grid__item--box-3 {
+  /* Posiciones de los videos según Figma (PDF 1 pág 1) */
+  .video-grid__box--c {
     grid-column: 1;
+    grid-row: 1;
   }
 
-  .video-grid__item--box-4 {
-    grid-column: 2 / span 2;
+  .video-grid__box--d {
+    grid-column: 2;
+    grid-row: 1;
   }
 
-  .video-grid__item--box-5 {
-    grid-column: 1 / span 3;
+  .video-grid__box--e {
+    grid-column: 1;
+    grid-row: 2;
+    /* Invertimos orden en fila 2: 165px a la izq y 261px a la der */
+    width: 165px;
+    justify-self: end;
   }
 
-  /* Bloque Informativo */
+  .video-grid__box--f {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    width: 261px;
+    justify-self: end;
+  }
+
+  .video-grid__box--g {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    width: 100%;
+  }
+
+  /* Contenido Textual */
   .video-grid__content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-    text-align: left;
-    line-height: 1.6;
+    gap: 1.5rem;
     color: #ffffff;
-    text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .video-grid__title {
-    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-size: clamp(2.2rem, 3.8vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
     color: #ffffff;
-    text-align: left;
+    margin: 0;
   }
 
   .video-grid__subtitle {
-    font-size: clamp(1.2rem, 2.5vw, 1.56rem);
-    font-weight: 400;
-    color: #ffffff;
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: #e0f4ff;
+    margin: 0;
   }
 
   .video-grid__description {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
   }
 
   .video-grid__description p {
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-    color: #ffffff;
+    font-size: clamp(0.98rem, 1.8vw, 1.12rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
   }
 
+  /* Botón CTA */
   .video-grid__cta-group {
-    margin-top: 10px;
+    margin-top: 0.5rem;
+    z-index: 10;
+    position: relative;
   }
 
-  /* Elementos Decorativos (Montañas) */
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 32px;
+    border-radius: 50px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-cta:hover {
+    background-color: #ffffff;
+    color: #005b97;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Requerimiento 1: Avión y trayecto (Trayectoria curva con avión) */
+  .flight-track {
+    position: absolute;
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  .flight-track--desktop {
+    bottom: 90px;
+    right: 5%;
+    width: min(60%, 750px);
+    height: 180px;
+  }
+
+  .flight-track__svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .flight-track__plane--desktop {
+    position: absolute;
+    top: 36px;
+    right: 22px;
+    transform: rotate(26deg);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+    transition: transform 0.3s ease;
+  }
+
+  /* Capas Decorativas (Montañas) */
   .video-grid__mountain {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
   }
 
   .video-grid__mountain img {
     height: 100%;
+    width: auto;
     display: block;
     user-select: none;
-    pointer-events: none;
   }
 
   .video-grid__mountain--left {
-    bottom: 50px;
-    left: 0;
-    height: 680px;
+    bottom: 0;
+    left: -60px;
+    height: clamp(400px, 50vw, 680px);
+    opacity: 0.95;
   }
 
   .video-grid__mountain--right {
-    bottom: 120px;
-    right: -20px;
-    height: 600px;
+    bottom: 0;
+    right: -40px;
+    height: clamp(350px, 45vw, 600px);
     transform: rotateY(-180deg) scaleY(-1);
+    opacity: 0.95;
   }
 
-  /* Adaptación Móvil */
+  /* Responsive Design Móvil (Requerimiento 2: Layout final de Landing Page en móvil) */
   @media (max-width: 900px) {
-    .video-grid__container {
-      grid-template-columns: 1fr;
-      justify-items: center;
+    .video-grid {
+      padding-top: 20px;
+      padding-bottom: 120px;
     }
 
-    .video-grid__subgrid {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      max-width: 100%;
-      height: auto;
+    .video-grid__container--desktop {
+      display: none;
+    }
+
+    .video-grid__container--mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      width: min(90%, 360px);
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .video-grid__mobile-box {
+      width: 100%;
+      height: 77px;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #000000;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .video-grid__mobile-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .video-grid__mobile-header .video-grid__title {
+      font-size: 1.65rem;
+      line-height: 1.25;
+    }
+
+    .video-grid__mobile-header .video-grid__subtitle {
+      font-size: 1.05rem;
+    }
+
+    .video-grid__mobile-desc p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.92);
+      margin: 0;
+    }
+
+    .video-grid__cta-group {
+      width: 100%;
+    }
+
+    .video-grid__cta-group .btn-cta {
+      width: 100%;
+      max-width: 280px;
+      padding: 12px 20px;
+      font-size: 1rem;
+    }
+
+    /* Avión y Trayecto en Móvil (Requerimiento 1 & 2) */
+    .flight-track--desktop {
+      display: none;
+    }
+
+    .flight-track--mobile {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      margin-top: 0.5rem;
+    }
+
+    .flight-track__plane--mobile {
+      position: absolute;
+      top: 10px;
+      right: 50px;
+      transform: rotate(24deg);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
 
     .video-grid__mountain {

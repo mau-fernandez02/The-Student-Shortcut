@@ -1,0 +1,362 @@
+---
+// src/pages/formulario.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Formulario de postulación | The Student Shortcut">
+  <main class="application-page">
+    <section class="application-page__layout">
+      <!-- Columna Izquierda: Introducción -->
+      <div class="application-page__intro">
+        <p class="application-page__eyebrow" data-i18n="form.eyebrow">The Student Shortcut</p>
+        <h1 data-i18n="form.introTitle">¡Tu próximo capítulo empieza aquí!</h1>
+        <p data-i18n="form.introDesc">
+          Cuéntanos un poco sobre ti y el intercambio que imaginas. Nuestro equipo se pondrá en contacto para acompañarte con los siguientes pasos.
+        </p>
+        <a href="/contactanos" class="application-page__contact-link" data-i18n="form.contactLink">
+          ¿Tienes preguntas? Contáctanos
+        </a>
+      </div>
+
+      <!-- Columna Derecha: Tarjeta de Formulario -->
+      <div class="application-form-card">
+        <form class="application-form" id="applicationForm">
+          <h2 data-i18n="form.title">Formulario de postulación</h2>
+          <p class="application-form__required" data-i18n="form.required">Los campos marcados con * son obligatorios.</p>
+
+          <div class="application-form__grid">
+            <label class="application-form__field application-form__field--wide">
+              <span data-i18n="form.fullName">Nombre completo *</span>
+              <input type="text" name="fullName" autocomplete="name" required placeholder="Ej. Juan Pérez" />
+            </label>
+
+            <label class="application-form__field">
+              <span data-i18n="form.email">Correo electrónico *</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="nombre@correo.com" />
+            </label>
+
+            <label class="application-form__field">
+              <span data-i18n="form.phone">Teléfono / WhatsApp *</span>
+              <input type="tel" name="phone" autocomplete="tel" required placeholder="+591 70000000" />
+            </label>
+
+            <label class="application-form__field">
+              <span data-i18n="form.age">Edad *</span>
+              <input type="number" name="age" min="14" max="18" required placeholder="14 - 18" />
+            </label>
+
+            <label class="application-form__field">
+              <span data-i18n="form.program">Programa de interés *</span>
+              <select name="program" required>
+                <option value="" disabled selected data-i18n="form.programPlaceholder">Selecciona un programa</option>
+                <option value="Full Year Program" data-i18n="form.programFullYear">Full Year Program</option>
+                <option value="Programa Semestral" data-i18n="form.programSemester">Programa Semestral</option>
+              </select>
+            </label>
+
+            <label class="application-form__field application-form__field--wide">
+              <span data-i18n="form.destination">País de destino de preferencia</span>
+              <input type="text" name="destination" autocomplete="country-name" placeholder="Ej. Francia, EE.UU., Alemania..." />
+            </label>
+
+            <label class="application-form__field application-form__field--wide">
+              <span data-i18n="form.message">Cuéntanos qué te gustaría vivir en tu intercambio</span>
+              <textarea name="message" rows="4" placeholder="Tus metas, aficiones o expectativas..."></textarea>
+            </label>
+          </div>
+
+          <button class="application-form__submit" type="submit" id="submitBtn">
+            <span data-i18n="form.submit">Enviar postulación</span>
+          </button>
+        </form>
+
+        <!-- Mensaje de Confirmación Interactivo -->
+        <div class="application-success" id="applicationSuccess" style="display: none;">
+          <div class="application-success__icon">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#1e9cd7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3 data-i18n="form.successTitle">¡Postulación enviada!</h3>
+          <p data-i18n="form.successMsg">
+            Gracias por postular. Nos pondremos en contacto contigo muy pronto.
+          </p>
+          <a href="/" class="application-success__btn">Volver al inicio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .application-page {
+    min-height: calc(100vh - 75px);
+    padding: clamp(95px, 10vw, 130px) 24px 80px;
+    background-color: #005b97;
+    background-image:
+      url("/img/noise.png"),
+      linear-gradient(135deg, #1e9cd7 0%, #147fb5 48%, #005b97 100%);
+    background-repeat: repeat, no-repeat;
+    background-size: auto, 100% 100%;
+  }
+
+  .application-page__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+    width: min(100%, 1120px);
+    margin: 0 auto;
+  }
+
+  .application-page__intro {
+    position: sticky;
+    top: 105px;
+    color: #ffffff;
+    padding-top: 20px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .application-page__eyebrow {
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #d8f1fc;
+  }
+
+  .application-page__intro h1 {
+    max-width: 480px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: clamp(2.3rem, 4.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.12;
+  }
+
+  .application-page__intro > p:not(.application-page__eyebrow) {
+    max-width: 440px;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .application-page__contact-link {
+    display: inline-flex;
+    margin-top: 28px;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    transition: opacity 0.2s ease;
+  }
+
+  .application-page__contact-link:hover {
+    opacity: 0.85;
+  }
+
+  .application-form-card {
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 35, 65, 0.28);
+    overflow: hidden;
+  }
+
+  .application-form {
+    padding: clamp(24px, 4vw, 42px);
+  }
+
+  .application-form h2 {
+    margin-bottom: 8px;
+    color: #0a2540;
+    font-size: 1.8rem;
+    font-weight: 800;
+  }
+
+  .application-form__required {
+    margin-bottom: 24px;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  .application-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 16px;
+  }
+
+  .application-form__field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 7px;
+    color: #0a2540;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .application-form__field--wide {
+    grid-column: 1 / -1;
+  }
+
+  .application-form__field input,
+  .application-form__field select,
+  .application-form__field textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #0a2540;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .application-form__field textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  .application-form__field input:focus,
+  .application-form__field select:focus,
+  .application-form__field textarea:focus {
+    border-color: #1e9cd7;
+    background: #ffffff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 156, 215, 0.25);
+  }
+
+  .application-form__submit {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 24px;
+    border-radius: 50px;
+    border: none;
+    background: #005b97;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 91, 151, 0.25);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .application-form__submit:hover {
+    background: #1e9cd7;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(30, 156, 215, 0.35);
+  }
+
+  /* Estado de confirmación */
+  .application-success {
+    padding: clamp(36px, 6vw, 60px) clamp(24px, 4vw, 42px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .application-success__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #e0f4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .application-success h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0a2540;
+    margin: 0;
+  }
+
+  .application-success p {
+    font-size: 1.1rem;
+    color: #475569;
+    max-width: 400px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .application-success__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 12px 32px;
+    border-radius: 50px;
+    background: #005b97;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .application-success__btn:hover {
+    background: #1e9cd7;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 860px) {
+    .application-page__layout {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .application-page__intro {
+      position: static;
+      padding-top: 0;
+      text-align: center;
+    }
+
+    .application-page__intro h1 {
+      font-size: 2.2rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .application-page__intro > p:not(.application-page__eyebrow) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .application-form__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .application-form__field--wide {
+      grid-column: auto;
+    }
+  }
+</style>
+
+<script>
+  function setupApplicationForm() {
+    const form = document.getElementById("applicationForm") as HTMLFormElement;
+    const successCard = document.getElementById("applicationSuccess");
+
+    if (!form || !successCard) return;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Ocultar formulario y mostrar confirmación
+      form.style.display = "none";
+      successCard.style.display = "flex";
+      successCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", setupApplicationForm);
+  document.addEventListener("astro:page-load", setupApplicationForm);
+</script>

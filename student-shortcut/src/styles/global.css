@@ -15,7 +15,7 @@
   --text-secondary: #FFFFFF;
   --text-muted: #475569;
   --border-color: #E2E8F0;
-  --navbar-bg: var(--color-brand-light);
+  --navbar-bg: var(--color-primary);
   --navbar-text: #0A2540;
 
   /* Fonts */

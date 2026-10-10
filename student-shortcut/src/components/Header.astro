@@ -2,7 +2,9 @@
 // src/components/Header.astro
 
 interface NavItem {
-  label: string;
+  key: string;
+  labelEs: string;
+  labelEn: string;
   href: string;
 }
 
@@ -13,14 +15,21 @@ interface Props {
 const { logoSrc = "/img/SVG/StudentShortcut-LogoBlack_V2.svg" } = Astro.props;
 
 const navItems: NavItem[] = [
-  { label: "Programas", href: "/programas" },
-  { label: "Nosotros", href: "/quienes-somos" },
-  { label: "Intercambio", href: "/irse-intercambio" },
-  { label: "Contacto", href: "/contactanos" },
+  { key: "nav.programs", labelEs: "Programas", labelEn: "Programs", href: "/programas" },
+  { key: "nav.about", labelEs: "Nosotros", labelEn: "About Us", href: "/quienes-somos" },
+  { key: "nav.exchange", labelEs: "Intercambio", labelEn: "Exchange", href: "/irse-intercambio" },
+  { key: "nav.contact", labelEs: "Contacto", labelEn: "Contact", href: "/contactanos" },
 ];
 ---
 
 <header class="header" id="mainHeader">
+  <!-- BANNER SUPERIOR DE AVISO (DESKTOP) -->
+  <div class="header__top-banner" id="headerTopBanner">
+    <div class="header__top-banner-inner">
+      <span data-i18n="header.announcement">El Calendario 2027 ya está abierto · ¡Agenda tu llamada!</span>
+    </div>
+  </div>
+
   <div class="header__container">
     <!-- LOGO -->
     <a href="/" class="header__logo-link" id="headerLogo" aria-label="Ir al inicio">
@@ -41,8 +50,8 @@ const navItems: NavItem[] = [
         {
           navItems.map((item) => (
             <li>
-              <a href={item.href} class="header__nav-link">
-                {item.label}
+              <a href={item.href} class="header__nav-link" data-i18n={item.key}>
+                {item.labelEs}
               </a>
             </li>
           ))
@@ -50,13 +59,13 @@ const navItems: NavItem[] = [
       </ul>
     </nav>
 
-    <!-- ACCIONES (SELECTOR DE IDIOMA Y MENÚ MÓVIL) -->
+    <!-- ACCIONES EN ESCRITORIO -->
     <div class="header__actions">
-      <!-- Selector de Idioma -->
-      <div class="header__lang-selector" id="langSelector">
+      <!-- Selector de Idioma Escritorio (visible solo en desktop >991px) -->
+      <div class="header__lang-selector header__lang-selector--desktop" id="langSelectorDesktop">
         <button
           class="header__lang-btn"
-          id="langBtn"
+          id="langBtnDesktop"
           aria-label="Cambiar idioma"
           aria-haspopup="true"
           aria-expanded="false"
@@ -95,9 +104,9 @@ const navItems: NavItem[] = [
           </svg>
         </button>
 
-        <div class="header__lang-dropdown" id="langDropdown">
-          <a href="#" class="header__lang-option header__lang-option--active" data-lang="es">Español</a>
-          <a href="#" class="header__lang-option" data-lang="en">English</a>
+        <div class="header__lang-dropdown">
+          <button type="button" class="header__lang-option header__lang-option--active" data-lang="es">Español</button>
+          <button type="button" class="header__lang-option" data-lang="en">English</button>
         </div>
       </div>
 
@@ -116,49 +125,89 @@ const navItems: NavItem[] = [
     </div>
   </div>
 
-  <!-- NAVEGACIÓN OVERLAY MÓVIL -->
+  <!-- NAVEGACIÓN OVERLAY MÓVIL (Con el selector de idioma adentro) -->
   <div class="header__mobile-overlay" id="mobileOverlay">
     <nav class="header__mobile-nav" aria-label="Navegación móvil">
       <ul class="header__mobile-list">
         {
           navItems.map((item) => (
             <li>
-              <a href={item.href} class="header__mobile-link">
-                {item.label}
+              <a href={item.href} class="header__mobile-link" data-i18n={item.key}>
+                {item.labelEs}
               </a>
             </li>
           ))
         }
       </ul>
-      <a href="/contactanos" class="header__mobile-cta">Envíanos un Correo</a>
+
+      <!-- Botón / Selector de Idioma dentro del Menú Móvil (Requerimiento 11) -->
+      <div class="header__mobile-lang-box">
+        <span class="header__mobile-lang-label">Idioma / Language:</span>
+        <div class="header__mobile-lang-switch">
+          <button
+            type="button"
+            class="header__lang-option header__lang-option--mobile header__lang-option--active"
+            data-lang="es"
+          >
+            Español
+          </button>
+          <button
+            type="button"
+            class="header__lang-option header__lang-option--mobile"
+            data-lang="en"
+          >
+            English
+          </button>
+        </div>
+      </div>
+
+      <a href="/contactanos" class="header__mobile-cta" data-i18n="header.mobileCta">Envíanos un Correo</a>
     </nav>
   </div>
 </header>
 
 <style>
-  /* Variables locales y estructura general */
+  /* Header general con banner en Celeste Shortcut */
   .header {
-    --header-height: 75px;
+    --header-nav-height: 72px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--header-height);
-    background-color: var(--navbar-bg, #ffffff);
-    color: var(--navbar-text, #121212);
-    display: flex;
-    align-items: center;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border-bottom: 1px solid rgba(10, 37, 64, 0.08);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    /* Color inicial: Celeste Shortcut */
+    background-color: #1e9cd7;
+    color: #ffffff;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
   }
 
+  /* Efecto scroll: cuando se scrollea, se aclara */
   .header--scrolled {
-    --header-height: 65px;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(10, 37, 64, 0.1);
+    background-color: rgba(225, 243, 255, 0.94);
+    backdrop-filter: blur(12px);
+    color: #0a2540;
+    box-shadow: 0 10px 28px rgba(3, 40, 70, 0.12);
+  }
+
+  /* Banner de Aviso Superior */
+  .header__top-banner {
+    width: 100%;
+    background: rgba(0, 75, 128, 0.22);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  .header--scrolled .header__top-banner {
+    display: none; /* Oculta la barra de aviso al scrollear para dar ligereza */
   }
 
   .header__container {
@@ -167,23 +216,28 @@ const navItems: NavItem[] = [
     justify-content: space-between;
     width: 100%;
     max-width: 1200px;
+    height: var(--header-nav-height);
     margin: 0 auto;
     padding: 0 24px;
+    transition: height 0.3s ease;
   }
 
-  /* LOGO (Ajustado) */
+  .header--scrolled .header__container {
+    height: 64px;
+  }
+
+  /* LOGO */
   .header__logo-link {
     display: flex;
     align-items: center;
     text-decoration: none;
     z-index: 1010;
-    height: 100%;
   }
 
   .header__logo-img {
     width: auto;
-    height: 42px;
-    max-width: 160px;
+    height: 40px;
+    max-width: 165px;
     object-fit: contain;
     transition: transform 0.3s ease;
   }
@@ -201,7 +255,7 @@ const navItems: NavItem[] = [
   .header__nav-list {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2.2rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -210,11 +264,15 @@ const navItems: NavItem[] = [
   .header__nav-link {
     font-weight: 600;
     font-size: 1rem;
-    color: inherit;
+    color: #ffffff;
     text-decoration: none;
     padding: 0.5rem 0;
     position: relative;
     transition: color 0.3s ease;
+  }
+
+  .header--scrolled .header__nav-link {
+    color: #0a2540;
   }
 
   .header__nav-link::after {
@@ -224,15 +282,23 @@ const navItems: NavItem[] = [
     left: 0;
     width: 100%;
     height: 2.5px;
-    background-color: var(--color-primary, #09c6ff);
+    background-color: #ffffff;
     border-radius: 2px;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .header--scrolled .header__nav-link::after {
+    background-color: #1e9cd7;
+  }
+
   .header__nav-link:hover {
-    color: var(--color-primary, #09c6ff);
+    color: #e0f4ff;
+  }
+
+  .header--scrolled .header__nav-link:hover {
+    color: #1e9cd7;
   }
 
   .header__nav-link:hover::after {
@@ -248,7 +314,7 @@ const navItems: NavItem[] = [
     z-index: 1010;
   }
 
-  /* SELECTOR DE IDIOMA */
+  /* SELECTOR DE IDIOMA ESCRITORIO */
   .header__lang-selector {
     position: relative;
   }
@@ -257,31 +323,39 @@ const navItems: NavItem[] = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: rgba(10, 37, 64, 0.05);
-    border: 1px solid rgba(10, 37, 64, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50px;
     padding: 0.5rem 1rem;
     font-weight: 600;
     font-size: 0.875rem;
-    color: inherit;
+    color: #ffffff;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
+  }
+
+  .header--scrolled .header__lang-btn {
+    background-color: rgba(10, 37, 64, 0.08);
+    border-color: rgba(10, 37, 64, 0.15);
+    color: #0a2540;
   }
 
   .header__lang-btn:hover {
-    background-color: rgba(10, 37, 64, 0.1);
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .header--scrolled .header__lang-btn:hover {
+    background-color: rgba(10, 37, 64, 0.14);
   }
 
   .header__icon-globe {
     width: 16px;
     height: 16px;
-    opacity: 0.8;
   }
 
   .header__icon-chevron {
     width: 14px;
     height: 14px;
-    opacity: 0.7;
     transition: transform 0.2s ease;
   }
 
@@ -302,7 +376,7 @@ const navItems: NavItem[] = [
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     opacity: 0;
     transform: translateY(-8px);
     pointer-events: none;
@@ -316,23 +390,25 @@ const navItems: NavItem[] = [
   }
 
   .header__lang-option {
+    border: none;
+    background: transparent;
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
     font-weight: 500;
     border-radius: 6px;
     color: #333333;
-    text-decoration: none;
     text-align: left;
-    transition: background-color 0.2s ease;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .header__lang-option:hover {
-    background-color: rgba(9, 198, 255, 0.1);
-    color: var(--color-primary, #09c6ff);
+    background-color: rgba(30, 156, 215, 0.12);
+    color: #1e9cd7;
   }
 
   .header__lang-option--active {
-    background-color: var(--color-primary, #09c6ff);
+    background-color: #1e9cd7 !important;
     color: #ffffff !important;
   }
 
@@ -341,12 +417,13 @@ const navItems: NavItem[] = [
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 24px;
-    height: 18px;
+    width: 26px;
+    height: 20px;
     cursor: pointer;
     background: transparent;
     border: none;
     padding: 0;
+    color: inherit;
     z-index: 1010;
   }
 
@@ -355,11 +432,12 @@ const navItems: NavItem[] = [
     height: 2.5px;
     background-color: currentColor;
     border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
   }
 
   .header__menu-toggle--active .header__bar--1 {
-    transform: translateY(7.5px) rotate(45deg);
+    transform: translateY(8.5px) rotate(45deg);
+    background-color: #0a2540;
   }
 
   .header__menu-toggle--active .header__bar--2 {
@@ -367,7 +445,8 @@ const navItems: NavItem[] = [
   }
 
   .header__menu-toggle--active .header__bar--3 {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-9px) rotate(-45deg);
+    background-color: #0a2540;
   }
 
   /* NAVEGACIÓN OVERLAY MÓVIL */
@@ -396,10 +475,10 @@ const navItems: NavItem[] = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
     text-align: center;
     width: 100%;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
   }
 
   .header__mobile-list {
@@ -408,43 +487,83 @@ const navItems: NavItem[] = [
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
 
   .header__mobile-link {
     font-weight: 700;
     font-size: 1.5rem;
-    color: #121212;
+    color: #0a2540;
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   .header__mobile-link:hover {
-    color: var(--color-primary, #09c6ff);
+    color: #1e9cd7;
+  }
+
+  /* CAJA DE IDIOMA EN MENÚ MÓVIL (Requerimiento 11) */
+  .header__mobile-lang-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 0;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    width: min(100%, 260px);
+  }
+
+  .header__mobile-lang-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .header__mobile-lang-switch {
+    display: flex;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: 50px;
+  }
+
+  .header__lang-option--mobile {
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
   }
 
   .header__mobile-cta {
     display: inline-block;
     width: 100%;
     max-width: 280px;
-    padding: 12px 24px;
-    background-color: var(--color-primary, #09c6ff);
+    padding: 14px 24px;
+    background-color: #1e9cd7;
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 50px;
     text-decoration: none;
     transition: transform 0.2s ease, background-color 0.2s ease;
   }
 
   .header__mobile-cta:hover {
-    background-color: #05a0d1;
+    background-color: #1681b3;
     transform: translateY(-2px);
   }
 
-  /* MEDIA QUERIES */
+  /* MEDIA QUERIES (MÓVIL < 991px) */
   @media (max-width: 991px) {
     .header__nav {
       display: none;
+    }
+
+    /* Ocultar el selector de idioma de la barra superior en móvil */
+    .header__lang-selector--desktop {
+      display: none !important;
     }
 
     .header__menu-toggle {
@@ -458,16 +577,16 @@ const navItems: NavItem[] = [
     const header = document.getElementById("mainHeader");
     const menuToggle = document.getElementById("menuToggle");
     const mobileOverlay = document.getElementById("mobileOverlay");
-    const langBtn = document.getElementById("langBtn");
-    const langSelector = document.getElementById("langSelector");
+    const langBtnDesktop = document.getElementById("langBtnDesktop");
+    const langSelectorDesktop = document.getElementById("langSelectorDesktop");
     const langOptions = document.querySelectorAll(".header__lang-option");
     const mobileLinks = document.querySelectorAll(".header__mobile-link");
 
     if (!header) return;
 
-    // 1. Efecto Scroll para reducir altura del Header
+    // 1. Efecto Scroll: cuando se scrollea, se aclara
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 25) {
         header.classList.add("header--scrolled");
       } else {
         header.classList.remove("header--scrolled");
@@ -493,7 +612,6 @@ const navItems: NavItem[] = [
         link.addEventListener("click", () => toggleMenu(false));
       });
 
-      // Resetear scroll del body si se cambia a pantalla grande con menú abierto
       window.addEventListener("resize", () => {
         if (window.innerWidth > 991 && mobileOverlay.classList.contains("header__mobile-overlay--active")) {
           toggleMenu(false);
@@ -501,40 +619,40 @@ const navItems: NavItem[] = [
       });
     }
 
-    // 3. Selector de Idioma Dropdown
-    if (langBtn && langSelector) {
-      langBtn.addEventListener("click", (e) => {
+    // 3. Dropdown Idioma Escritorio
+    if (langBtnDesktop && langSelectorDesktop) {
+      langBtnDesktop.addEventListener("click", (e) => {
         e.stopPropagation();
-        const active = langSelector.classList.toggle("header__lang-selector--active");
-        langBtn.setAttribute("aria-expanded", String(active));
+        const active = langSelectorDesktop.classList.toggle("header__lang-selector--active");
+        langBtnDesktop.setAttribute("aria-expanded", String(active));
       });
 
       document.addEventListener("click", (e) => {
-        if (!langSelector.contains(e.target as Node)) {
-          langSelector.classList.remove("header__lang-selector--active");
-          langBtn.setAttribute("aria-expanded", "false");
+        if (!langSelectorDesktop.contains(e.target as Node)) {
+          langSelectorDesktop.classList.remove("header__lang-selector--active");
+          langBtnDesktop.setAttribute("aria-expanded", "false");
         }
       });
-
-      langOptions.forEach((option) => {
-        option.addEventListener("click", (e) => {
-          e.preventDefault();
-          langOptions.forEach((opt) => opt.classList.remove("header__lang-option--active"));
-          option.classList.add("header__lang-option--active");
-
-          const langTextEl = langBtn.querySelector(".header__lang-text");
-          if (langTextEl && option.textContent) {
-            langTextEl.textContent = option.textContent;
-          }
-
-          langSelector.classList.remove("header__lang-selector--active");
-          langBtn.setAttribute("aria-expanded", "false");
-        });
-      });
     }
+
+    // 4. Selección de Idioma (tanto en Desktop como en Menú Móvil)
+    langOptions.forEach((option) => {
+      option.addEventListener("click", (e) => {
+        e.preventDefault();
+        const selectedLang = option.getAttribute("data-lang") || "es";
+        
+        if (typeof (window as any).setShortcutLanguage === "function") {
+          (window as any).setShortcutLanguage(selectedLang);
+        }
+
+        if (langSelectorDesktop) {
+          langSelectorDesktop.classList.remove("header__lang-selector--active");
+          if (langBtnDesktop) langBtnDesktop.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
   }
 
-  // Compatibilidad con carga inicial y Astro View Transitions
   document.addEventListener("DOMContentLoaded", setupHeader);
   document.addEventListener("astro:page-load", setupHeader);
 </script>

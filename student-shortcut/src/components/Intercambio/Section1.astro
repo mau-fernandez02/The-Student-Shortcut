@@ -1,40 +1,38 @@
 ---
-// src/components/IrseIntercambio/IntercambioHero.astro
+// src/components/Intercambio/Section1.astro
 
 interface Props {
   videoSrc?: string;
   videoType?: string;
 }
 
-const { videoSrc = "/media/#", videoType = "video/mp4" } = Astro.props;
+const {
+  videoSrc = "/media/VideoA-Intercambio.mp4",
+  videoType = "video/mp4",
+} = Astro.props;
 ---
 
 <section class="exchange-hero">
-  <!-- Decoración nubes de Fondo -->
-
+  <!-- Decoración nubes de Fondo (PDF 1 pág 5) -->
   <div class="exchange-hero__cloud cloud__left--middle" aria-hidden="true">
-    <img src="/img/SVG/Nube_14.svg" alt="" loading="eager" />
+    <img src="/img/SVG/Nube_14.svg" alt="" width="800" height="400" loading="eager" />
   </div>
   <div class="exchange-hero__cloud cloud__left--front" aria-hidden="true">
-    <img src="/img/SVG/Nube_13.svg" alt="" loading="eager" />
+    <img src="/img/SVG/Nube_13.svg" alt="" width="800" height="400" loading="eager" />
   </div>
-  <!-- <div class="exchange-hero__cloud cloud__left--back" aria-hidden="true">
-    <img src="/img/SVG/Nube_11.svg" alt="" loading="eager" />
-  </div> -->
   <div class="exchange-hero__cloud cloud__right--front" aria-hidden="true">
-    <img src="/img/SVG/Nube_10.svg" alt="" loading="eager" />
+    <img src="/img/SVG/Nube_10.svg" alt="" width="800" height="400" loading="eager" />
   </div>
   <div class="exchange-hero__cloud cloud__right--back" aria-hidden="true">
-    <img src="/img/SVG/Nube_11.svg" alt="" loading="eager" />
+    <img src="/img/SVG/Nube_11.svg" alt="" width="800" height="400" loading="eager" />
   </div>
-  
-
 
   <div class="exchange-hero__container">
-    <!-- Banner de Video -->
+    <!-- Banner de Video A -->
     <div class="exchange-hero__media">
       <div class="exchange-hero__video-wrapper">
         <video autoplay loop muted playsinline class="exchange-hero__video">
+          <source src="/media/Mobile/VideoA-Intercambio-Mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
           <source src={videoSrc} type={videoType} />
           Tu navegador no soporta la reproducción de video.
         </video>
@@ -43,34 +41,35 @@ const { videoSrc = "/media/#", videoType = "video/mp4" } = Astro.props;
 
     <!-- Contenido Textual -->
     <header class="exchange-hero__header">
-      <h2 class="exchange-hero__title">
+      <h1 class="exchange-hero__title" data-i18n="exchange.sec1.title">
         Imagínate estudiar en un colegio extranjero, mientras absorbes un nuevo
         idioma y te sumerges en una nueva cultura.
-      </h2>
+      </h1>
     </header>
 
     <div class="exchange-hero__description">
-      <p>
-        Un intercambio es una inmersión total en un sistema educativo
-        extranjero, diseñado para descubrir nuevas competencias lingüísticas y
-        conectar profundamente con una cultura diferente. Con opciones flexibles
-        de 5 a 8 meses, el programa combina la excelencia académica con una
-        experiencia humana irrepetible. Durante tu estancia tienes la
-        oportunidad de crecer diariamente con una familia anfitriona que te
-        acoge como un miembro más.
+      <p data-i18n="exchange.sec1.p1">
+        Un intercambio es una inmersión total en un sistema educativo extranjero, diseñado para descubrir nuevas competencias lingüísticas y conectar profundamente con una cultura diferente. Con opciones flexibles de 5 a 10 meses, el programa combina la excelencia académica con una experiencia humana irrepetible.
       </p>
-      <p>
-        Esto es más que un viaje... Es una experiencia que te permitirá desafiar
-        tus propios límites y construir una versión renovada de ti mismo que
-        perdurará para siempre.
+      <p data-i18n="exchange.sec1.p2">
+        Durante tu estancia tienes la oportunidad de crecer diariamente con una familia anfitriona que te acoge como un miembro más.
       </p>
+      <p data-i18n="exchange.sec1.p3">
+        Esto es más que un viaje... Es una experiencia que te permitirá desafiar tus propios límites y construir una versión renovada de ti mismo que perdurará para siempre.
+      </p>
+    </div>
+
+    <div class="exchange-hero__actions">
+      <a href="/programas" class="exchange-hero__btn" data-i18n="exchange.sec1.btn">
+        Descubre nuestros programas
+      </a>
     </div>
   </div>
 </section>
 
 <style>
   .exchange-hero {
-    padding: 40px 0 60px 0;
+    padding: 110px 0 60px 0;
     color: #ffffff;
     position: relative;
     overflow: hidden;
@@ -78,30 +77,30 @@ const { videoSrc = "/media/#", videoType = "video/mp4" } = Astro.props;
   }
 
   .exchange-hero__container {
-    width: min(100%, 920px);
+    width: min(90%, 960px);
     margin: 0 auto;
     padding: 0 24px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    
+    gap: 2.2rem;
+    position: relative;
+    z-index: 5;
   }
 
-  /* Banner de Video con Aspect Ratio */
+  /* Banner de Video */
   .exchange-hero__media {
     width: 100%;
-    z-index: 10;
   }
 
   .exchange-hero__video-wrapper {
     position: relative;
     width: 100%;
     aspect-ratio: 8 / 3;
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
     background-color: #000000;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+    border: 2px solid rgba(255, 255, 255, 0.35);
   }
 
   .exchange-hero__video {
@@ -111,32 +110,54 @@ const { videoSrc = "/media/#", videoType = "video/mp4" } = Astro.props;
     display: block;
   }
 
-  /* Titular */
-  .exchange-hero__header {
-    width: 100%;
-  }
-
   .exchange-hero__title {
-    font-size: clamp(1.4rem, 3.5vw, 2.25rem);
-    font-weight: 700;
-    line-height: 1.35;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.25;
     color: #ffffff;
     margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
-  /* Parrafos explicativos */
   .exchange-hero__description {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.1rem;
   }
 
   .exchange-hero__description p {
-    font-size: clamp(1rem, 2vw, 1.175rem);
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.95);
     margin: 0;
+  }
+
+  .exchange-hero__actions {
+    margin-top: 0.5rem;
+  }
+
+  .exchange-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 32px;
+    border-radius: 50px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .exchange-hero__btn:hover {
+    background-color: #ffffff;
+    color: #005b97;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   }
 
   /* Elementos Decorativos */
@@ -146,57 +167,68 @@ const { videoSrc = "/media/#", videoType = "video/mp4" } = Astro.props;
     pointer-events: none;
     user-select: none;
   }
+
   .exchange-hero__cloud img {
     width: 100%;
     height: 100%;
     display: block;
   }
+
   .cloud__left--front {
-    top: 190px;
-    left: -260px;
-    width: min(800px, 30vw);
+    top: 130px;
+    left: -200px;
+    width: min(700px, 45vw);
     transform: scaleX(-1);
+    opacity: 0.9;
   }
+
   .cloud__left--middle {
-    top: 190px;
-    left: -0px;
-    width: min(800px, 30vw);
+    top: 110px;
+    left: -60px;
+    width: min(650px, 40vw);
     transform: scaleX(-1);
-  }
-  .cloud__right--back{
-    top: 190px;
-    right: -140px;
-    width: min(800px, 30vw);
-    /* transform: scaleX(-1); */
-  }
-  .cloud__right--front{
-    top: 190px;
-    right: -100px;
-    width: min(800px, 30vw);
-    /* transform: scaleX(-1); */
+    opacity: 0.85;
   }
 
-  /* Diseño Responsivo */
-
-  @media (max-width: 1200px) {
-    .exchange-hero__cloud {
-      display: none;
-    }
+  .cloud__right--back {
+    top: 120px;
+    right: -120px;
+    width: min(650px, 40vw);
+    opacity: 0.85;
   }
-  @media (max-width: 768px) {
+
+  .cloud__right--front {
+    top: 150px;
+    right: -80px;
+    width: min(650px, 40vw);
+    opacity: 0.9;
+  }
+
+  @media (max-width: 860px) {
     .exchange-hero {
-      padding: 20px 0 40px 0;
+      padding: 90px 0 40px 0;
     }
 
     .exchange-hero__container {
       gap: 1.5rem;
+      text-align: center;
     }
 
-    /* En móviles, la proporción 16:9 aprovecha mejor la altura del video */
-    .exchange-hero__video-wrapper {
-      aspect-ratio: 16 / 9;
-      border-radius: 12px;
+    .exchange-hero__actions {
+      display: flex;
+      justify-content: center;
     }
+
+    .exchange-hero__btn {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .exchange-hero__video-wrapper {
+      aspect-ratio: 16 / 10;
+      border-radius: 14px;
+    }
+
     .exchange-hero__cloud {
       display: none;
     }

@@ -4,26 +4,20 @@
 interface TeamMember {
   name: string;
   imageSrc: string;
-  imageAlt: string;
-  role?: string;
-  bio?: string;
 }
 
 const additionalMembers: TeamMember[] = [
   {
     name: "Cristina Matamoros",
-    imageSrc: "#",
-    imageAlt: "Fotografía de Cristina Matamoros"
+    imageSrc: "/img/team/Personal-TSS_0000_Christina-1c.png",
   },
   {
     name: "Karina Reyes",
-    imageSrc: "#",
-    imageAlt: "Fotografía de Karina Reyes"
+    imageSrc: "/img/team/Personal-TSS_0002_Kary-1.png",
   },
   {
     name: "Nicolás Angulo",
-    imageSrc: "#",
-    imageAlt: "Fotografía de Nicolás Angulo"
+    imageSrc: "/img/team/Personal-TSS_0001_Nico-1.png",
   }
 ];
 ---
@@ -37,15 +31,12 @@ const additionalMembers: TeamMember[] = [
             <div class="member-card__image-wrapper">
               <img
                 src={member.imageSrc}
-                alt={member.imageAlt}
+                alt={`Fotografía de ${member.name}`}
                 class="member-card__image"
                 loading="lazy"
               />
             </div>
             <h3 class="member-card__name">{member.name}</h3>
-            {/* Opcional: Descomentar cuando la bio o el rol estén listos */}
-            {/* {member.role && <span class="member-card__role">{member.role}</span>} */}
-            {/* {member.bio && <p class="member-card__bio">{member.bio}</p>} */}
           </article>
         ))
       }
@@ -56,25 +47,23 @@ const additionalMembers: TeamMember[] = [
 <style>
   .team-grid-section {
     width: 100%;
-    padding: 40px 0 80px 0;
+    padding: 30px 0 90px 0;
   }
 
   .team-grid-section__container {
-    width: min(100%, 1280px);
+    width: min(90%, 1100px);
     margin: 0 auto;
     padding: 0 24px;
   }
 
-  /* Distribución en rejilla responsiva */
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
     justify-items: center;
     gap: 3rem 2.5rem;
   }
 
-  /* Tarjeta de integrante */
   .member-card {
     display: flex;
     flex-direction: column;
@@ -85,21 +74,20 @@ const additionalMembers: TeamMember[] = [
     text-align: center;
   }
 
-  /* Contenedor de la foto (Relación de aspecto 1:1) */
   .member-card__image-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 20px;
     overflow: hidden;
     background-color: #000000;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .member-card:hover .member-card__image-wrapper {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   }
 
   .member-card__image {
@@ -107,25 +95,27 @@ const additionalMembers: TeamMember[] = [
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease;
   }
 
-  /* Nombre */
+  .member-card:hover .member-card__image {
+    transform: scale(1.04);
+  }
+
   .member-card__name {
     color: #ffffff;
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-    font-weight: 600;
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.2;
     margin: 0;
-    max-width: 200px;
   }
 
-  /* Adaptabilidad Móvil */
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     .team-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2.5rem 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
 
     .member-card {

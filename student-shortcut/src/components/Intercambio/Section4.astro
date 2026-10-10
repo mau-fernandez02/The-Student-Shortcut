@@ -1,5 +1,5 @@
 ---
-// src/components/IrseIntercambio/RazonesIntercambio.astro
+// src/components/Intercambio/Section4.astro
 
 interface Props {
   videoLeftSrc?: string;
@@ -8,18 +8,17 @@ interface Props {
 }
 
 const {
-  videoLeftSrc = "/media/#",
-  videoCenterSrc = "/media/#",
-  videoRightSrc = "/media/#"
+  videoLeftSrc = "/media/VideoD-Intercambio.mp4",
+  videoCenterSrc = "/media/VideoC-Intercambio.mp4",
+  videoRightSrc = "/media/VideoE-Intercambio.mp4",
 } = Astro.props;
 ---
 
 <section class="reasons">
   <div class="reasons__container">
-    
-    <!-- Gallery Layout Video: [Estrecho] [Cuadrado 1:1] [Estrecho] -->
+    <!-- Gallery Layout Video: [Estrecho Video D] [Cuadrado 1:1 Video C] [Estrecho Video E] -->
     <div class="reasons__video-grid">
-      <!-- Video Izquierdo (Vertical Estrecho) -->
+      <!-- Video Izquierdo (Vertical Estrecho Video D 115x450) -->
       <div class="reasons__video-wrapper reasons__video-side">
         <video autoplay loop muted playsinline class="reasons__video">
           <source src={videoLeftSrc} type="video/mp4" />
@@ -27,15 +26,16 @@ const {
         </video>
       </div>
 
-      <!-- Video Central (Cuadrado 1:1 - Siempre Visible) -->
+      <!-- Video Central (Cuadrado 1:1 Video C 450x450) -->
       <div class="reasons__video-wrapper reasons__video-center">
         <video autoplay loop muted playsinline class="reasons__video">
+          <source src="/media/Mobile/VideoC-Intercambio-Mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
           <source src={videoCenterSrc} type="video/mp4" />
           Tu navegador no soporta la reproducción de video.
         </video>
       </div>
 
-      <!-- Video Derecho (Vertical Estrecho) -->
+      <!-- Video Derecho (Vertical Estrecho Video E 115x450) -->
       <div class="reasons__video-wrapper reasons__video-side">
         <video autoplay loop muted playsinline class="reasons__video">
           <source src={videoRightSrc} type="video/mp4" />
@@ -47,52 +47,52 @@ const {
     <!-- Contenido Textual -->
     <div class="reasons__content">
       <header class="reasons__header">
-        <h2 class="reasons__title">¿POR QUÉ IRME DE INTERCAMBIO?</h2>
+        <h2 class="reasons__title" data-i18n="exchange.sec4.title">¿POR QUÉ IRSE DE INTERCAMBIO?</h2>
       </header>
 
       <div class="reasons__body">
-        <p>
-          Intentar empaparse de los beneficios de un intercambio se queda corto
-          frente a lo que realmente se experimenta.
+        <p data-i18n="exchange.sec4.p1">
+          Intentar enumerar todos los beneficios de un intercambio se queda corto
+          frente a lo que realmente vas a vivir.
         </p>
-        <p>
-          Durante tu estadía, expandirás tus horizontes mentales y forjarás una
-          versión mucho más madura y segura de ti mismo. Académicamente, te
-          sumergirás en nuevas metodologías de estudio mientras te conviertes en
-          hablante fluido de un nuevo idioma.
+        <p data-i18n="exchange.sec4.p2">
+          Durante tu estancia, expandirás tus horizontes y te convertirás en una
+          versión más madura y segura de ti mismo. Académicamente, experimentarás
+          nuevos métodos de estudio mientras desarrollas fluidez en un nuevo idioma.
         </p>
-        <p>
-          Pero el verdadero cambio sucede en otro nivel: la mayoría de los
-          estudiantes descubre su auténtica vocación, empoderándose al regresar a su
-          país para construir su futuro.
+        <p data-i18n="exchange.sec4.p3">
+          Pero la verdadera transformación ocurre a otro nivel: muchos estudiantes
+          descubren su auténtica vocación, ganando la confianza e independencia
+          necesarias para volver a casa y construir su futuro.
         </p>
       </div>
 
       <div class="reasons__actions">
-        <a href="/contacto" class="reasons__btn">
-          Quiero comenzar mi intercambio
+        <a href="/formulario" class="reasons__btn" data-i18n="exchange.sec4.btn">
+          ¡Inicia tu aventura!
         </a>
       </div>
     </div>
-
   </div>
 </section>
 
 <style>
   .reasons {
     width: 100%;
-    padding: 60px 0;
+    padding: 70px 0 100px;
     color: #ffffff;
+    position: relative;
+    z-index: 5;
   }
 
   .reasons__container {
-    width: min(100%, 990px);
+    width: min(90%, 960px);
     margin: 0 auto;
     padding: 0 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
+    gap: 3.5rem;
   }
 
   /* Grid de Videos en Desktop */
@@ -108,12 +108,12 @@ const {
   .reasons__video-wrapper {
     background-color: #000000;
     overflow: hidden;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-radius: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
   }
 
-  /* Video Lateral (Aspect ratio 115:450 = 23:90) */
+  /* Video Lateral (Aspect ratio 115 / 450) */
   .reasons__video-side {
     width: 100%;
     aspect-ratio: 115 / 450;
@@ -136,87 +136,83 @@ const {
   .reasons__content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
     width: 100%;
+    max-width: 820px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .reasons__title {
-    font-size: clamp(1.5rem, 4vw, 2.3rem);
-    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: 800;
     line-height: 1.25;
     color: #ffffff;
     margin: 0;
-    text-transform: uppercase;
   }
 
   .reasons__body {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.1rem;
   }
 
   .reasons__body p {
-    font-size: clamp(0.95rem, 1.8vw, 1.08rem);
-    font-weight: 300;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    font-weight: 400;
     line-height: 1.65;
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.95);
     margin: 0;
   }
 
   /* Botón de Acción */
   .reasons__actions {
     margin-top: 0.5rem;
-    width: 100%;
   }
 
   .reasons__btn {
-    display: inline-block;
-    padding: 14px 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 36px;
     color: #ffffff;
     background-color: transparent;
-    border: 1px solid #ffffff;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 700;
     text-decoration: none;
-    text-align: center;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   }
 
   .reasons__btn:hover {
     background-color: #ffffff;
-    color: #000000;
+    color: #005b97;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   }
 
-  /* --- ADAPTABILIDAD MÓVIL Y TABLET --- */
-  @media (max-width: 768px) {
+  @media (max-width: 860px) {
     .reasons {
-      padding: 40px 0;
+      padding: 40px 0 80px;
     }
 
-    /* Ocultamos completamente los dos videos laterales */
+    /* En móvil se ocultan los laterales estrechos y se muestra el cuadrado central */
     .reasons__video-side {
       display: none !important;
     }
 
-    /* El grid pasa a ser de una sola columna centrada */
     .reasons__video-grid {
       grid-template-columns: 1fr;
-      max-width: 380px; /* Tamaño máximo cómodo para el video central en móvil */
+      max-width: 295px;
       margin: 0 auto;
-    }
-
-    .reasons__content {
-      align-items: center;
-      text-align: center;
     }
 
     .reasons__btn {
       width: 100%;
-      max-width: 320px;
+      max-width: 280px;
     }
   }
 </style>

@@ -5,23 +5,23 @@ interface Props {
   ariaLabel?: string;
 }
 
-const { ariaLabel = "Carrusel de contenido" } = Astro.props;
+const { ariaLabel = "Carrusel de programas" } = Astro.props;
 ---
 
 <div class="carousel" aria-label={ariaLabel}>
   <div class="carousel__wrapper">
-    <!-- Botón Navegación Anterior -->
+    <!-- Botón Navegación Anterior (Flecha Izquierda) -->
     <button 
-      class="carousel__btn carousel__btn--prev" 
-      aria-label="Diapositiva anterior"
+      class="carousel__btn carousel__btn--prev carousel__btn--hidden" 
+      aria-label="Programa anterior"
       type="button"
     >
       <svg
         viewBox="0 0 24 24"
-        width="24"
-        height="24"
+        width="28"
+        height="28"
         stroke="currentColor"
-        stroke-width="2"
+        stroke-width="2.5"
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -36,18 +36,18 @@ const { ariaLabel = "Carrusel de contenido" } = Astro.props;
       <slot />
     </div>
 
-    <!-- Botón Navegación Siguiente -->
+    <!-- Botón Navegación Siguiente (Flecha Derecha) -->
     <button 
       class="carousel__btn carousel__btn--next" 
-      aria-label="Siguiente diapositiva"
+      aria-label="Siguiente programa"
       type="button"
     >
       <svg
         viewBox="0 0 24 24"
-        width="24"
-        height="24"
+        width="28"
+        height="28"
         stroke="currentColor"
-        stroke-width="2"
+        stroke-width="2.5"
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -71,7 +71,7 @@ const { ariaLabel = "Carrusel de contenido" } = Astro.props;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
 
   .carousel__wrapper {
@@ -84,12 +84,12 @@ const { ariaLabel = "Carrusel de contenido" } = Astro.props;
   /* Pista Deslizable */
   .carousel__track {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     width: 100%;
-    padding: 20px 10px;
+    padding: 10px 0;
 
     /* Ocultar barra de desplazamiento */
     -ms-overflow-style: none;
@@ -109,36 +109,46 @@ const { ariaLabel = "Carrusel de contenido" } = Astro.props;
     scroll-snap-align: center;
   }
 
-  /* Botones de Navegación */
+  /* Botones de Navegación (Flechas) */
   .carousel__btn {
     position: absolute;
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 0);
-    color: #92fbff;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid #ffffff;
+    color: #ffffff;
     border-radius: 50%;
-    border: none;
-    width: 40px;
-    height: 40px;
+    width: 52px;
+    height: 52px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background 0.3s ease;
   }
 
   .carousel__btn:hover {
-    background-color: rgba(248, 249, 250, 0.57);
-    transform: scale(1.1);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    color: #005b97;
+    transform: scale(1.12);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
   }
 
   .carousel__btn--prev {
-    left: -60px;
+    left: -28px;
   }
 
   .carousel__btn--next {
-    right: -60px;
+    right: -28px;
+  }
+
+  /* Requerimiento 9: Que desaparezcan según el lado que se está visualizando */
+  .carousel__btn--hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: scale(0.75) !important;
   }
 
   /* Indicadores Dinámicos (Puntos) */
@@ -146,35 +156,44 @@ const { ariaLabel = "Carrusel de contenido" } = Astro.props;
     z-index: 10;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
   }
 
   :global(.carousel__dot) {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
-    background-color: #d1d5db;
-    border: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1.5px solid #ffffff;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
 
   :global(.carousel__dot--active) {
-    background-color: #09c6ff;
-    transform: scale(1.2);
+    background-color: #ffffff;
+    transform: scale(1.3);
   }
 
   /* Media Queries */
-  @media (max-width: 1300px) {
+  @media (max-width: 1280px) {
     .carousel__btn--prev {
-      left: -10px;
+      left: 10px;
     }
     .carousel__btn--next {
-      right: -10px;
+      right: 10px;
     }
-    .carousel__track {
-      gap: 60px;
-      padding: 10px 0;
+  }
+
+  @media (max-width: 768px) {
+    .carousel__btn {
+      width: 44px;
+      height: 44px;
+    }
+    .carousel__btn--prev {
+      left: 4px;
+    }
+    .carousel__btn--next {
+      right: 4px;
     }
   }
 </style>
@@ -185,15 +204,65 @@ const { ariaLabel = "Carrusel de contenido" } = Astro.props;
 
     carousels.forEach((carousel) => {
       const track = carousel.querySelector(".carousel__track") as HTMLElement;
-      const btnPrev = carousel.querySelector(".carousel__btn--prev");
-      const btnNext = carousel.querySelector(".carousel__btn--next");
-      const dotsContainer = carousel.querySelector(".carousel__dots");
+      const btnPrev = carousel.querySelector(".carousel__btn--prev") as HTMLElement;
+      const btnNext = carousel.querySelector(".carousel__btn--next") as HTMLElement;
+      const dotsContainer = carousel.querySelector(".carousel__dots") as HTMLElement;
 
       if (!track || !btnPrev || !btnNext || !dotsContainer) return;
 
-      // 1. Generar puntos dinámicamente según la cantidad de elementos
-      const totalItems = track.children.length;
+      const items = Array.from(track.children) as HTMLElement[];
+      const totalItems = items.length;
+      if (totalItems <= 1) {
+        btnPrev.classList.add("carousel__btn--hidden");
+        btnNext.classList.add("carousel__btn--hidden");
+        dotsContainer.style.display = "none";
+        return;
+      }
+
       dotsContainer.innerHTML = "";
+
+      const getActiveIndex = () => {
+        const scrollLeft = track.scrollLeft;
+        const itemWidth = items[0]?.offsetWidth || track.clientWidth;
+        const index = Math.round(scrollLeft / itemWidth);
+        return Math.min(Math.max(0, index), totalItems - 1);
+      };
+
+      const scrollToItem = (index: number) => {
+        const item = items[index];
+        if (!item) return;
+        track.scrollTo({ left: item.offsetLeft, behavior: "smooth" });
+      };
+
+      // Requerimiento 9: Desaparecer las flechas según el lado que se está visualizando
+      const updateNavigation = () => {
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        const activeIndex = getActiveIndex();
+
+        // Si estamos al inicio (slide 0 / lado izquierdo), desaparece la flecha izquierda
+        const isAtStart = scrollLeft <= 15 || activeIndex === 0;
+        // Si estamos al final (último slide / lado derecho), desaparece la flecha derecha
+        const isAtEnd = scrollLeft >= maxScroll - 15 || activeIndex === totalItems - 1;
+
+        if (isAtStart) {
+          btnPrev.classList.add("carousel__btn--hidden");
+        } else {
+          btnPrev.classList.remove("carousel__btn--hidden");
+        }
+
+        if (isAtEnd) {
+          btnNext.classList.add("carousel__btn--hidden");
+        } else {
+          btnNext.classList.remove("carousel__btn--hidden");
+        }
+
+        const dots = dotsContainer.querySelectorAll(".carousel__dot");
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("carousel__dot--active", index === activeIndex);
+          dot.setAttribute("aria-selected", String(index === activeIndex));
+        });
+      };
 
       for (let i = 0; i < totalItems; i++) {
         const dot = document.createElement("button");
@@ -202,51 +271,34 @@ const { ariaLabel = "Carrusel de contenido" } = Astro.props;
         
         dot.setAttribute("type", "button");
         dot.setAttribute("role", "tab");
-        dot.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}`);
+        dot.setAttribute("aria-label", `Ir al programa ${i + 1}`);
 
         dot.addEventListener("click", () => {
-          const itemWidth = track.clientWidth;
-          track.scrollTo({
-            left: itemWidth * i,
-            behavior: "smooth",
-          });
+          scrollToItem(i);
         });
 
         dotsContainer.appendChild(dot);
       }
 
-      const dots = dotsContainer.querySelectorAll(".carousel__dot");
+      track.addEventListener("scroll", updateNavigation, { passive: true });
+      window.addEventListener("resize", updateNavigation);
 
-      // 2. Sincronizar puntos con el evento de desplazamiento (scroll)
-      track.addEventListener("scroll", () => {
-        const itemWidth = track.clientWidth;
-        const activeIndex = Math.round(track.scrollLeft / itemWidth);
-
-        dots.forEach((dot, index) => {
-          if (index === activeIndex) {
-            dot.classList.add("carousel__dot--active");
-            dot.setAttribute("aria-selected", "true");
-          } else {
-            dot.classList.remove("carousel__dot--active");
-            dot.setAttribute("aria-selected", "false");
-          }
-        });
-      });
-
-      // 3. Eventos para las flechas de navegación
       btnPrev.addEventListener("click", () => {
-        const itemWidth = track.clientWidth;
-        track.scrollBy({ left: -itemWidth, behavior: "smooth" });
+        const target = Math.max(0, getActiveIndex() - 1);
+        scrollToItem(target);
       });
 
       btnNext.addEventListener("click", () => {
-        const itemWidth = track.clientWidth;
-        track.scrollBy({ left: itemWidth, behavior: "smooth" });
+        const target = Math.min(totalItems - 1, getActiveIndex() + 1);
+        scrollToItem(target);
       });
+
+      // Ejecutar inmediatamente
+      setTimeout(updateNavigation, 50);
+      updateNavigation();
     });
   }
 
-  // Compatible con carga normal y Astro View Transitions
   document.addEventListener("DOMContentLoaded", initializeCarousels);
   document.addEventListener("astro:page-load", initializeCarousels);
 </script>

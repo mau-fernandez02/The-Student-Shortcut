@@ -7,13 +7,13 @@ import Equipo from "../components/QuienesSomos/Equipo.astro";
 ---
 
 <Layout
-  title="Quiénes Somos | Student Shortcut"
-  description="Conoce al equipo y la visión detrás de Student Shortcut. Te acompañamos en tu experiencia de intercambio cultural y académico."
+  title="Quiénes Somos | The Student Shortcut"
+  description="Conoce al equipo y la visión detrás de The Student Shortcut. Te acompañamos en tu experiencia de intercambio cultural y académico."
 >
   <main class="about-page">
-    <!-- Decoración de fondo -->
+    <!-- Decoración de fondo de Montaña según los nuevos assets -->
     <div class="about-hero__bg-mountain" aria-hidden="true">
-      <img src="/img/SVG/Montaña_5.svg" alt="" loading="eager" />
+      <img src="/img/nubes-montanas/Montaña-QuienesSomos.png" alt="" loading="eager" />
     </div>
 
     <!-- Secciones principales -->
@@ -28,32 +28,27 @@ import Equipo from "../components/QuienesSomos/Equipo.astro";
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* Offset para evitar que el header fijo tape el inicio del contenido */
     padding-top: var(--header-height, 75px);
     padding-bottom: 60px;
-
-    /* Fondo con gradiente y textura de ruido */
-    background-color: #1f9cc9;
+    background-color: #005b97;
     background-image:
       url("/img/noise.png"),
-      linear-gradient(180deg, #0cabe6 0%, #1f9cc9 55%, #005b97 100%);
+      linear-gradient(180deg, #1e9cd7 0%, #127eb5 45%, #005b97 100%);
     background-repeat: repeat, no-repeat;
-    background-size: auto, cover;
-
-    /* Asegura que los componentes mantengan el flujo vertical */
+    background-size: auto, 100% 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .about-hero__bg-mountain {
     position: absolute;
-    top: -100px;
-    left: -180px;
-    width: min(740px,60vw);
+    top: -60px;
+    left: -120px;
+    width: min(740px, 55vw);
     opacity: 0.85;
     pointer-events: none;
     z-index: 1;
-    transform: rotate(90deg);
   }
 
   .about-hero__bg-mountain img {
@@ -62,4 +57,9 @@ import Equipo from "../components/QuienesSomos/Equipo.astro";
     user-select: none;
   }
 
+  @media (max-width: 768px) {
+    .about-hero__bg-mountain {
+      display: none;
+    }
+  }
 </style>
