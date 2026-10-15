@@ -26,33 +26,37 @@ const paragraphs = [
 <section class="video-grid">
   <!-- Layout Desktop (Rejilla de 5 videos a la izquierda, textos a la derecha) -->
   <div class="video-grid__container video-grid__container--desktop">
-    <!-- Mosaico / Grid de 5 Vídeos (Desktop) -->
+    <!-- Mosaico / Grid de 5 Vídeos (Desktop - Corrección 5) -->
     <div class="video-grid__mosaic">
       <!-- Fila 1: Video C (261x261) y Video D (165x261) -->
-      <div class="video-grid__box video-grid__box--c">
-        <video autoplay loop muted playsinline class="video-grid__video">
-          <source src="/media/VideoC-LandingPage.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="video-grid__box video-grid__box--d">
-        <video autoplay loop muted playsinline class="video-grid__video">
-          <source src="/media/VideoD-LandingPage.mp4" type="video/mp4" />
-        </video>
+      <div class="video-grid__row video-grid__row--1">
+        <div class="video-grid__box video-grid__box--c">
+          <video autoplay loop muted playsinline class="video-grid__video">
+            <source src="/media/VideoC-LandingPage.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="video-grid__box video-grid__box--d">
+          <video autoplay loop muted playsinline class="video-grid__video">
+            <source src="/media/VideoD-LandingPage.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
 
       <!-- Fila 2: Video E (165x261) y Video F (261x261) -->
-      <div class="video-grid__box video-grid__box--e">
-        <video autoplay loop muted playsinline class="video-grid__video">
-          <source src="/media/VideoE-LandingPage.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="video-grid__box video-grid__box--f">
-        <video autoplay loop muted playsinline class="video-grid__video">
-          <source src="/media/VideoF-LandingPage.mp4" type="video/mp4" />
-        </video>
+      <div class="video-grid__row video-grid__row--2">
+        <div class="video-grid__box video-grid__box--e">
+          <video autoplay loop muted playsinline class="video-grid__video">
+            <source src="/media/VideoE-LandingPage.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="video-grid__box video-grid__box--f">
+          <video autoplay loop muted playsinline class="video-grid__video">
+            <source src="/media/VideoF-LandingPage.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
 
-      <!-- Fila 3: Video G (448x116) -->
+      <!-- Fila 3: Video G (444x116) -->
       <div class="video-grid__box video-grid__box--g">
         <video autoplay loop muted playsinline class="video-grid__video">
           <source src="/media/VideoG-LandingPage.mp4" type="video/mp4" />
@@ -75,6 +79,9 @@ const paragraphs = [
         <a href={ctaLink} class="btn-cta" data-i18n="videogrid.btn">
           {ctaText}
         </a>
+        <div class="flight-track__plane-cta" aria-hidden="true">
+          <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="56" height="56" />
+        </div>
       </div>
     </div>
   </div>
@@ -108,52 +115,49 @@ const paragraphs = [
       <p data-i18n="videogrid.p1">{paragraphs[0].text}</p>
     </div>
 
-    <!-- 5. Botón Móvil -->
+    <!-- 5. Botón Móvil con Avión (Corrección 6) -->
     <div class="video-grid__cta-group">
       <a href={ctaLink} class="btn-cta" data-i18n="videogrid.btn">
         {ctaText}
       </a>
+      <div class="flight-track__plane-cta--mobile" aria-hidden="true">
+        <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="46" height="46" />
+      </div>
     </div>
 
-    <!-- 6. Avión y Trayecto en Móvil (Requerimiento 1) -->
+    <!-- 6. Trayecto en Móvil que llega al botón -->
     <div class="flight-track flight-track--mobile" aria-hidden="true">
-      <svg class="flight-track__svg" viewBox="0 0 320 90" fill="none">
+      <svg class="flight-track__svg" viewBox="0 0 320 80" fill="none">
         <path
-          d="M 10 75 Q 140 85 240 25"
+          d="M 310 -10 Q 290 60 170 65 Q 60 70 40 40"
           stroke="#ffffff"
-          stroke-width="2.5"
+          stroke-width="2.2"
           stroke-dasharray="6 8"
           stroke-linecap="round"
         />
       </svg>
-      <div class="flight-track__plane flight-track__plane--mobile">
-        <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="46" height="46" />
-      </div>
     </div>
   </div>
 
-  <!-- Requerimiento 1: Avión y trayecto en Landing Page (Desktop) -->
+  <!-- Requerimiento 1 & Corrección 6: Avión y trayecto en Landing Page (Desktop) -->
   <div class="flight-track flight-track--desktop" aria-hidden="true">
-    <svg class="flight-track__svg" viewBox="0 0 1000 200" fill="none" preserveAspectRatio="none">
+    <svg class="flight-track__svg" viewBox="0 0 1000 650" fill="none" preserveAspectRatio="none">
       <path
-        d="M 380 160 C 520 185, 700 170, 920 60"
+        d="M 920 -40 C 970 140, 960 360, 890 500 C 820 620, 680 610, 560 560 C 510 540, 480 480, 470 435"
         stroke="#ffffff"
-        stroke-width="3"
-        stroke-dasharray="8 12"
+        stroke-width="2.6"
+        stroke-dasharray="7 10"
         stroke-linecap="round"
       />
     </svg>
-    <div class="flight-track__plane flight-track__plane--desktop">
-      <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="62" height="62" />
-    </div>
   </div>
 
-  <!-- Capas Decorativas (Montañas) -->
+  <!-- Capas Decorativas (Montañas V2) -->
   <div class="video-grid__mountain video-grid__mountain--left" aria-hidden="true">
-    <img src="/img/SVG/Montaña_5.svg" alt="" width="500" height="680" loading="lazy" />
+    <img src="/img/nubes-montanas/Montaña-InfIzq-LandingPage-Desktop.png" alt="" width="380" height="680" loading="lazy" />
   </div>
   <div class="video-grid__mountain video-grid__mountain--right" aria-hidden="true">
-    <img src="/img/SVG/Montaña_2.svg" alt="" width="500" height="600" loading="lazy" />
+    <img src="/img/nubes-montanas/Montaña-InfDer-LandingPage-Desktop.png" alt="" width="420" height="650" loading="lazy" />
   </div>
 </section>
 
@@ -183,14 +187,28 @@ const paragraphs = [
     display: none;
   }
 
-  /* Mosaico de 5 Videos Desktop */
+  /* Mosaico de 5 Videos Desktop (Corrección 5: Fila 2 perfectamente alineada) */
   .video-grid__mosaic {
-    display: grid;
-    grid-template-columns: 261px 165px;
-    grid-template-rows: 261px 261px 116px;
+    display: flex;
+    flex-direction: column;
     gap: 18px;
+    width: 444px;
+    max-width: 100%;
+  }
+
+  .video-grid__row {
+    display: grid;
+    gap: 18px;
+    height: 261px;
     width: 100%;
-    max-width: 448px;
+  }
+
+  .video-grid__row--1 {
+    grid-template-columns: 261px 165px;
+  }
+
+  .video-grid__row--2 {
+    grid-template-columns: 165px 261px;
   }
 
   .video-grid__box {
@@ -199,7 +217,13 @@ const paragraphs = [
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border: none;
+    height: 100%;
+  }
+
+  .video-grid__box--g {
+    width: 100%;
+    height: 116px;
   }
 
   .video-grid__video {
@@ -209,38 +233,6 @@ const paragraphs = [
     display: block;
   }
 
-  /* Posiciones de los videos según Figma (PDF 1 pág 1) */
-  .video-grid__box--c {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .video-grid__box--d {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .video-grid__box--e {
-    grid-column: 1;
-    grid-row: 2;
-    /* Invertimos orden en fila 2: 165px a la izq y 261px a la der */
-    width: 165px;
-    justify-self: end;
-  }
-
-  .video-grid__box--f {
-    grid-column: 1 / span 2;
-    grid-row: 2;
-    width: 261px;
-    justify-self: end;
-  }
-
-  .video-grid__box--g {
-    grid-column: 1 / span 2;
-    grid-row: 3;
-    width: 100%;
-  }
-
   /* Contenido Textual */
   .video-grid__content {
     display: flex;
@@ -248,6 +240,8 @@ const paragraphs = [
     gap: 1.5rem;
     color: #ffffff;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 5;
   }
 
   .video-grid__title {
@@ -279,11 +273,14 @@ const paragraphs = [
     margin: 0;
   }
 
-  /* Botón CTA */
+  /* Botón CTA y Avión (Corrección 6: Avión al lado del botón) */
   .video-grid__cta-group {
     margin-top: 0.5rem;
     z-index: 10;
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
   }
 
   .btn-cta {
@@ -309,7 +306,17 @@ const paragraphs = [
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   }
 
-  /* Requerimiento 1: Avión y trayecto (Trayectoria curva con avión) */
+  .flight-track__plane-cta {
+    position: absolute;
+    bottom: -32px;
+    left: 12px;
+    transform: rotate(-32deg);
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+    pointer-events: none;
+    z-index: 12;
+  }
+
+  /* Requerimiento 1 & Corrección 6: Trayectoria que empieza bajo Video B y llega al botón */
   .flight-track {
     position: absolute;
     pointer-events: none;
@@ -317,10 +324,10 @@ const paragraphs = [
   }
 
   .flight-track--desktop {
-    bottom: 90px;
-    right: 5%;
-    width: min(60%, 750px);
-    height: 180px;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
   }
 
   .flight-track__svg {
@@ -329,18 +336,10 @@ const paragraphs = [
     overflow: visible;
   }
 
-  .flight-track__plane--desktop {
-    position: absolute;
-    top: 36px;
-    right: 22px;
-    transform: rotate(26deg);
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
-    transition: transform 0.3s ease;
-  }
-
-  /* Capas Decorativas (Montañas) */
+  /* Capas Decorativas (Montañas V2) */
   .video-grid__mountain {
     position: absolute;
+    bottom: 0;
     z-index: 2;
     pointer-events: none;
   }
@@ -353,17 +352,14 @@ const paragraphs = [
   }
 
   .video-grid__mountain--left {
-    bottom: 0;
-    left: -60px;
-    height: clamp(400px, 50vw, 680px);
+    left: 0;
+    height: clamp(380px, 45vw, 680px);
     opacity: 0.95;
   }
 
   .video-grid__mountain--right {
-    bottom: 0;
-    right: -40px;
-    height: clamp(350px, 45vw, 600px);
-    transform: rotateY(-180deg) scaleY(-1);
+    right: 0;
+    height: clamp(360px, 42vw, 650px);
     opacity: 0.95;
   }
 
@@ -396,7 +392,7 @@ const paragraphs = [
       border-radius: 12px;
       overflow: hidden;
       background-color: #000000;
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      border: none;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
     }
 
@@ -424,6 +420,10 @@ const paragraphs = [
 
     .video-grid__cta-group {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
 
     .video-grid__cta-group .btn-cta {
@@ -433,7 +433,17 @@ const paragraphs = [
       font-size: 1rem;
     }
 
-    /* Avión y Trayecto en Móvil (Requerimiento 1 & 2) */
+    .flight-track__plane-cta--mobile {
+      position: absolute;
+      bottom: -32px;
+      left: 18%;
+      transform: rotate(-28deg);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+      pointer-events: none;
+      z-index: 12;
+    }
+
+    /* Avión y Trayecto en Móvil (Corrección 6) */
     .flight-track--desktop {
       display: none;
     }
@@ -441,16 +451,8 @@ const paragraphs = [
     .flight-track--mobile {
       position: relative;
       width: 100%;
-      height: 80px;
-      margin-top: 0.5rem;
-    }
-
-    .flight-track__plane--mobile {
-      position: absolute;
-      top: 10px;
-      right: 50px;
-      transform: rotate(24deg);
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      height: 70px;
+      margin-top: 0.8rem;
     }
 
     .video-grid__mountain {

@@ -79,6 +79,8 @@ const { ariaLabel = "Carrusel de programas" } = Astro.props;
     display: flex;
     align-items: center;
     width: 100%;
+    padding: 0 54px;
+    box-sizing: border-box;
   }
 
   /* Pista Deslizable */
@@ -109,16 +111,18 @@ const { ariaLabel = "Carrusel de programas" } = Astro.props;
     scroll-snap-align: center;
   }
 
-  /* Botones de Navegación (Flechas) */
+  /* Botones de Navegación (Flechas) - Corrección 7: No superponer con texto */
   .carousel__btn {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 20;
     background: rgba(255, 255, 255, 0.25);
     border: 2px solid #ffffff;
     color: #ffffff;
     border-radius: 50%;
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,16 +135,16 @@ const { ariaLabel = "Carrusel de programas" } = Astro.props;
   .carousel__btn:hover {
     background: #ffffff;
     color: #005b97;
-    transform: scale(1.12);
+    transform: translateY(-50%) scale(1.12);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
   }
 
   .carousel__btn--prev {
-    left: -28px;
+    left: 2px;
   }
 
   .carousel__btn--next {
-    right: -28px;
+    right: 2px;
   }
 
   /* Requerimiento 9: Que desaparezcan según el lado que se está visualizando */
@@ -148,7 +152,7 @@ const { ariaLabel = "Carrusel de programas" } = Astro.props;
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
-    transform: scale(0.75) !important;
+    transform: translateY(-50%) scale(0.75) !important;
   }
 
   /* Indicadores Dinámicos (Puntos) */
@@ -175,25 +179,19 @@ const { ariaLabel = "Carrusel de programas" } = Astro.props;
   }
 
   /* Media Queries */
-  @media (max-width: 1280px) {
-    .carousel__btn--prev {
-      left: 10px;
-    }
-    .carousel__btn--next {
-      right: 10px;
-    }
-  }
-
   @media (max-width: 768px) {
+    .carousel__wrapper {
+      padding: 0 46px;
+    }
     .carousel__btn {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
     }
     .carousel__btn--prev {
-      left: 4px;
+      left: 2px;
     }
     .carousel__btn--next {
-      right: 4px;
+      right: 2px;
     }
   }
 </style>

@@ -52,17 +52,15 @@ const {
 
   <!-- Capas Decorativas de Nubes (Desktop) -->
   <div class="discover__cloud discover__cloud--left" aria-hidden="true">
-    <img src="/img/SVG/Nube_9.svg" alt="" width="880" height="400" loading="lazy" />
+    <img src="/img/nubes-montanas/Nube-MedIzq-LandingPage-Desktop.png" alt="" width="880" height="380" loading="lazy" />
   </div>
   <div class="discover__cloud discover__cloud--right" aria-hidden="true">
-    <img src="/img/SVG/Nube_1.svg" alt="" width="500" height="300" loading="lazy" />
+    <img src="/img/nubes-montanas/Nube-MedDer-LandingPage-Desktop.png" alt="" width="480" height="320" loading="lazy" />
   </div>
 
-  <!-- Nubes decorativas móvil al final de la sección (PDF 1 pág 2) -->
+  <!-- Nubes decorativas móvil al final de la sección -->
   <div class="discover__mobile-clouds" aria-hidden="true">
-    <img src="/img/SVG/Nube_8.svg" class="cloud-m cloud-m--1" alt="" />
-    <img src="/img/SVG/Nube_10.svg" class="cloud-m cloud-m--2" alt="" />
-    <img src="/img/SVG/Nube_1.svg" class="cloud-m cloud-m--3" alt="" />
+    <img src="/img/nubes-montanas/Nube-LandingPage-Mobile.png" class="cloud-m" alt="" />
   </div>
 </section>
 
@@ -138,7 +136,7 @@ const {
     overflow: hidden;
     background-color: #000000;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
-    border: 2px solid rgba(255, 255, 255, 0.35);
+    border: none;
     justify-self: end;
   }
 
@@ -164,18 +162,17 @@ const {
   }
 
   .discover__cloud--left {
-    bottom: -80px;
-    left: -260px;
-    width: min(880px, 60vw);
-    transform: rotate(-185deg) rotateX(-180deg);
-    opacity: 0.9;
+    bottom: -20px;
+    left: -120px;
+    width: min(780px, 55vw);
+    opacity: 0.95;
   }
 
   .discover__cloud--right {
-    bottom: -60px;
-    right: -120px;
-    width: min(500px, 45vw);
-    opacity: 0.9;
+    bottom: 10px;
+    right: -20px;
+    width: min(440px, 32vw);
+    opacity: 0.95;
   }
 
   .discover__mobile-clouds {
@@ -230,42 +227,23 @@ const {
       display: none;
     }
 
-    /* Nubes agrupadas en móvil al fondo de la sección */
+    /* Nube horizontal en móvil al fondo de la sección */
     .discover__mobile-clouds {
       display: block;
       position: absolute;
-      bottom: -30px;
+      bottom: -15px;
       left: 0;
       width: 100%;
-      height: 90px;
+      height: auto;
       pointer-events: none;
-      overflow: hidden;
       z-index: 3;
     }
 
     .cloud-m {
-      position: absolute;
+      width: 100%;
       height: auto;
-      opacity: 0.85;
-    }
-
-    .cloud-m--1 {
-      left: -40px;
-      bottom: -15px;
-      width: 180px;
-    }
-
-    .cloud-m--2 {
-      left: 45%;
-      bottom: -20px;
-      width: 220px;
-      transform: translateX(-50%);
-    }
-
-    .cloud-m--3 {
-      right: -30px;
-      bottom: -10px;
-      width: 160px;
+      display: block;
+      opacity: 0.95;
     }
   }
 </style>

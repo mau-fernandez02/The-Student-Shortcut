@@ -18,71 +18,66 @@
     <div class="about-hero__description">
       <p data-i18n="about.p1">
         The Student Shortcut es una empresa boliviana creada para conectar a
-        jóvenes con diferentes oportunidades de intercambio cultural alrededor del
-        mundo.
+        jóvenes con diferentes oportunidades de intercambio cultural alrededor
+        del mundo.
       </p>
       <p data-i18n="about.p2">
-        Nacimos de nuestra propia experiencia internacional y de la convicción de
-        que conocer otra cultura puede cambiar la manera en la que una persona
-        entiende el mundo y su propio futuro.
+        Nacimos de nuestra propia experiencia internacional y de la convicción
+        de que conocer otra cultura puede cambiar la manera en la que una
+        persona entiende el mundo y su propio futuro.
       </p>
       <p data-i18n="about.p3">
         Por eso, buscamos simplificar el camino hacia una experiencia
-        internacional brindando orientación cercana y acompañamiento durante cada
-        etapa del proceso.
+        internacional brindando orientación cercana y acompañamiento durante
+        cada etapa del proceso.
       </p>
     </div>
   </div>
 
-  <!-- Carrusel Infinito de Misión y Visión -->
-  <div class="about-hero__marquee" aria-label="Nuestra Misión y Visión">
-    <div class="about-hero__marquee-track">
-      <!-- Grupo 1 -->
-      <div class="about-hero__marquee-group">
-        <article class="about-card">
-          <div class="about-card__icon-wrapper">
-            <img src="/img/SVG/heart-half-stroke-svgrepo-com.svg" alt="Misión" class="about-card__icon" width="40" height="40" />
-          </div>
-          <h2 class="about-card__title" data-i18n="about.mission.title">NUESTRA MISIÓN</h2>
-          <p class="about-card__text" data-i18n="about.mission.text">
-            Facilitar el acceso de jóvenes bolivianos a experiencias internacionales de intercambio cultural y educativo, ofreciendo un proceso claro, confiable y personalizado, que acompañe tanto al estudiante como a su familia desde la elección del programa hasta el inicio de su experiencia en el exterior.
-          </p>
-        </article>
-
-        <article class="about-card">
-          <div class="about-card__icon-wrapper">
-            <img src="/img/SVG/eye-3-svgrepo-com.svg" alt="Visión" class="about-card__icon" width="40" height="40" />
-          </div>
-          <h2 class="about-card__title" data-i18n="about.vision.title">NUESTRA VISIÓN</h2>
-          <p class="about-card__text" data-i18n="about.vision.text">
-            Ser el referente en Bolivia en intercambios culturales y educación internacional, creando conexiones con organizaciones alrededor del mundo y haciendo que cada vez más jóvenes tengan la oportunidad de estudiar, viajar, descubrir nuevas culturas y ampliar sus horizontes.
-          </p>
-        </article>
+  <!-- Bloque Estático de Misión y Visión (Corrección 8) -->
+  <div class="about-hero__mission-vision">
+    <article class="about-card">
+      <div class="about-static-card__icon-wrapper">
+        <img
+          src="/img/SVG/heart-half-stroke-svgrepo-com.svg"
+          alt="Misión"
+          class="about-static-card__icon"
+          width="44"
+          height="44"
+        />
       </div>
+      <h2 class="about-static-card__title" data-i18n="about.mission.title">
+        NUESTRA MISIÓN
+      </h2>
+      <p class="about-static-card__text" data-i18n="about.mission.text">
+        Facilitar el acceso de jóvenes bolivianos a experiencias internacionales
+        de intercambio cultural y educativo, ofreciendo un proceso claro,
+        confiable y personalizado, que acompañe tanto al estudiante como a su
+        familia desde la elección del programa hasta el inicio de su experiencia
+        en el exterior.
+      </p>
+    </article>
 
-      <!-- Grupo 2 (Duplicado para loop) -->
-      <div class="about-hero__marquee-group" aria-hidden="true">
-        <article class="about-card">
-          <div class="about-card__icon-wrapper">
-            <img src="/img/SVG/heart-half-stroke-svgrepo-com.svg" alt="" class="about-card__icon" width="40" height="40" />
-          </div>
-          <h2 class="about-card__title" data-i18n="about.mission.title">NUESTRA MISIÓN</h2>
-          <p class="about-card__text" data-i18n="about.mission.text">
-            Facilitar el acceso de jóvenes bolivianos a experiencias internacionales de intercambio cultural y educativo, ofreciendo un proceso claro, confiable y personalizado, que acompañe tanto al estudiante como a su familia desde la elección del programa hasta el inicio de su experiencia en el exterior.
-          </p>
-        </article>
-
-        <article class="about-card">
-          <div class="about-card__icon-wrapper">
-            <img src="/img/SVG/eye-3-svgrepo-com.svg" alt="" class="about-card__icon" width="40" height="40" />
-          </div>
-          <h2 class="about-card__title" data-i18n="about.vision.title">NUESTRA VISIÓN</h2>
-          <p class="about-card__text" data-i18n="about.vision.text">
-            Ser el referente en Bolivia en intercambios culturales y educación internacional, creando conexiones con organizaciones alrededor del mundo y haciendo que cada vez más jóvenes tengan la oportunidad de estudiar, viajar, descubrir nuevas culturas y ampliar sus horizontes.
-          </p>
-        </article>
+    <article class="about-card">
+      <div class="about-static-card__icon-wrapper">
+        <img
+          src="/img/SVG/eye-3-svgrepo-com.svg"
+          alt="Visión"
+          class="about-static-card__icon"
+          width="44"
+          height="44"
+        />
       </div>
-    </div>
+      <h2 class="about-static-card__title" data-i18n="about.vision.title">
+        NUESTRA VISIÓN
+      </h2>
+      <p class="about-static-card__text" data-i18n="about.vision.text">
+        Ser el referente en Bolivia en intercambios culturales y educación
+        internacional, creando conexiones con organizaciones alrededor del mundo
+        y haciendo que cada vez más jóvenes tengan la oportunidad de estudiar,
+        viajar, descubrir nuevas culturas y ampliar sus horizontes.
+      </p>
+    </article>
   </div>
 </section>
 
@@ -127,7 +122,7 @@
     border-radius: 20px;
     overflow: hidden;
     background-color: #000000;
-    border: 2px solid rgba(255, 255, 255, 0.4);
+    border: none;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
   }
 
@@ -153,37 +148,21 @@
     text-align: center;
   }
 
-  /* Carrusel Infinito (Marquee) */
-  .about-hero__marquee {
+  /* Bloque Estático Misión y Visión (Corrección 8: Estáticos, sin fondo, letras blancas, logos blancos) */
+  .about-hero__mission-vision {
     position: relative;
     z-index: 2;
-    width: 100%;
-    overflow: hidden;
-    padding: 20px 0;
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
-  }
-
-  .about-hero__marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee-scroll 28s linear infinite;
-  }
-
-  .about-hero__marquee-group {
-    display: flex;
-    gap: 2rem;
-    padding-right: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    max-width: 960px;
+    width: min(90%, 960px);
+    margin: 1rem auto 0;
   }
 
   .about-card {
-    flex: 0 0 440px;
-    background: rgba(255, 255, 255, 0.95);
+    flex: 0 0 420px;
+    background: rgba(255, 255, 255, 0.13);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
@@ -193,59 +172,50 @@
     align-items: center;
     text-align: center;
     gap: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
-  .about-card:hover {
-    transform: translateY(-4px);
-  }
-
-  .about-card__icon-wrapper {
-    width: 75px;
-    height: 75px;
-    background-color: rgba(30, 156, 215, 0.15);
-    border-radius: 50%;
+  .about-static-card__icon-wrapper {
+    width: 68px;
+    height: 68px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px;
-    flex-shrink: 0;
+    background: transparent;
+    border-radius: 50%;
   }
 
-  .about-card__icon {
-    width: 100%;
-    height: 100%;
+  .about-static-card__icon {
+    width: 44px;
+    height: 44px;
     object-fit: contain;
+    filter: brightness(0) invert(1);
   }
 
-  .about-card__title {
-    color: #004b7c;
-    font-size: clamp(1.3rem, 2.8vw, 1.6rem);
+  .about-static-card__title {
+    color: #ffffff;
+    font-size: clamp(1.4rem, 2.5vw, 1.75rem);
     font-weight: 800;
     margin: 0;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  .about-card__text {
-    color: #334155;
-    font-size: 0.95rem;
-    line-height: 1.6;
+  .about-static-card__text {
+    color: #ffffff;
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    line-height: 1.7;
     margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   }
 
-  @keyframes marquee-scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .about-card {
-      flex: 0 0 310px;
-      padding: 1.75rem 1.25rem;
+  @media (max-width: 768px) {
+    .about-hero__mission-vision {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
   }
 </style>

@@ -11,15 +11,15 @@ export const translations: TranslationDictionary = {
   // Navigation & Header
   "nav.programs": {
     es: "Programas",
-    en: "Programs",
-  },
-  "nav.about": {
-    es: "Nosotros",
-    en: "About Us",
+    en: "Our programs",
   },
   "nav.exchange": {
-    es: "Intercambio",
-    en: "Exchange",
+    es: "¿Qué es un intercambio?",
+    en: "What’s an Exchange?",
+  },
+  "nav.about": {
+    es: "¿Quiénes somos?",
+    en: "About Us",
   },
   "nav.contact": {
     es: "Contacto",
@@ -45,19 +45,19 @@ export const translations: TranslationDictionary = {
   },
   "footer.programs": {
     es: "Programas",
-    en: "Programs",
+    en: "Our programs",
+  },
+  "footer.exchange": {
+    es: "¿Qué es un intercambio?",
+    en: "What’s an Exchange?",
+  },
+  "footer.about": {
+    es: "¿Quiénes somos?",
+    en: "About Us",
   },
   "footer.contact": {
     es: "Contacto",
     en: "Contact",
-  },
-  "footer.location": {
-    es: "Ubicación",
-    en: "Location",
-  },
-  "footer.about": {
-    es: "Nosotros",
-    en: "About Us",
   },
   "footer.followUs": {
     es: "Redes",

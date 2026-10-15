@@ -152,7 +152,7 @@ const {
     overflow: hidden;
     background-color: #000000;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border: none;
   }
 
   .program-card__video {
@@ -182,7 +182,7 @@ const {
     grid-row: 3;
   }
 
-  /* Responsive Design Móvil (PDF 1 pág 4) */
+  /* Responsive Design Móvil (PDF 1 pág 4 - Corrección 7) */
   @media (max-width: 1024px) {
     .program-card {
       grid-template-columns: 1fr;
@@ -194,6 +194,13 @@ const {
     .program-card__content {
       align-items: center;
       text-align: center;
+      padding: 0 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .program-card__title {
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
     }
   }
 
