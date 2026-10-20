@@ -29,11 +29,7 @@ const {
     <!-- Bloque de Video (Desktop a la izquierda, Móvil abajo de textos) -->
     <div class="hero__video-wrapper">
       <video autoplay loop muted playsinline class="hero__video">
-        <source
-          src={videoSrcMobile}
-          media="(max-width: 768px)"
-          type="video/mp4"
-        />
+        <source src={videoSrcMobile} media="(max-width: 768px)" type="video/mp4" />
         <source src={videoSrcDesktop} type="video/mp4" />
         Tu navegador no soporta la reproducción de video.
       </video>
@@ -43,18 +39,10 @@ const {
     <div class="hero__content">
       <h1 class="hero__title" data-i18n-html="hero.title" set:html={title} />
       <p class="hero__description" data-i18n="hero.subtitle">{subtitle}</p>
-
+      
       <div class="hero__actions">
-        <a
-          href={primaryCtaLink}
-          class="btn btn--primary"
-          data-i18n="hero.btnPrograms">{primaryCtaText}</a
-        >
-        <a
-          href={secondaryCtaLink}
-          class="btn btn--secondary"
-          data-i18n="hero.btnContact">{secondaryCtaText}</a
-        >
+        <a href={primaryCtaLink} class="btn btn--primary" data-i18n="hero.btnPrograms">{primaryCtaText}</a>
+        <a href={secondaryCtaLink} class="btn btn--secondary" data-i18n="hero.btnContact">{secondaryCtaText}</a>
       </div>
     </div>
   </div>
@@ -62,30 +50,16 @@ const {
   <!-- Barra de Aviso Especial Móvil (según diseño Figma Móvil) -->
   <div class="hero__mobile-banner-wrapper">
     <a href="/contactanos" class="hero__mobile-banner">
-      <span data-i18n="landing.announcementBar"
-        >¡El Calendario 2027 ya está abierto! ¡Agenda tu llamada!</span
-      >
+      <span data-i18n="landing.announcementBar">¡El Calendario 2027 ya está abierto! ¡Agenda tu llamada!</span>
     </a>
   </div>
 
   <!-- Capas decorativas de Nubes (Assets dedicados V2) -->
   <div class="hero__cloud hero__cloud--left" aria-hidden="true">
-    <img
-      src="/img/nubes-montanas/Nube-SupIzq-LandingPage-Desktop.png"
-      alt=""
-      width="800"
-      height="400"
-      loading="eager"
-    />
+    <img src="/img/nubes-montanas/Nube-SupIzq-LandingPage-Desktop.png" alt="" width="800" height="400" loading="eager" />
   </div>
   <div class="hero__cloud hero__cloud--right" aria-hidden="true">
-    <img
-      src="/img/nubes-montanas/Nube-SupDer-LandingPage-Desktop.png"
-      alt=""
-      width="890"
-      height="450"
-      loading="eager"
-    />
+    <img src="/img/nubes-montanas/Nube-SupDer-LandingPage-Desktop.png" alt="" width="890" height="450" loading="eager" />
   </div>
 </section>
 
@@ -188,7 +162,7 @@ const {
   }
 
   .btn--secondary {
-    background-color: rgba(165, 222, 248, 0.795);
+    background-color: transparent;
     color: #0a2540;
     border: 1.5px solid #0a2540;
   }
@@ -220,9 +194,7 @@ const {
     font-size: 0.92rem;
     text-decoration: none;
     box-shadow: 0 8px 20px rgba(0, 91, 151, 0.3);
-    transition:
-      transform 0.2s ease,
-      background 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease;
   }
 
   .hero__mobile-banner:hover {
@@ -252,7 +224,7 @@ const {
   }
 
   .hero__cloud--right {
-    bottom: -220px;
+    bottom: -70px;
     right: -250px;
     width: min(890px, 55vw);
     opacity: 0.95;
