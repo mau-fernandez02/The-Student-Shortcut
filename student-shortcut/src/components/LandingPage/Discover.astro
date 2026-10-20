@@ -29,7 +29,8 @@ const {
     <!-- Contenido Textual -->
     <div class="discover__content">
       <h2 class="discover__title" data-i18n-html="discover.title">
-        {titlePrimary} <br />
+        {titlePrimary}
+        <br />
         <span class="discover__title-highlight">{titleHighlight}</span>
       </h2>
       <p class="discover__subtitle" data-i18n="discover.subtitle">{subtitle}</p>
@@ -43,7 +44,11 @@ const {
     <!-- Video B (Desktop a la derecha, Móvil arriba) -->
     <div class="discover__video-wrapper">
       <video autoplay loop muted playsinline class="discover__video">
-        <source src={videoSrcMobile} media="(max-width: 768px)" type="video/mp4" />
+        <source
+          src={videoSrcMobile}
+          media="(max-width: 768px)"
+          type="video/mp4"
+        />
         <source src={videoSrcDesktop} type="video/mp4" />
         Tu navegador no soporta la reproducción de video.
       </video>
@@ -52,15 +57,43 @@ const {
 
   <!-- Capas Decorativas de Nubes (Desktop) -->
   <div class="discover__cloud discover__cloud--left" aria-hidden="true">
-    <img src="/img/nubes-montanas/Nube-MedIzq-LandingPage-Desktop.png" alt="" width="880" height="380" loading="lazy" />
+    <img
+      src="/img/nubes-montanas/Nube-MedIzq-LandingPage-Desktop.png"
+      alt=""
+      width="880"
+      height="380"
+      loading="lazy"
+    />
   </div>
   <div class="discover__cloud discover__cloud--right" aria-hidden="true">
-    <img src="/img/nubes-montanas/Nube-MedDer-LandingPage-Desktop.png" alt="" width="480" height="320" loading="lazy" />
+    <img
+      src="/img/nubes-montanas/Nube-MedDer-LandingPage-Desktop.png"
+      alt=""
+      width="480"
+      height="320"
+      loading="lazy"
+    />
   </div>
 
   <!-- Nubes decorativas móvil al final de la sección -->
   <div class="discover__mobile-clouds" aria-hidden="true">
-    <img src="/img/nubes-montanas/Nube-LandingPage-Mobile.png" class="cloud-m" alt="" />
+    <img
+      src="/img/nubes-montanas/Nube-LandingPage-Mobile.png"
+      class="cloud-m"
+      alt=""
+    />
+  </div>
+
+  <!-- Trayecto Móvil A (Figma Landing Page V2 Mobile) -->
+  <div class="discover__flight-track-mobile" aria-hidden="true">
+    <img
+      src="/img/trayectos/TrayectoMobile-A.png"
+      alt=""
+      class="trayecto-mobile-a-img"
+      width="401"
+      height="404"
+      loading="lazy"
+    />
   </div>
 </section>
 
@@ -88,7 +121,7 @@ const {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    text-align: left;
+    text-align: center;
     color: #ffffff;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
@@ -162,9 +195,9 @@ const {
   }
 
   .discover__cloud--left {
-    bottom: -20px;
-    left: -120px;
-    width: min(780px, 55vw);
+    bottom: -95px;
+    left: -170px;
+    width: min(730px, 55vw);
     opacity: 0.95;
   }
 
@@ -176,6 +209,10 @@ const {
   }
 
   .discover__mobile-clouds {
+    display: none;
+  }
+
+  .discover__flight-track-mobile {
     display: none;
   }
 
@@ -244,6 +281,26 @@ const {
       height: auto;
       display: block;
       opacity: 0.95;
+    }
+
+    /* Trayecto Móvil A posicionado en la parte inferior sobre la nube */
+    .discover__flight-track-mobile {
+      display: block;
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92%, 360px);
+      height: auto;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .trayecto-mobile-a-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
     }
   }
 </style>

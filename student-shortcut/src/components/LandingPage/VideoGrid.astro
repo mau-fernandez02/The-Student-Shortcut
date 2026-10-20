@@ -79,9 +79,6 @@ const paragraphs = [
         <a href={ctaLink} class="btn-cta" data-i18n="videogrid.btn">
           {ctaText}
         </a>
-        <div class="flight-track__plane-cta" aria-hidden="true">
-          <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="56" height="56" />
-        </div>
       </div>
     </div>
   </div>
@@ -115,41 +112,24 @@ const paragraphs = [
       <p data-i18n="videogrid.p1">{paragraphs[0].text}</p>
     </div>
 
-    <!-- 5. Botón Móvil con Avión (Corrección 6) -->
+    <!-- 5. Botón Móvil -->
     <div class="video-grid__cta-group">
       <a href={ctaLink} class="btn-cta" data-i18n="videogrid.btn">
         {ctaText}
       </a>
-      <div class="flight-track__plane-cta--mobile" aria-hidden="true">
-        <img src="/img/SVG/Plane1-White.svg" alt="Avión The Student Shortcut" width="46" height="46" />
-      </div>
     </div>
 
-    <!-- 6. Trayecto en Móvil que llega al botón -->
-    <div class="flight-track flight-track--mobile" aria-hidden="true">
-      <svg class="flight-track__svg" viewBox="0 0 320 80" fill="none">
-        <path
-          d="M 310 -10 Q 290 60 170 65 Q 60 70 40 40"
-          stroke="#ffffff"
-          stroke-width="2.2"
-          stroke-dasharray="6 8"
-          stroke-linecap="round"
-        />
-      </svg>
-    </div>
-  </div>
-
-  <!-- Requerimiento 1 & Corrección 6: Avión y trayecto en Landing Page (Desktop) -->
-  <div class="flight-track flight-track--desktop" aria-hidden="true">
-    <svg class="flight-track__svg" viewBox="0 0 1000 650" fill="none" preserveAspectRatio="none">
-      <path
-        d="M 920 -40 C 970 140, 960 360, 890 500 C 820 620, 680 610, 560 560 C 510 540, 480 480, 470 435"
-        stroke="#ffffff"
-        stroke-width="2.6"
-        stroke-dasharray="7 10"
-        stroke-linecap="round"
+    <!-- 6. Avión y trayecto en Móvil (Figma Landing Page V2 Mobile) -->
+    <div class="flight-track-mobile-b" aria-hidden="true">
+      <img
+        src="/img/trayectos/TrayectoMobile-B.png"
+        alt="Avión The Student Shortcut"
+        class="flight-track-mobile-b__img"
+        width="401"
+        height="282"
+        loading="lazy"
       />
-    </svg>
+    </div>
   </div>
 
   <!-- Capas Decorativas (Montañas V2) -->
@@ -306,34 +286,9 @@ const paragraphs = [
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   }
 
-  .flight-track__plane-cta {
-    position: absolute;
-    bottom: -32px;
-    left: 12px;
-    transform: rotate(-32deg);
-    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
-    pointer-events: none;
-    z-index: 12;
-  }
-
-  /* Requerimiento 1 & Corrección 6: Trayectoria que empieza bajo Video B y llega al botón */
-  .flight-track {
-    position: absolute;
-    pointer-events: none;
-    z-index: 6;
-  }
-
-  .flight-track--desktop {
-    top: 0;
-    right: 0;
-    width: 60%;
-    height: 100%;
-  }
-
-  .flight-track__svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
+  /* Avión y trayecto móvil (oculto en desktop) */
+  .flight-track-mobile-b {
+    display: none;
   }
 
   /* Capas Decorativas (Montañas V2) */
@@ -433,26 +388,21 @@ const paragraphs = [
       font-size: 1rem;
     }
 
-    .flight-track__plane-cta--mobile {
-      position: absolute;
-      bottom: -32px;
-      left: 18%;
-      transform: rotate(-28deg);
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
-      pointer-events: none;
-      z-index: 12;
-    }
-
-    /* Avión y Trayecto en Móvil (Corrección 6) */
-    .flight-track--desktop {
-      display: none;
-    }
-
-    .flight-track--mobile {
+    /* Avión y Trayecto en Móvil (Figma Landing Page V2 Mobile) */
+    .flight-track-mobile-b {
+      display: block;
+      width: min(100%, 340px);
+      margin: -25px auto 0 auto;
       position: relative;
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    .flight-track-mobile-b__img {
       width: 100%;
-      height: 70px;
-      margin-top: 0.8rem;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
     }
 
     .video-grid__mountain {

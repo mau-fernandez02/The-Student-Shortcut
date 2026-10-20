@@ -164,6 +164,7 @@
     flex: 0 0 420px;
     background: rgba(255, 255, 255, 0.13);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Soporte para Safari */
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     padding: 2.25rem 1.75rem;
@@ -173,9 +174,31 @@
     text-align: center;
     gap: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    /* Evita el borrosificado por renderizado de subpíxeles */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    will-change: transform, box-shadow, background-color, border-color;
+
+    /* Transición fluida estilo cubic-bezier */
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+      box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+      border-color 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .about-card:hover {
+    cursor: pointer;
+    /* Elevación suave + escala imperceptible para mantener nitidez */
+    transform: translateY(-8px) scale(1.01) translateZ(0);
+
+    /* Fondo y borde ligeramente más brillantes al pasar el cursor */
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.5);
+
+    /* Sombra más amplia y profunda */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
 
   .about-static-card__icon-wrapper {

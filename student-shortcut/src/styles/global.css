@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://use.typekit.net/req3mdu.css");
 
 :root {
   /* Brand Colors */
@@ -19,8 +19,8 @@
   --navbar-text: #0A2540;
 
   /* Fonts */
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Inter', sans-serif;
+  --font-sans: "forma-djr-micro", sans-serif;
+  --font-display: "forma-djr-micro", sans-serif;
 
   /* Shadows & Radius */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

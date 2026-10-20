@@ -9,19 +9,33 @@ const { tittle } = Astro.props;
 ---
 
 <Layout title={tittle}>
-	<main>
+	<main class="landing-main">
 		<Hero />
-		<Discover />
-		<VideoGrid />
-		
+		<div class="landing-flow-wrapper">
+			<Discover />
+			<VideoGrid />
+
+			<!-- Trayecto y avión unificado Desktop (1 solo fragmento según Figma Landing Page V2) -->
+			<!-- Trayecto y avión unificado Desktop -->
+			<div class="landing-flight-track-desktop" aria-hidden="true">
+				<img
+					src="/img/trayectos/Trayecto1.png"
+					alt="Trayecto y avión The Student Shortcut"
+					class="landing-flight-track-desktop__img"
+					width="660"
+					height="1233"
+					loading="eager"
+				/>
+			</div>
+		</div>
 	</main>
 </Layout>
 
 <style>
-	main {
+	.landing-main {
 		/* Para el header tiene un 85px */
 		/* background: #ffffff; */
-		
+
 		background-image:
 			url("/img/noise.png"),
 			linear-gradient(
@@ -31,8 +45,46 @@ const { tittle } = Astro.props;
 				rgba(0, 91, 151, 1) 100%
 			);
 		background-repeat: repeat, no-repeat;
-		background-size: auto, 100% 100%;
+		background-size:
+			auto,
+			100% 100%;
 		background-color: #005b97;
 		position: relative;
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
+
+	.landing-flow-wrapper {
+		position: relative;
+		width: 100%;
+	}
+
+	/* Trayecto y avión unificado Desktop (1 solo fragmento continuo según Figma Landing Page V2) */
+	.landing-flight-track-desktop {
+		position: absolute;
+		top: 590px;
+		right: calc((100% - min(90%, 1200px)) / 5);
+
+		/* Reducimos el ancho máximo para escalar todo el gráfico/avión proporcionalmente */
+		width: min(590px, 32vw);
+		max-width: 590px;
+
+		pointer-events: none;
+		z-index: 1;
+		user-select: none;
+	}
+
+	/* Regla para que la imagen mantenga sus proporciones exactas */
+	.landing-flight-track-desktop__img {
+		width: 100%;
+		height: auto;
+		object-fit: contain;
+		display: block;
+	}
+
+	@media (max-width: 900px) {
+		.landing-flight-track-desktop {
+			display: none;
+		}
 	}
 </style>
