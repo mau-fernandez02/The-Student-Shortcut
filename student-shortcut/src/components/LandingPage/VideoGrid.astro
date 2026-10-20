@@ -32,12 +32,12 @@ const paragraphs = [
       <div class="video-grid__row video-grid__row--1">
         <div class="video-grid__box video-grid__box--c">
           <video autoplay loop muted playsinline class="video-grid__video">
-            <source src="/media/VideoC-LandingPage.mp4" type="video/mp4" />
+            <source src="/media/VideoC-LandingPage_V2.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="video-grid__box video-grid__box--d">
           <video autoplay loop muted playsinline class="video-grid__video">
-            <source src="/media/VideoD-LandingPage.mp4" type="video/mp4" />
+            <source src="/media/VideoD-LandingPage_V2.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
@@ -46,12 +46,12 @@ const paragraphs = [
       <div class="video-grid__row video-grid__row--2">
         <div class="video-grid__box video-grid__box--e">
           <video autoplay loop muted playsinline class="video-grid__video">
-            <source src="/media/VideoE-LandingPage.mp4" type="video/mp4" />
+            <source src="/media/VideoE-LandingPage_V2.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="video-grid__box video-grid__box--f">
           <video autoplay loop muted playsinline class="video-grid__video">
-            <source src="/media/VideoF-LandingPage.mp4" type="video/mp4" />
+            <source src="/media/VideoF-LandingPage_V2.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
@@ -59,7 +59,7 @@ const paragraphs = [
       <!-- Fila 3: Video G (444x116) -->
       <div class="video-grid__box video-grid__box--g">
         <video autoplay loop muted playsinline class="video-grid__video">
-          <source src="/media/VideoG-LandingPage.mp4" type="video/mp4" />
+          <source src="/media/VideoG-LandingPage_V2.mp4" type="video/mp4" />
         </video>
       </div>
     </div>
@@ -81,6 +81,18 @@ const paragraphs = [
         </a>
       </div>
     </div>
+  </div>
+
+  <!-- Trayecto Desktop Parte B con Avión (Figma Landing Page V2 - Opción B) -->
+  <div class="flight-track-desktop-b" aria-hidden="true">
+    <img
+      src="/img/trayectos/Trayecto2-B.png"
+      alt="Avión The Student Shortcut"
+      class="flight-track-desktop-b__img"
+      width="654"
+      height="206"
+      loading="eager"
+    />
   </div>
 
   <!-- Layout Móvil (Requerimiento 2: Video C -> Títulos -> Video D -> Párrafo -> Botón -> Avión) -->
@@ -286,6 +298,26 @@ const paragraphs = [
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   }
 
+  /* Avión y Trayecto Desktop Parte B (Opción B) */
+  .flight-track-desktop-b {
+    position: absolute;
+    bottom: 30px;
+    right: max(15px, calc((100% - min(88%, 1200px)) / 2 - 30px));
+    width: min(654px, 46vw);
+    max-width: 654px;
+    pointer-events: none;
+    z-index: 6;
+    user-select: none;
+  }
+
+  .flight-track-desktop-b__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+  }
+
   /* Avión y trayecto móvil (oculto en desktop) */
   .flight-track-mobile-b {
     display: none;
@@ -320,6 +352,10 @@ const paragraphs = [
 
   /* Responsive Design Móvil (Requerimiento 2: Layout final de Landing Page en móvil) */
   @media (max-width: 900px) {
+    .flight-track-desktop-b {
+      display: none;
+    }
+
     .video-grid {
       padding-top: 20px;
       padding-bottom: 120px;

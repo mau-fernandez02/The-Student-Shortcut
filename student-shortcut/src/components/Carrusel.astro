@@ -181,7 +181,7 @@ const { ariaLabel = "Carrusel de programas" } = Astro.props;
   /* Media Queries */
   @media (max-width: 768px) {
     .carousel__wrapper {
-      padding: 0 46px;
+      padding: 0 42px;
     }
     .carousel__btn {
       width: 40px;
@@ -192,6 +192,22 @@ const { ariaLabel = "Carrusel de programas" } = Astro.props;
     }
     .carousel__btn--next {
       right: 2px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .carousel__wrapper {
+      padding: 0 26px;
+    }
+    .carousel__btn {
+      width: 34px;
+      height: 34px;
+    }
+    .carousel__btn--prev {
+      left: 0;
+    }
+    .carousel__btn--next {
+      right: 0;
     }
   }
 </style>

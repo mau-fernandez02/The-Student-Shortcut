@@ -19,7 +19,7 @@ const {
   descriptionParagraph1 = "Si estás leyendo esto, es porque sueñas alto. Lo único que te falta, es despegar.",
   descriptionParagraph2 = "¿Qué pasaría si te digo que estamos aquí para ayudarte a hacerlo?",
   descriptionParagraph3 = "The Student Shortcut te ofrece una ayuda completa para realizar tu intercambio en el extranjero.",
-  videoSrcDesktop = "/media/VideoB-LandingPage.mp4",
+  videoSrcDesktop = "/media/VideoB-LandingPage-V2.mp4",
   videoSrcMobile = "/media/Mobile/VideoB-LandingPage Mobile.mp4",
 } = Astro.props;
 ---
@@ -29,7 +29,8 @@ const {
     <!-- Contenido Textual -->
     <div class="discover__content">
       <h2 class="discover__title" data-i18n-html="discover.title">
-        {titlePrimary} <br />
+        {titlePrimary}
+        <br />
         <span class="discover__title-highlight">{titleHighlight}</span>
       </h2>
       <p class="discover__subtitle" data-i18n="discover.subtitle">{subtitle}</p>
@@ -43,7 +44,11 @@ const {
     <!-- Video B (Desktop a la derecha, Móvil arriba) -->
     <div class="discover__video-wrapper">
       <video autoplay loop muted playsinline class="discover__video">
-        <source src={videoSrcMobile} media="(max-width: 768px)" type="video/mp4" />
+        <source
+          src={videoSrcMobile}
+          media="(max-width: 768px)"
+          type="video/mp4"
+        />
         <source src={videoSrcDesktop} type="video/mp4" />
         Tu navegador no soporta la reproducción de video.
       </video>
@@ -52,20 +57,55 @@ const {
 
   <!-- Capas Decorativas de Nubes (Desktop) -->
   <div class="discover__cloud discover__cloud--left" aria-hidden="true">
-    <img src="/img/nubes-montanas/Nube-MedIzq-LandingPage-Desktop.png" alt="" width="880" height="380" loading="lazy" />
+    <img
+      src="/img/nubes-montanas/Nube-MedIzq-LandingPage-Desktop.png"
+      alt=""
+      width="880"
+      height="380"
+      loading="lazy"
+    />
   </div>
   <div class="discover__cloud discover__cloud--right" aria-hidden="true">
-    <img src="/img/nubes-montanas/Nube-MedDer-LandingPage-Desktop.png" alt="" width="480" height="320" loading="lazy" />
+    <img
+      src="/img/nubes-montanas/Nube-MedDer-LandingPage-Desktop.png"
+      alt=""
+      width="480"
+      height="320"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Trayecto Desktop Parte A (Figma Landing Page V2 - Opción B) -->
+  <div class="discover__flight-track-desktop" aria-hidden="true">
+    <img
+      src="/img/trayectos/Trayecto2-A.png"
+      alt=""
+      class="trayecto-desktop-a-img"
+      width="474"
+      height="346"
+      loading="eager"
+    />
   </div>
 
   <!-- Nubes decorativas móvil al final de la sección -->
   <div class="discover__mobile-clouds" aria-hidden="true">
-    <img src="/img/nubes-montanas/Nube-LandingPage-Mobile.png" class="cloud-m" alt="" />
+    <img
+      src="/img/nubes-montanas/Nube-LandingPage-Mobile.png"
+      class="cloud-m"
+      alt=""
+    />
   </div>
 
   <!-- Trayecto Móvil A (Figma Landing Page V2 Mobile) -->
   <div class="discover__flight-track-mobile" aria-hidden="true">
-    <img src="/img/trayectos/TrayectoMobile-A.png" alt="" class="trayecto-mobile-a-img" width="401" height="404" loading="lazy" />
+    <img
+      src="/img/trayectos/TrayectoMobile-A.png"
+      alt=""
+      class="trayecto-mobile-a-img"
+      width="401"
+      height="404"
+      loading="lazy"
+    />
   </div>
 </section>
 
@@ -93,7 +133,7 @@ const {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    text-align: left;
+    text-align: center;
     color: #ffffff;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
@@ -167,9 +207,9 @@ const {
   }
 
   .discover__cloud--left {
-    bottom: -20px;
-    left: -120px;
-    width: min(780px, 55vw);
+    bottom: -95px;
+    left: -170px;
+    width: min(730px, 55vw);
     opacity: 0.95;
   }
 
@@ -184,6 +224,24 @@ const {
     display: none;
   }
 
+  .discover__flight-track-desktop {
+    position: absolute;
+    bottom: -50px;
+    right: max(10px, calc((100% - min(88%, 1200px)) / 2));
+    width: min(474px, 34vw);
+    max-width: 474px;
+    pointer-events: none;
+    z-index: 3;
+    user-select: none;
+  }
+
+  .trayecto-desktop-a-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
   .discover__flight-track-mobile {
     display: none;
   }
@@ -192,6 +250,7 @@ const {
   @media (max-width: 860px) {
     .discover {
       padding: 40px 0 100px;
+      overflow: visible;
     }
 
     .discover__container {
@@ -256,7 +315,11 @@ const {
     }
 
     /* Trayecto Móvil A posicionado en la parte inferior sobre la nube */
-    .discover__flight-track-mobile {
+    .discover__flight-track-desktop {
+      display: none;
+    }
+
+  .discover__flight-track-mobile {
       display: block;
       position: absolute;
       bottom: -35px;
