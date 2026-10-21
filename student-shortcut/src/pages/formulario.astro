@@ -1,6 +1,9 @@
 ---
 // src/pages/formulario.astro
 import Layout from "../layouts/Layout.astro";
+
+// KEY FORMULARIO
+const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
 
 <Layout title="Formulario de postulación | The Student Shortcut">
@@ -8,12 +11,20 @@ import Layout from "../layouts/Layout.astro";
     <section class="application-page__layout">
       <!-- Columna Izquierda: Introducción -->
       <div class="application-page__intro">
-        <p class="application-page__eyebrow" data-i18n="form.eyebrow">The Student Shortcut</p>
+        <p class="application-page__eyebrow" data-i18n="form.eyebrow">
+          The Student Shortcut
+        </p>
         <h1 data-i18n="form.introTitle">¡Tu próximo capítulo empieza aquí!</h1>
         <p data-i18n="form.introDesc">
-          Cuéntanos un poco sobre ti y el intercambio que imaginas. Nuestro equipo se pondrá en contacto para acompañarte con los siguientes pasos.
+          Cuéntanos un poco sobre ti y el intercambio que imaginas. Nuestro
+          equipo se pondrá en contacto para acompañarte con los siguientes
+          pasos.
         </p>
-        <a href="/contactanos" class="application-page__contact-link" data-i18n="form.contactLink">
+        <a
+          href="/contactanos"
+          class="application-page__contact-link"
+          data-i18n="form.contactLink"
+        >
           ¿Tienes preguntas? Contáctanos
         </a>
       </div>
@@ -21,47 +32,110 @@ import Layout from "../layouts/Layout.astro";
       <!-- Columna Derecha: Tarjeta de Formulario -->
       <div class="application-form-card">
         <form class="application-form" id="applicationForm">
+          <input type="hidden" name="access_key" value={web3formsKey} />
+          <input
+            type="hidden"
+            name="subject"
+            value="Nueva Postulación - The Student Shortcut"
+          />
           <h2 data-i18n="form.title">Formulario de postulación</h2>
-          <p class="application-form__required" data-i18n="form.required">Los campos marcados con * son obligatorios.</p>
+          <p class="application-form__required" data-i18n="form.required">
+            Los campos marcados con * son obligatorios.
+          </p>
 
           <div class="application-form__grid">
-            <label class="application-form__field application-form__field--wide">
+            <label
+              class="application-form__field application-form__field--wide"
+            >
               <span data-i18n="form.fullName">Nombre completo *</span>
-              <input type="text" name="fullName" autocomplete="name" required placeholder="Ej. Juan Pérez" />
+              <input
+                type="text"
+                name="fullName"
+                autocomplete="name"
+                required
+                placeholder="Ej. Juan Pérez"
+              />
             </label>
 
             <label class="application-form__field">
               <span data-i18n="form.email">Correo electrónico *</span>
-              <input type="email" name="email" autocomplete="email" required placeholder="nombre@correo.com" />
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                required
+                placeholder="nombre@correo.com"
+              />
             </label>
 
             <label class="application-form__field">
               <span data-i18n="form.phone">Teléfono / WhatsApp *</span>
-              <input type="tel" name="phone" autocomplete="tel" required placeholder="+591 70000000" />
+              <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                required
+                placeholder="+591 70000000"
+              />
             </label>
 
             <label class="application-form__field">
               <span data-i18n="form.age">Edad *</span>
-              <input type="number" name="age" min="14" max="18" required placeholder="14 - 18" />
+              <input
+                type="number"
+                name="age"
+                min="14"
+                max="18"
+                required
+                placeholder="14 - 18"
+              />
             </label>
 
             <label class="application-form__field">
               <span data-i18n="form.program">Programa de interés *</span>
               <select name="program" required>
-                <option value="" disabled selected data-i18n="form.programPlaceholder">Selecciona un programa</option>
-                <option value="Full Year Program" data-i18n="form.programFullYear">Full Year Program</option>
-                <option value="Programa Semestral" data-i18n="form.programSemester">Programa Semestral</option>
+                <option
+                  value=""
+                  disabled
+                  selected
+                  data-i18n="form.programPlaceholder"
+                  >Selecciona un programa</option
+                >
+                <option
+                  value="Full Year Program"
+                  data-i18n="form.programFullYear">Full Year Program</option
+                >
+                <option
+                  value="Programa Semestral"
+                  data-i18n="form.programSemester">Programa Semestral</option
+                >
               </select>
             </label>
 
-            <label class="application-form__field application-form__field--wide">
-              <span data-i18n="form.destination">País de destino de preferencia</span>
-              <input type="text" name="destination" autocomplete="country-name" placeholder="Ej. Francia, EE.UU., Alemania..." />
+            <label
+              class="application-form__field application-form__field--wide"
+            >
+              <span data-i18n="form.destination"
+                >País de destino de preferencia</span
+              >
+              <input
+                type="text"
+                name="destination"
+                autocomplete="country-name"
+                placeholder="Ej. Francia, EE.UU., Alemania..."
+              />
             </label>
 
-            <label class="application-form__field application-form__field--wide">
-              <span data-i18n="form.message">Cuéntanos qué te gustaría vivir en tu intercambio</span>
-              <textarea name="message" rows="4" placeholder="Tus metas, aficiones o expectativas..."></textarea>
+            <label
+              class="application-form__field application-form__field--wide"
+            >
+              <span data-i18n="form.message"
+                >Cuéntanos qué te gustaría vivir en tu intercambio</span
+              >
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Tus metas, aficiones o expectativas..."></textarea>
             </label>
           </div>
 
@@ -71,9 +145,22 @@ import Layout from "../layouts/Layout.astro";
         </form>
 
         <!-- Mensaje de Confirmación Interactivo -->
-        <div class="application-success" id="applicationSuccess" style="display: none;">
+        <div
+          class="application-success"
+          id="applicationSuccess"
+          style="display: none;"
+        >
           <div class="application-success__icon">
-            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#1e9cd7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              width="48"
+              height="48"
+              fill="none"
+              stroke="#1e9cd7"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
               <polyline points="22 4 12 14.01 9 11.01"></polyline>
             </svg>
@@ -98,7 +185,9 @@ import Layout from "../layouts/Layout.astro";
       url("/img/noise.png"),
       linear-gradient(135deg, #1e9cd7 0%, #147fb5 48%, #005b97 100%);
     background-repeat: repeat, no-repeat;
-    background-size: auto, 100% 100%;
+    background-size:
+      auto,
+      100% 100%;
   }
 
   .application-page__layout {
@@ -214,7 +303,10 @@ import Layout from "../layouts/Layout.astro";
     color: #0a2540;
     font-size: 1rem;
     font-family: inherit;
-    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease;
     box-sizing: border-box;
   }
 
@@ -244,7 +336,10 @@ import Layout from "../layouts/Layout.astro";
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(0, 91, 151, 0.25);
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .application-form__submit:hover {
@@ -300,7 +395,9 @@ import Layout from "../layouts/Layout.astro";
     color: #ffffff;
     text-decoration: none;
     font-weight: 700;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
   }
 
   .application-success__btn:hover {
@@ -341,19 +438,75 @@ import Layout from "../layouts/Layout.astro";
   }
 </style>
 
-<script>
+<script is:inline define:vars={{ web3formsKey }}>
   function setupApplicationForm() {
-    const form = document.getElementById("applicationForm") as HTMLFormElement;
+    const form = document.getElementById("applicationForm");
     const successCard = document.getElementById("applicationSuccess");
+    const submitBtn = document.getElementById("submitBtn");
+    const errorDiv = document.getElementById("formError");
 
     if (!form || !successCard) return;
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      // Ocultar formulario y mostrar confirmación
-      form.style.display = "none";
-      successCard.style.display = "flex";
-      successCard.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      if (errorDiv) {
+        errorDiv.style.display = "none";
+        errorDiv.innerText = "";
+      }
+
+      // Cambiar texto de botón mientras envía
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.7";
+      }
+
+      const formData = new FormData(form);
+
+      // Si por algún motivo no capturó la key, la forzamos aquí
+      if (!formData.get("access_key")) {
+        formData.append("access_key", web3formsKey);
+      }
+
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        });
+
+        const jsonRes = await response.json();
+
+        if (response.status === 200) {
+          // Ocultar formulario y mostrar confirmación
+          form.style.display = "none";
+          successCard.style.display = "flex";
+          successCard.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          if (errorDiv) {
+            errorDiv.innerText =
+              jsonRes.message ||
+              "Ocurrió un error al enviar. Revisa tus datos.";
+            errorDiv.style.display = "block";
+          }
+        }
+      } catch (err) {
+        if (errorDiv) {
+          errorDiv.innerText = "Error de conexión. Por favor intenta de nuevo.";
+          errorDiv.style.display = "block";
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = "1";
+        }
+      }
     });
   }
 
