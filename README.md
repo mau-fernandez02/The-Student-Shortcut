@@ -21,7 +21,7 @@ Student Shortcut
 | Video Demo | Descripción |
 | ![Demo GIF](./readme/screenshots/demo.gif) |  |
 
-
+(Revisar)
 
 ---
 
